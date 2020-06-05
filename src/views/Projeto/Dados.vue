@@ -1,69 +1,98 @@
 <template>
     <div class="home">
-        <v-tabs v-model="tab" centered>
-            <v-tab key="Brasil">Brasil</v-tab>
-                <v-divider class="mx-4" inset vertical/>
-            <v-tab key="Estados">Estados</v-tab>
-        </v-tabs>
-        <v-tabs-items v-model="tab">
-            <v-tab-item key="Brasil">
-                <brasil></brasil>
-            </v-tab-item>
-            <v-tab-item key="Estados">
-                <estados></estados>
-            </v-tab-item>
-        </v-tabs-items>
+        <div class="brasil">
+            <v-container>
+                <h1 class="main-title font-weight-light"> Brasil </h1>
+                <v-divider ></v-divider>
+                <v-row>
+                    <v-col cols="12" sm="6" md="6">
+                        <v-card>
+                                <brasil-line/>
+                        </v-card>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="6">
+                    </v-col>
+                </v-row>
+            </v-container>
+        </div>
+        <div class="regioes">
+            <v-container>
+                <v-row>
+                    <v-col cols="12" sm="6" md="6">
+                        <h1 class="main-title font-weight-light"> Regioes </h1>
+                    </v-col>
+                    <v-col cols="12" sm="4" md="4"/>
+                    <v-col cols="12" sm="2" md="2">
+                        <v-select v-model="regiao_selecionada" :items="regioes" label="Regiões"/>
+                    </v-col>
+                </v-row>
+                <v-divider/>
+                <estados v-bind:region="regiao_selecionada"></estados>
+            </v-container>
+        </div>
+        <div class="Mapas">
+            <v-container>
+                <v-row>
+                    <v-col cols="12" sm="6" md="6">
+                        <h1 class="main-title font-weight-light"> Mapa </h1>
+                    </v-col>
+                    <v-col cols="12" sm="4" md="4"/>
+                    <v-col cols="12" sm="2" md="2">
+                    </v-col>
+                </v-row>
+                <v-divider/>
+                <v-card>
+                    <v-card-title>
+                        <span class="font-weight-light"> Brasil </span>
+                    </v-card-title>
+                    <v-card-text>
+                        <simple-map/>
+                    </v-card-text>
+                </v-card>
+            </v-container>
+        </div>
     </div>
 </template>
 
 <script>
-import Brasil from "./components/Brasil.vue";
-import Estados from "./components/Estados.vue";
+import BrasilLine from "./visualize/BrasilLine.vue"
+import Estados from "../Projeto/visualize/Regioes.vue"
+import SimpleMap from "./maps/SimpleMap.vue"
+
 export default {
     name: "Home",
     components: {
-        Brasil,
-        Estados
+        BrasilLine, Estados, SimpleMap
     },
     data(){
         return {
-            regions: [],
+            regioes: [ "DF", "Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"],
+            regiao_selecionada: "oi",
+            data_from_region: [],
             dates: [],
             tab: null,
             states: null,
             state: null
         }
     },
-    computed:{
-
+    watch:{
+        regiao_selecionada (value) {
+            console.log('Regiao Selecionada:' + value)
+        }
     },
     created(){
         // this.filter_regions()
         // this.filter_dates()
     },
     methods: {
-        // filter_regions(){
-        //     let regioes = []
-        //     let data = null
-        //     for(let i = 0; i < this.data.length; i++){
-        //         data = this.data[i].regiao.toUpperCase()
-        //         regioes.indexOf(data) === -1 ? regioes.push(data) : console.log("This item already exists");
-        //     }
-        //     this.regions = regioes
-        // },
-        // filter_dates(){
-        //     let data = null
-        //     let retorno = []
-        //     for(let i = 0; i < this.data.length; i++){
-        //         data = this.data[i].dataExtracao
-        //         retorno.indexOf(data) === -1 ? retorno.push(data) : console.log("This item already exists");
-        //     }
-        //     this.dates = retorno
-        // }
+
     }
 };
 </script>
 
 <style scoped>
+.main-title{
+    color: rgb(73, 73, 73);
+}
 </style>
 

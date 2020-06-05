@@ -2,7 +2,7 @@
     <v-app class="main_project">
         <Toolbar/>
             <v-content>
-                <router-view></router-view>
+                <router-view class="view"></router-view>
             </v-content>
         <Footer></Footer>
     </v-app>
@@ -26,5 +26,8 @@ export default {
 </script>
 
 <style scoped>
-
+.view{
+  margin-left: 100px;
+  margin-right: 100px;
+}
 </style>

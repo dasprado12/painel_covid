@@ -10,11 +10,13 @@
   "dependencies": {
     "apexcharts": "^3.19.2",
     "core-js": "^3.6.4",
+    "leaflet": "^1.6.0",
     "lottie-vuejs": "^0.3.7",
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.5.3",
     "vue-lottie": "^0.2.1",
     "vue-router": "^3.1.6",
+    "vue2-leaflet": "^2.5.2",
     "vuetify": "^2.2.11"
   },
   "devDependencies": {
