@@ -14,6 +14,13 @@
                 v-bind:region="regions"
                 :key="numId"
             />
+            <v-card-actions>
+                <v-pagination
+                    v-model="page"
+                    :length="3"
+                    :total-visible="7"
+                ></v-pagination>
+            </v-card-actions>
         </v-card>
     </div>
 </template>
@@ -59,8 +66,7 @@ export default {
     },
     methods: {
         filter_data(){
-            let tamanho = this.dates.length - 1;
-            let day = this.dates[tamanho];
+            let day = "2020-04-22T00:00:00.000Z"
 
             //para cada regiao
             for(let i = 0; i < this.regions.length; i++ ){

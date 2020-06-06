@@ -48,7 +48,7 @@ export default {
                     id: 'vuechart-example'
                 },
                 xaxis: {
-                    categories: [0]
+                    categories: this.time
                 }
             },
             series: [
@@ -62,7 +62,12 @@ export default {
                 }
             ],
             numId: 0
-        }   
+        }
+    },
+    created(){
+    },
+    methods: {
+
     }
 }
 </script>
