@@ -89,7 +89,7 @@ var layout = {
 };
 
 Plotly.newPlot("myDiv", data, layout,);
-
+console.log(total_casos, total_obitos)
 </script>
 
 
