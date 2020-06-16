@@ -15,6 +15,8 @@
                 </v-row>
             </v-container>
         </div>
+       
+         <TreeChart> </TreeChart>      
         <div class="regioes">
             <v-container>
                 <v-row>
@@ -58,11 +60,12 @@
 import BrasilLine from "./visualize/BrasilLine.vue"
 import Estados from "../Projeto/visualize/Regioes.vue"
 import SimpleMap from "./maps/SimpleMap.vue"
+import TreeChart from "./charts/TreeChart.vue"
 
 export default {
     name: "Home",
     components: {
-        BrasilLine, Estados, SimpleMap
+        BrasilLine, Estados, SimpleMap, TreeChart
     },
     data(){
         return {
