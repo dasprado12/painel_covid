@@ -1,24 +1,36 @@
+
 # painel_covid
 
-## Project setup
+Este é um projeto de análise de dados da Sars-CoV-2.
+
+## Docker
 ```
-npm install
+sudo docker-compose build
+sudo docker-compose up
 ```
 
-### Compiles and hot-reloads for development
-```
+## Npm
+
+### Rodar o projeto
+``` 
+npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Criar uma build do projeto
+
 ```
+npm install
 npm run build
 ```
 
 ### Lints and fixes files
+
 ```
+npm install
 npm run lint
 ```
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
