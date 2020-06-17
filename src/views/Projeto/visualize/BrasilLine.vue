@@ -22,9 +22,11 @@
 </template>
 
 <script>
-import data from "../../../example/index.js"
-import dates from "../../../example/dates.js"
+import { Data } from "../../../functions/index.js";
+// import dates from "../../../example/dates.js"
 import lineChart from "../charts/LineChart.vue"
+
+let api_data = new Data()
 
 export default {
     components: { 
@@ -35,8 +37,9 @@ export default {
             type: 'line',
             name: 'Brasil',
             selected: ['Infectados', 'Obitos'],
-            dates: dates.dates,
-            dados: data.DF,
+            dates: null,
+            dados: null,
+            time: null,
             dados_filtrados: {
                 infectados: [],
                 dia: [],
@@ -48,11 +51,26 @@ export default {
             numId: 0
         }
     },
+    async created(){
+        this.list_data()
+        this.list_dates()
+    },
     mounted(){
+        this.time = this.dates.map(function(time){
+            return time.split('T')[0].slice(5)
+        })
+        
         this.filter_data()
         this.numId++
     },
     methods: {
+        async list_data(){
+            this.dados = (await api_data.get_all_data()).data
+        },
+        async list_dates(){
+            this.dates = (await api_data.get_all_dates()).data.sort()
+            // this.dates = dates.
+        },
         changeChart(item){
             this.type = item
             this.numId++
@@ -72,9 +90,15 @@ export default {
             }
             this.infectados = this.dados_filtrados.infectados
             this.obitos = this.dados_filtrados.obitos
+            this.numId++
         }
     },
     watch: {
+        dados(val){
+            if(val != []){
+                this.filter_data()
+            }
+        },
         selected: function(val) {
             if( !val.includes('Obitos') ){
                 this.obitos = [0]

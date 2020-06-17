@@ -25,9 +25,9 @@
 
 <script>
 import lineChart from "../charts/LineChart.vue"
-import { Data } from "../../../example/functions.js";
+import { Data } from "../../../functions/index.js";
 
-let newData = new Data();
+let api_data = new Data();
 
 export default {
     props: [ 'region' ],
@@ -36,9 +36,7 @@ export default {
         return {
             regions: [ ],
             data: null,
-            items: [ 
-                "ÁGUAS CLARAS", "RECANTO DAS EMAS", "SAMAMBAIA", "TAGUATINGA", "VICENTE PIRES", "CENTRAL", "SUDOESTE", "PLANO PILOTO", "SUDOESTE/OCTOGONAL", "LAGO NORTE", "LAGO SUL", "VARJÃO DO TORTO", "CENTRO SUL", "CANDANGOLÂNDIA", "PARKWAY", "GUARÁ", "NÚCLEO BANDEIRANTE", "RIACHO FUNDO I", "RIACHO FUNDO II", "SCIA (ESTRUTURAL)", "CRUZEIRO", "NORTE", "FERCAL", "PLANALTINA", "SOBRADINHO I", "SOBRADINHO II", "GAMA", "SANTA MARIA", "LESTE", "JARDIM BOTÂNICO", "ITAPOÃ", "PARANOÁ", "SÃO SEBASTIÃO", "SUL", "OESTE", "BRAZLÂNDIA", "CEILÂNDIA", "POPULAÇÃO PRIVADA DE LIBERDADE", "S I A", "RA EM INVESTIGAÇÃO" 
-            ],
+            items: null,
             type: 'line',
             infectados: [null],
             dates: [null],
@@ -46,17 +44,18 @@ export default {
             numId: 0
         }
     },
-    mounted() {
-        this.get_region('')
+    async mounted(){
+        this.get_regions()
+        this.get_data('')
     },
     watch: {
         regions(val){
-            this.get_region(val)
+            this.get_data(val)
         }
     },
     methods: {
-        get_region(region){
-            let data = newData.get_by_region(region)
+        async get_data(region){
+            let data = (await api_data.get_data_by_region(region)).data
             let infectados = []
             let dates = []
             let obitos = []
@@ -69,6 +68,9 @@ export default {
             this.dates = dates
             this.obitos = obitos
             this.numId++
+        },
+        async get_regions(){
+            this.items = (await api_data.get_all_regions()).data
         },
         changeChart(item){
             this.type = item

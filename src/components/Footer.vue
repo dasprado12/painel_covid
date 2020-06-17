@@ -5,14 +5,18 @@
     <v-divider></v-divider>
       </div>
     </div>
-      <v-divider></v-divider>
     <div class="parceiros">
+      <v-card flat>
+        <v-card-title>
+          <v-spacer></v-spacer>
       <div class="column">
         <img style="width:100%" src="../assets/brasao-ufc.png"/>
       </div>
       <div class="column">
         <img style="width:100%" src="../assets/brasao-unb.jpg"/>
       </div>
+        </v-card-title>
+      </v-card>
     </div>
   </div>
 </template>
@@ -36,6 +40,7 @@ div.observacoes{
 div.parceiros{
   margin-left: 10%;
   margin-right: 10%;
+  align-content: right;
   text-align: right;
   display: table;
 

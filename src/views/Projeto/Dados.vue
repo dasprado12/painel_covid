@@ -7,7 +7,7 @@
                 <v-row>
                     <v-col cols="12" sm="6" md="6">
                         <v-card>
-                                <brasil-line/>
+                            <brasil-line/>
                         </v-card>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
@@ -27,11 +27,13 @@
                     </v-col>
                 </v-row>
                 <v-divider/>
+                <!-- visualização dos estados -->
                 <estados v-bind:region="regiao_selecionada"></estados>
             </v-container>
         </div>
         <div class="Mapas">
             <v-container>
+                
                 <v-row>
                     <v-col cols="12" sm="6" md="6">
                         <h1 class="main-title font-weight-light"> Mapa </h1>
@@ -67,7 +69,7 @@ export default {
     data(){
         return {
             regioes: [ "DF", "Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"],
-            regiao_selecionada: "oi",
+            regiao_selecionada: "",
             data_from_region: [],
             dates: [],
             tab: null,

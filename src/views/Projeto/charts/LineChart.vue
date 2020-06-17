@@ -30,12 +30,12 @@ export default {
                             y: 600,
                             borderColor: '#00E396',
                             label: {
-                                borderColor: '#00E396',
-                                style: {
-                                    color: '#111111',
-                                    background: '#dadada'
-                                },
-                                text: 'Capacidade do sistema de saúde'
+                                // borderColor: '#00E396',
+                                // style: {
+                                //     color: '#111111',
+                                //     background: '#dadada'
+                                // },
+                                // text: 'Capacidade do sistema de saúde'
                             }
                         }
                     ]

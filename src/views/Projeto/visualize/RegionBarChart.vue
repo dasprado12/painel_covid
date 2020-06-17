@@ -29,6 +29,9 @@
 import data from "../../../example/index.js"
 import dates from "../../../example/dates.js"
 import barChart from "../charts/BarChart.vue";
+import { Data } from "../../../functions/index.js";
+
+let api_data = new Data();
 
 export default {
     props: [ 
@@ -38,11 +41,10 @@ export default {
     },
     data(){
         return {
+            page: 1,
             drawer: true,
             regions: [ ],
-            items: [
-                "ÁGUAS CLARAS", "RECANTO DAS EMAS", "SAMAMBAIA", "TAGUATINGA", "VICENTE PIRES", "CENTRAL", "SUDOESTE", "PLANO PILOTO", "SUDOESTE/OCTOGONAL", "LAGO NORTE", "LAGO SUL", "VARJÃO DO TORTO", "CENTRO SUL", "CANDANGOLÂNDIA", "PARKWAY", "GUARÁ", "NÚCLEO BANDEIRANTE", "RIACHO FUNDO I", "RIACHO FUNDO II", "SCIA (ESTRUTURAL)", "CRUZEIRO", "NORTE", "FERCAL", "PLANALTINA", "SOBRADINHO I", "SOBRADINHO II", "GAMA", "SANTA MARIA", "LESTE", "JARDIM BOTÂNICO", "ITAPOÃ", "PARANOÁ", "SÃO SEBASTIÃO", "SUL", "OESTE", "BRAZLÂNDIA", "CEILÂNDIA", "POPULAÇÃO PRIVADA DE LIBERDADE", "S I A", "RA EM INVESTIGAÇÃO"
-            ],
+            items: null,
             name: 'DF',
             selected: [],
             dates: dates.dates,
@@ -61,12 +63,17 @@ export default {
     computed: {
     },
     mounted(){
+        this.get_regions()
         this.filter_data()
         this.numId++
     },
     methods: {
-        filter_data(){
-            let day = "2020-04-22T00:00:00.000Z"
+        async get_regions(){
+            this.items = (await api_data.get_all_regions()).data
+        },
+        async filter_data(){
+            let day = (await api_data.get_last_date()).data
+            console.log("day is: " + day)
 
             //para cada regiao
             for(let i = 0; i < this.regions.length; i++ ){
