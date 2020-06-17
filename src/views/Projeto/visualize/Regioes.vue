@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import data from "../../../example/index.js"
+// import data from "../../../example/index.js"
 import RegionBarChart from "./RegionBarChart.vue"
 import RegionLineChart from "./RegionLineChart.vue"
 import TreeChart from "./TreeChart.vue"
@@ -41,10 +41,6 @@ export default {
         }
     },
     methods: {
-        get_data(region){
-            console.log('oi'+region)
-            this.data = data.DF
-        }
     }
 }
 </script>

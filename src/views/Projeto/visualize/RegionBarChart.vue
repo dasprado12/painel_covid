@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import data from "../../../example/index.js"
-import dates from "../../../example/dates.js"
+// import data from "../../../example/index.js"
+// import dates from "../../../example/dates.js"
 import barChart from "../charts/BarChart.vue";
 import { Data } from "../../../functions/index.js";
 
@@ -47,8 +47,8 @@ export default {
             items: null,
             name: 'DF',
             selected: [],
-            dates: dates.dates,
-            dados: data.DF,
+            dates: null,
+            dados: null,
             dados_filtrados: {
                 infectados: [],
                 dia: [],
