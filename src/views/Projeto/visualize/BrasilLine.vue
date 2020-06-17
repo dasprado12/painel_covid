@@ -56,14 +56,17 @@ export default {
         this.list_dates()
     },
     mounted(){
-        this.time = this.dates.map(function(time){
-            return time.split('T')[0].slice(5)
-        })
+        this.modify_dates()
         
         this.filter_data()
         this.numId++
     },
     methods: {
+        async modify_dates(){
+            this.time = this.dates.map(function(time){
+                return time.split('T')[0].slice(5)
+            })
+        },
         async list_data(){
             this.dados = (await api_data.get_all_data()).data
         },

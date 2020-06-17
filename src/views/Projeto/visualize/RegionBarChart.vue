@@ -14,13 +14,13 @@
                 v-bind:region="regions"
                 :key="numId"
             />
-            <v-card-actions>
+            <!-- <v-card-actions>
                 <v-pagination
                     v-model="page"
                     :length="3"
                     :total-visible="7"
                 ></v-pagination>
-            </v-card-actions>
+            </v-card-actions> -->
         </v-card>
     </div>
 </template>
@@ -60,36 +60,33 @@ export default {
             numId: 0
         }
     },
-    computed: {
+    async created(){
+        this.dados = (await api_data.get_all_data()).data
     },
     mounted(){
         this.get_regions()
-        this.filter_data()
+        this.filter_data(this.regions)
         this.numId++
     },
     methods: {
         async get_regions(){
             this.items = (await api_data.get_all_regions()).data
         },
-        async filter_data(){
+        async filter_data(regions){
             let day = (await api_data.get_last_date()).data
-            console.log("day is: " + day)
 
             //para cada regiao
-            for(let i = 0; i < this.regions.length; i++ ){
+            for(let i = 0; i < regions.length; i++ ){
                 let infectados = 0
                 let obitos = 0
                 for(let j = 0; j < this.dados.length; j++){
                     //compara se a regiao coincide
-
-                    if( this.regions[i] == this.dados[j].regiao.toUpperCase() ){
-                        console.log(this.dados[j].dataExtracao);
+                    if( regions[i] == this.dados[j].regiao.toUpperCase() ){
                         //compara se a data coincide
+                        
                         if(day == this.dados[j].dataExtracao){
-            
-                        infectados += this.dados[j].num
-                        obitos += this.dados[j].obitos
-                        console.log("obitos "+ obitos);
+                            infectados += this.dados[j].num
+                            obitos += this.dados[j].obitos
                         }
                     }
                 }
@@ -102,13 +99,12 @@ export default {
     },
     watch: {
         regions: function(val) {
-            console.log(val)
             this.dados_filtrados = {
                 infectados: [],
                 dia: [],
                 obitos: []
             }
-            this.filter_data()
+            this.filter_data(val)
             this.numId++
         }
     }

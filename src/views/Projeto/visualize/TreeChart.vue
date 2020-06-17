@@ -2,7 +2,7 @@
     <div>
         <v-card>
             <v-row>
-                <v-col cols="12" md="6">
+                <v-col cols="12" md="6" sm="6" xm="6">
                     <v-card flat>
                         <v-card-title>
                             <span class="font-weight-light"> Infectados </span>
@@ -10,7 +10,7 @@
                         <tree-map-inf v-bind:obj="data_inf" :key="key"></tree-map-inf>
                     </v-card>
                 </v-col>
-                <v-col cols="12" md="6">
+                <v-col cols="12" md="6" sm="6" xm="6">
                     <v-card flat>
                         <v-card-title>
                             <span class="font-weight-light"> Óbitos </span>
@@ -47,7 +47,6 @@ export default {
     },
     async created(){
         this.get_last_date()
-        this.mount_data()
     },
     methods: {
         async get_last_date(){

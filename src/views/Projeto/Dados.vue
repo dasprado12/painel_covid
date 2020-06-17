@@ -28,7 +28,7 @@
                 </v-row>
                 <v-divider/>
                 <!-- visualização dos estados -->
-                <estados v-bind:region="regiao_selecionada"></estados>
+                <estados v-show="show" v-bind:region="regiao_selecionada"></estados>
             </v-container>
         </div>
         <div class="Mapas">
@@ -68,7 +68,8 @@ export default {
     },
     data(){
         return {
-            regioes: [ "DF", "Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"],
+            show: false,
+            regioes: [ "Regioes", "DF"],
             regiao_selecionada: "",
             data_from_region: [],
             dates: [],
@@ -79,12 +80,12 @@ export default {
     },
     watch:{
         regiao_selecionada (value) {
-            console.log('Regiao Selecionada:' + value)
+            if(value == 'Regioes'){
+                this.show = false
+            }else{
+                this.show = true
+            }
         }
-    },
-    created(){
-        // this.filter_regions()
-        // this.filter_dates()
     },
     methods: {
 
