@@ -1,6 +1,6 @@
 <template>
     <div class="background_color">
-        <v-toolbar flat class="main_toolbar">
+        <v-toolbar  flat class="main_toolbar">
                 <v-toolbar-title class="font-weight-light"><b>| Logo do Projeto |</b></v-toolbar-title>
             <v-spacer></v-spacer>
             <v-toolbar-items>
@@ -9,7 +9,7 @@
                 </v-btn>
             </v-toolbar-items>
         </v-toolbar>
-        <v-divider></v-divider>
+        <v-divider/>
     </div>
 </template>
 
@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
 .main_toolbar{
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 7%;
+    margin-right: 7%;
 }
 </style>

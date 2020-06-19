@@ -2,13 +2,11 @@
     <div class="home">
         <div class="brasil">
             <v-container>
-                <h1 class="main-title font-weight-light"> Brasil </h1>
+                <h1 class="main-title font-weight-bold"> Brasil </h1>
                 <v-divider ></v-divider>
                 <v-row>
                     <v-col cols="12" sm="6" md="6">
-                        <v-card>
-                            <brasil-line/>
-                        </v-card>
+                        <brasil-line/>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
                     </v-col>
@@ -19,7 +17,7 @@
             <v-container>
                 <v-row>
                     <v-col cols="12" sm="6" md="6">
-                        <h1 class="main-title font-weight-light"> Regioes </h1>
+                        <h1 class="main-title font-weight-bold"> Regioes </h1>
                     </v-col>
                     <v-col cols="12" sm="4" md="4"/>
                     <v-col cols="12" sm="2" md="2">
@@ -33,23 +31,17 @@
         </div>
         <div class="Mapas">
             <v-container>
-                
                 <v-row>
                     <v-col cols="12" sm="6" md="6">
-                        <h1 class="main-title font-weight-light"> Mapa </h1>
-                    </v-col>
-                    <v-col cols="12" sm="4" md="4"/>
-                    <v-col cols="12" sm="2" md="2">
+                        <h1 class="main-title font-weight-bold"> Mapa </h1>
                     </v-col>
                 </v-row>
-                <v-divider/>
-                <v-card>
+                <v-divider/><br>
+                <v-card flat outlined>
                     <v-card-title>
-                        <span class="font-weight-light"> Brasil </span>
+                        <span class="font-weight-light"> Infectados </span>
                     </v-card-title>
-                    <v-card-text>
                         <simple-map/>
-                    </v-card-text>
                 </v-card>
             </v-container>
         </div>

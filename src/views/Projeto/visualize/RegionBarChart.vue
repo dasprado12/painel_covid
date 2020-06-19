@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-card>
+        <v-card flat outlined>
             <v-card-title>
                 <span class="font-weight-light">Cidades</span>
                 <v-spacer/>

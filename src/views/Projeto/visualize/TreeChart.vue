@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-card>
+        <v-card flat outlined>
             <v-row>
                 <v-col cols="12" md="6" sm="6" xm="6">
                     <v-card flat>

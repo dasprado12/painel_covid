@@ -1,7 +1,7 @@
 <template>
     <v-app class="main_project">
         <Toolbar/>
-            <v-content>
+            <v-content class="backgroundColor">
                 <router-view class="view"></router-view>
             </v-content>
         <Footer></Footer>
@@ -26,6 +26,9 @@ export default {
 </script>
 
 <style scoped>
+.backgroundColor{
+  background-color: rgb(255, 255, 255);
+}
 .view{
   margin-left: 100px;
   margin-right: 100px;

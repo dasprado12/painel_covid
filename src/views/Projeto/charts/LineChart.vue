@@ -24,28 +24,29 @@ export default {
             selected: ['Infectados', 'Obitos'],
             nulo: [0],
             options: {
-                annotations: {
-                    yaxis: [
-                        {
-                            y: 600,
-                            borderColor: '#00E396',
-                            label: {
-                                // borderColor: '#00E396',
-                                // style: {
-                                //     color: '#111111',
-                                //     background: '#dadada'
-                                // },
-                                // text: 'Capacidade do sistema de saúde'
-                            }
-                        }
-                    ]
-                },
+                // annotations: {
+                //     yaxis: [
+                //         {
+                //             y: 600,
+                //             borderColor: '#00E396',
+                //             label: {
+                //                 // borderColor: '#00E396',
+                //                 // style: {
+                //                 //     color: '#111111',
+                //                 //     background: '#dadada'
+                //                 // },
+                //                 // text: 'Capacidade do sistema de saúde'
+                //             }
+                //         }
+                //     ]
+                // },
                 stroke: {
-                    curve: 'smooth',
+                    curve: 'smooth'
                 },
                 colors: [ '#2E93fA', '#c21f1f' ],
                 chart: {
-                    id: 'vuechart-example'
+                    id: 'vuechart-example',
+                    
                 },
                 xaxis: {
                     categories: this.time
@@ -54,11 +55,11 @@ export default {
             series: [
                 {
                     name: 'Infectados',
-                    data: this.infected
+                    data: this.infected.slice()
                 },
                 {
                     name: 'Óbitos',
-                    data: this.death
+                    data: this.death.slice()
                 }
             ],
             numId: 0

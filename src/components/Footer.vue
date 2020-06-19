@@ -1,8 +1,13 @@
 <template>
-  <div class="footer">
+  <div class="footer"><br><br>
     <div class="observacoes">
-      <div class="observacoes_texto">
-    <v-divider></v-divider>
+        <v-divider></v-divider>
+      <div class="observacoes_texto font-weight-light">
+        Este projeto surge como parceria entre pequisadores da <b>Universidade de Brasília (UnB)</b>
+        e pesquisadores da <b>Universidade Federal do Ceará (UFC)</b>.<br>
+        Todos os dados aqui expostos foram retirados dos portais das <b>Secretarias de Saúde dos Estados</b>
+        e estão disponíveis para download via API.<br>
+        Caso encontre algum erro, contate-nos na aba <b>'Contatos'</b>
       </div>
     </div>
     <div class="parceiros">
@@ -33,8 +38,12 @@
 </script>
 
 <style scoped>
+div.observacoes_texto{
+  margin-left: 7%;
+  margin-right: 7%;
+}
+
 div.observacoes{
-  height: 100px;
   background-color: rgb(228, 228, 228);
 }
 div.parceiros{

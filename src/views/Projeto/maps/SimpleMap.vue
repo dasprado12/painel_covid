@@ -1,19 +1,13 @@
 <template>
-<div style="height: 600px; width: 100%">
+<div style="height: 500px; width: 100%">
     <div style="height: 200px overflow: auto;">
-        <v-btn text @click="showLongText">
-            Toggle long popup
-        </v-btn>
-        <v-btn text @click="showMap = !showMap">
-            Toggle map
-        </v-btn>
     </div>
     <l-map
         v-if="showMap"
         :zoom="zoom"
         :center="center"
         :options="mapOptions"
-        style="height: 80%"
+        style="height: 100%"
         @update:center="centerUpdate"
         @update:zoom="zoomUpdate"
     >

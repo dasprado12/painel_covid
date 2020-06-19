@@ -1,11 +1,11 @@
 <template>
     <div>
-        <v-card flat>
+        <v-card flat outlined>
             <v-card-title>
-                <span class="font-weight-light"> Total </span>
+                <span class="font-weight-light"> Total </span> {{ dados[0].dataExtracao }} {{ dates[0] }}
                 <v-spacer/>
-                <v-btn text @click="changeChart('line')">Line</v-btn>
-                <v-btn text @click="changeChart('bar')">Bar</v-btn>
+                <v-btn text small class="font-weight-light" @click="changeChart('line')">Linha</v-btn>
+                <v-btn text small class="font-weight-light" @click="changeChart('bar')">Barra</v-btn>
             </v-card-title>
             <v-divider></v-divider>
             <v-card-text>
@@ -34,21 +34,16 @@ export default {
     },
     data(){
         return {
+            // Dados que vao para o lineChart
             type: 'line',
-            name: 'Brasil',
-            selected: ['Infectados', 'Obitos'],
-            dates: null,
-            dados: null,
-            time: null,
-            dados_filtrados: {
-                infectados: [],
-                dia: [],
-                obitos: []
-            },
             infectados: [],
-            dia: [],
             obitos: [],
-            numId: 0
+            numId: 0,
+
+            selected: ['Infectados', 'Obitos'],
+
+            dates: null, // Datas vindos da API
+            dados: null, // Dados vindos da API
         }
     },
     async created(){
@@ -56,49 +51,42 @@ export default {
         this.list_dates()
     },
     mounted(){
-        this.modify_dates()
-        
-        this.filter_data()
-        this.numId++
+        // this.modify_dates()
     },
     methods: {
-        async modify_dates(){
-            this.time = this.dates.map(function(time){
-                return time.split('T')[0].slice(5)
-            })
-        },
         async list_data(){
-            this.dados = (await api_data.get_all_data()).data
+            this.dados = (await api_data.get_all_data()).data.map(function(data){ return { num:data.num, obitos: data.obitos, dataExtracao: data.dataExtracao.split('T')[0] } })
         },
         async list_dates(){
-            this.dates = (await api_data.get_all_dates()).data.sort()
-            // this.dates = dates.
+            this.dates = (await api_data.get_all_dates()).data.sort().map(function(date){ return date.split('T')[0] })
         },
         changeChart(item){
             this.type = item
             this.numId++
         },
         filter_data(){
+            let filtrado_infectados = []
+            let filtrado_obitos = []
             for(let i = 0; i < this.dates.length; i++ ){
-                let infectados = 0
-                let obitos = 0
+            let infectados = 0
+            let obitos = 0
                 for(let j = 0; j < this.dados.length; j++){
                     if( this.dates[i] == this.dados[j].dataExtracao ){
                         infectados += this.dados[j].num
                         obitos += this.dados[j].obitos
                     }
                 }
-                this.dados_filtrados.infectados.push(infectados)
-                this.dados_filtrados.obitos.push(obitos)
+                filtrado_infectados.push(infectados)
+                filtrado_obitos.push(obitos)
             }
-            this.infectados = this.dados_filtrados.infectados
-            this.obitos = this.dados_filtrados.obitos
+            this.infectados = filtrado_infectados
+            this.obitos = filtrado_obitos
             this.numId++
         }
     },
     watch: {
-        dados(val){
-            if(val != []){
+        dates(val){
+            if(val != null){
                 this.filter_data()
             }
         },

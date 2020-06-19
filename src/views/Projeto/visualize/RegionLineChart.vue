@@ -1,9 +1,9 @@
 <template>
     <div>
-        <v-card>
+        <v-card flat outlined> 
             <v-card-title>
                 <span class="font-weight-light">Cidades</span>
-
+                    <v-spacer></v-spacer>
                 <v-select dense v-model="regions" :items="items" attach chips/>
             </v-card-title>
             <v-divider></v-divider>
@@ -14,11 +14,11 @@
                 v-bind:type="type"
                 :key="numId"
             />
-            <v-card-actions>
+            <!-- <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn text @click="changeChart('line')">Line</v-btn>
                 <v-btn text @click="changeChart('bar')">Bar</v-btn>
-            </v-card-actions>
+            </v-card-actions> -->
         </v-card>
     </div>
 </template>
