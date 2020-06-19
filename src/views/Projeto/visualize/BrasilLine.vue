@@ -2,7 +2,7 @@
     <div>
         <v-card flat outlined>
             <v-card-title>
-                <span class="font-weight-light"> Total </span> {{ dados[0].dataExtracao }} {{ dates[0] }}
+                <span class="font-weight-light"> Total </span> 
                 <v-spacer/>
                 <v-btn text small class="font-weight-light" @click="changeChart('line')">Linha</v-btn>
                 <v-btn text small class="font-weight-light" @click="changeChart('bar')">Barra</v-btn>

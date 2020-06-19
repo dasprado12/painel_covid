@@ -2,7 +2,7 @@
     <div>
         <v-card flat outlined>
             <v-row>
-                <v-col cols="12" md="6" sm="6" xm="6">
+                <v-col cols="6" md="6" sm="6" xm="6">
                     <v-card flat>
                         <v-card-title>
                             <span class="font-weight-light"> Infectados </span>
@@ -10,7 +10,7 @@
                         <tree-map-inf v-bind:obj="data_inf" :key="key"></tree-map-inf>
                     </v-card>
                 </v-col>
-                <v-col cols="12" md="6" sm="6" xm="6">
+                <v-col cols="6" md="6" sm="6" xm="6">
                     <v-card flat>
                         <v-card-title>
                             <span class="font-weight-light"> Óbitos </span>

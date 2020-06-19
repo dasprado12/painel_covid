@@ -3,6 +3,7 @@
         <ejs-treemap 
             class="treemap" 
             :height='height' 
+            width='100%'
             :dataSource='dataSource' 
             :weightValuePath='weightValuePath' 
             :leafItemSettings='leafItemSettings'
