@@ -1,17 +1,15 @@
 <template>
-    <div class="Brasil">
-        teste
-    </div>
+  <div class="Brasil">
+    teste
+  </div>
 </template>
 
 <script>
-export default {
-    
-}
+export default {};
 </script>
 
 <style scoped>
-.Brasil{
-    background-color: blue;
+.Brasil {
+  background-color: blue;
 }
 </style>

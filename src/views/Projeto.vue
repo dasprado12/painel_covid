@@ -1,18 +1,16 @@
 <template>
-    <v-app class="main_project">
-        <Toolbar/>
-            <v-content class="backgroundColor">
-                <router-view class="view"></router-view>
-            </v-content>
-        <Footer></Footer>
-    </v-app>
+  <v-app class="main_project">
+    <Toolbar />
+    <v-content class="backgroundColor">
+      <router-view class="view"></router-view>
+    </v-content>
+    <Footer></Footer>
+  </v-app>
 </template>
 
-
-
 <script>
-import Toolbar from "../components/Toolbar.vue"
-import Footer from "../components/Footer.vue"
+import Toolbar from "../components/Toolbar.vue";
+import Footer from "../components/Footer.vue";
 export default {
   components: {
     Toolbar,
@@ -26,10 +24,10 @@ export default {
 </script>
 
 <style scoped>
-.backgroundColor{
+.backgroundColor {
   background-color: rgb(255, 255, 255);
 }
-.view{
+.view {
   margin-left: 100px;
   margin-right: 100px;
 }

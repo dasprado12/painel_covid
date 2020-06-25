@@ -4,7 +4,7 @@ import VueRouter from "vue-router";
 import LayoutProjeto from "../views/Projeto.vue";
 import Projeto from "../views/Projeto/Projeto.vue";
 import Equipe from "../views/Projeto/Equipe.vue";
-import Dados from "../views/Projeto/Dados.vue"
+import Dados from "../views/Projeto/Dados.vue";
 import Contato from "../views/Projeto/Contato.vue";
 
 Vue.use(VueRouter);
@@ -30,8 +30,8 @@ const routes = [
         component: Dados
       },
       {
-        path: '/contato',
-        name: 'Contato',
+        path: "/contato",
+        name: "Contato",
         component: Contato
       }
     ]
