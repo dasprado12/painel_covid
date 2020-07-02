@@ -20,6 +20,13 @@
                 <v-btn text @click="changeChart('bar')">Bar</v-btn>
             </v-card-actions> -->
         </v-card>
+        <v-row>
+            <v-col cols="12" sm="10" md="10">
+            </v-col>
+            <v-col cols="12" sm="2" md="2">
+                <span class="font-weight-light">Série</span>
+            </v-col>
+        </v-row>
     </div>
 </template>
 

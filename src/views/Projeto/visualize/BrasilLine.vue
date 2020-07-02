@@ -49,8 +49,10 @@ export default {
     async created(){
         this.list_data()
         this.list_dates()
+        this.filter_data()
     },
     mounted(){
+        this.filter_data()
         // this.modify_dates()
     },
     methods: {
@@ -64,20 +66,23 @@ export default {
             this.type = item
             this.numId++
         },
-        filter_data(){
+        async filter_data(){
+            let dados = (await api_data.get_all_data()).data.map(function(data){ return { num:data.num, obitos: data.obitos, dataExtracao: data.dataExtracao.split('T')[0] } })
+            let dates = (await api_data.get_all_dates()).data.sort().map(function(date){ return date.split('T')[0] })
             let filtrado_infectados = []
             let filtrado_obitos = []
-            for(let i = 0; i < this.dates.length; i++ ){
-            let infectados = 0
-            let obitos = 0
-                for(let j = 0; j < this.dados.length; j++){
-                    if( this.dates[i] == this.dados[j].dataExtracao ){
-                        infectados += this.dados[j].num
-                        obitos += this.dados[j].obitos
+            for(let i = 0; i < dates.length; i++ ){
+                let infectados = 0
+                let obitos = 0
+                    for(let j = 0; j < dados.length; j++){
+                        this.dates[i]
+                        if( dates[i] == dados[j].dataExtracao ){
+                            infectados += dados[j].num
+                            obitos += dados[j].obitos
+                        }
                     }
-                }
-                filtrado_infectados.push(infectados)
-                filtrado_obitos.push(obitos)
+                    filtrado_infectados.push(infectados)
+                    filtrado_obitos.push(obitos)
             }
             this.infectados = filtrado_infectados
             this.obitos = filtrado_obitos

@@ -22,6 +22,13 @@
                 ></v-pagination>
             </v-card-actions> -->
         </v-card>
+        <v-row>
+            <v-col cols="12" sm="8" md="8">
+            </v-col>
+            <v-col cols="12" sm="4" md="4">
+                <span class="font-weight-light">{{ last_date }}</span>
+            </v-col>
+        </v-row>
     </div>
 </template>
 
@@ -42,6 +49,7 @@ export default {
     data(){
         return {
             page: 1,
+            last_date: null,
             drawer: true,
             regions: [ ],
             items: null,
@@ -74,7 +82,7 @@ export default {
         },
         async filter_data(regions){
             let day = (await api_data.get_last_date()).data
-
+            this.last_date = day.split('T')[0]
             //para cada regiao
             for(let i = 0; i < regions.length; i++ ){
                 let infectados = 0

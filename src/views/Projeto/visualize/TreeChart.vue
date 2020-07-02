@@ -20,6 +20,13 @@
                 </v-col>
             </v-row>
         </v-card>
+        <v-row>
+            <v-col cols="12" sm="10" md="10">
+            </v-col>
+            <v-col cols="12" sm="2" md="2">
+                <span class="font-weight-light">{{last_date}}</span>
+            </v-col>
+        </v-row>
     </div>
 </template>
 
@@ -42,6 +49,7 @@ export default {
                 color: '#cc2d2d',
                 data: []
             },
+            last_date: null, 
             key: 0,
         }
     },
@@ -52,6 +60,7 @@ export default {
         async get_last_date(){
             let last_date = (await api_data.get_last_date()).data.split('T')[0]
             let data = ( await api_data.get_region_by_date(last_date) ).data
+            this.last_date = last_date
             for(let i = 0; i < data.length; i++){
                 this.data_inf.data.push({ City: data[i].regiao, Count: data[i].num })
                 this.data_obt.data.push({ City: data[i].regiao, Count: data[i].obitos })

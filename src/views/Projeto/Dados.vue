@@ -41,7 +41,7 @@
                     <v-card-title>
                         <span class="font-weight-light"> Infectados </span>
                     </v-card-title>
-                        <simple-map/>
+                    <simple-map/>
                 </v-card>
             </v-container>
         </div>
@@ -52,6 +52,9 @@
 import BrasilLine from "./visualize/BrasilLine.vue"
 import Estados from "../Projeto/visualize/Regioes.vue"
 import SimpleMap from "./maps/SimpleMap.vue"
+import { Data } from "../../functions/index.js"
+
+let api_data = new Data()
 
 export default {
     name: "Home",
@@ -60,11 +63,13 @@ export default {
     },
     data(){
         return {
+            selected: '2020-03-20',
             show: false,
             regioes: [ "Regioes", "DF"],
             regiao_selecionada: "",
             data_from_region: [],
             dates: [],
+            dates_qty: null,
             tab: null,
             states: null,
             state: null
@@ -79,8 +84,18 @@ export default {
             }
         }
     },
+    mounted() {
+        this.get_all_dates()
+    },
     methods: {
-
+        season (val) {
+            return this.dates[val].split('T')[0].split('-')
+        },
+        async get_all_dates(){
+            let dates = (await api_data.get_all_dates()).data.sort()
+            this.dates = dates
+            this.dates_qty = dates.length
+        }
     }
 };
 </script>

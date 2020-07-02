@@ -1,30 +1,16 @@
 <template>
 <div style="height: 500px; width: 100%">
-    <div style="height: 200px overflow: auto;">
-    </div>
-    <l-map
-        v-if="showMap"
-        :zoom="zoom"
-        :center="center"
-        :options="mapOptions"
-        style="height: 100%"
-        @update:center="centerUpdate"
-        @update:zoom="zoomUpdate"
-    >
-    <l-tile-layer
-        :url="url"
-        :attribution="attribution"
-        v-for="withPopup in points" :key="withPopup"
-    />
-        <l-marker :lat-lng="withPopup">
+    <l-map :zoom="zoom" :center="center" :options="mapOptions" @update:center="centerUpdate" @update:zoom="zoomUpdate">
+    <l-tile-layer :url="url"/>
+        <l-marker v-for="point in data" :key="point" :lat-lng="point.posicao">
             <l-popup>
                 <div @click="innerClick">
-                    I am a popups
-                    <p v-show="showParagraph">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                    sed pretium nisl, ut sagittis sapien. Sed vel sollicitudin nisi.
-                    Donec finibus semper metus id malesuada.
-                    </p>
+                    <v-card>
+                        <v-card-text>
+                            {{ point.regiao }}
+                            {{ point.num }}
+                        </v-card-text>
+                    </v-card>
                 </div>
             </l-popup>
         </l-marker>
@@ -33,8 +19,13 @@
 </template>
 
 <script>
+import { Data } from "../../../functions/index.js"
 import { latLng } from "leaflet";
 import { LMap, LTileLayer, LMarker, LPopup } from "vue2-leaflet";
+// import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
+
+let api_data = new Data();
+
 export default {
 name: "Example",
 components: {
@@ -42,27 +33,31 @@ components: {
     LTileLayer,
     LMarker,
     LPopup,
+    // 'v-marker-cluster': Vue2LeafletMarkerCluster
 },
 data() {
     return {
-        points: [ 
-            latLng(47.41422, -1.250482),      
-            latLng(48.41422, -1.261482)
-        ],
+        data: null,
         zoom: 10,
         center: latLng(-15.793599, -47.914987),
         url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        withPopup: latLng(-15.793599, -47.914987),
-        withTooltip: latLng(47.41422, -1.250482),
         currentZoom: 11.5,
         currentCenter: latLng(47.41322, -1.219482),
-        showParagraph: true,
-        mapOptions: { zoomSnap: 0.5 },
-        showMap: true
     };
 },
+async created(){
+    this.list_data();
+},
 methods: {
+    async list_data(){
+        let data = (await api_data.get_region_by_date('2020-03-26') ).data
+        console.log(data)
+        this.data = data.map(function(data){
+            data['posicao'] = { lat: data['latitude'], lng: data['longitude']}
+            return data
+        })
+
+    },
     zoomUpdate(zoom) {
     this.currentZoom = zoom;
     },
