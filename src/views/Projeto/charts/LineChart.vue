@@ -14,7 +14,7 @@ import VueApexCharts from 'vue-apexcharts'
 
 export default {
     props: [ 
-        'infected', 'time', 'death', 'type'
+        'data', 'time'
     ],
     components: {
         VueApexCharts
@@ -24,22 +24,6 @@ export default {
             selected: ['Infectados', 'Obitos'],
             nulo: [0],
             options: {
-                // annotations: {
-                //     yaxis: [
-                //         {
-                //             y: 600,
-                //             borderColor: '#00E396',
-                //             label: {
-                //                 // borderColor: '#00E396',
-                //                 // style: {
-                //                 //     color: '#111111',
-                //                 //     background: '#dadada'
-                //                 // },
-                //                 // text: 'Capacidade do sistema de saúde'
-                //             }
-                //         }
-                //     ]
-                // },
                 stroke: {
                     curve: 'smooth'
                 },
@@ -49,17 +33,13 @@ export default {
                     
                 },
                 xaxis: {
-                    categories: this.time
+                    categories: [1, 2, 3]
                 }
             },
             series: [
                 {
                     name: 'Infectados',
-                    data: this.infected.slice()
-                },
-                {
-                    name: 'Óbitos',
-                    data: this.death.slice()
+                    data: [20, 22, 23]
                 }
             ],
             numId: 0

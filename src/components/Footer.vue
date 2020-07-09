@@ -3,7 +3,7 @@
     <div class="observacoes">
         <v-divider></v-divider>
       <div class="observacoes_texto font-weight-light">
-        Este projeto surge como parceria entre pequisadores da <b>Universidade de Brasília (UnB)</b>
+        Este projeto é uma parceria entre pequisadores da <b>Universidade de Brasília (UnB)</b>
         e pesquisadores da <b>Universidade Federal do Ceará (UFC)</b>.<br>
         Todos os dados aqui expostos foram retirados dos portais das <b>Secretarias de Saúde dos Estados</b>
         e estão disponíveis para download via API.<br>

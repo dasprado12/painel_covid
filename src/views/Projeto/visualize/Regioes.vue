@@ -11,24 +11,17 @@
                     v-bind:region="region"
                 />
             </v-col>
-            <v-col cols="12" sm="6" md="6">
-                <region-bar-chart
-                    v-bind:region="region"
-                />
-            </v-col>
         </v-row>
     </div>
 </template>
 
 <script>
-// import data from "../../../example/index.js"
-import RegionBarChart from "./RegionBarChart.vue"
 import RegionLineChart from "./RegionLineChart.vue"
 import TreeChart from "./TreeChart.vue"
 
 export default {
     props: [ 'region' ],
-    components: { RegionBarChart, RegionLineChart, TreeChart },
+    components: { RegionLineChart, TreeChart },
     data() {
         return {
             data: null
@@ -37,7 +30,6 @@ export default {
     watch: {
         region(value){
             console.log('Regiao Pesquisada:' + value)
-            this.get_data(value)
         }
     },
     methods: {

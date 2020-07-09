@@ -30,7 +30,7 @@ export default {
   background-color: rgb(255, 255, 255);
 }
 .view{
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 </style>
