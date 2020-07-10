@@ -1,7 +1,7 @@
 <template>
   <div class="equipe">
     <div class="nossa-equipe">
-        <h1>Nossa Equipe</h1>
+        <h1>Nossa Equipe </h1>
     </div>
 
       <v-container>
