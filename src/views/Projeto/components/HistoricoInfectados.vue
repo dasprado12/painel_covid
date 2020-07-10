@@ -37,20 +37,13 @@ export default {
     },
     methods: {
         async historic_data(){
-            let data = (await api_data.get_all_data()).data
+            let data = (await api_data.get_hist_data()).data
             let time = (await api_data.get_all_dates()).data
-            let arr_return= []
-            for(let i = 0; i < time.length; i++){
-                let aux = 0;
-                for(let j = 0; j < data.length; j++){
-                    if(time[i] == data[j].dataExtracao){
-                        aux = aux + data[j].num
-                    }
-                }
-                arr_return.push(aux)
-            }
+
+            data = data.map(function(item){ return item.num })
+
             this.time = time.map(function(item){ return item.split("T")[0] })
-            this.data = arr_return
+            this.data = data
         }
     }
 }
