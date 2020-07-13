@@ -1,6 +1,8 @@
 <template>
   <div>
-      <h3>  <p className="box">Projeto Painel Covid-19 </p></h3>
+      <div class="titulo_principal"><br>
+        <h2 class=""> Projeto Painel Covid-19 </h2>
+    </div>
 
         <p class="p">  
           O projeto do Painel Covid-19 é uma iniciativa do Latitude - Laboratório de Tecnologias de Tomada de Decisão (ENE/FT/UnB) em parceria com a Universidade Federal do Ceará (UFC). O projeto tem por objetivo auxiliar a comunidade na analise dos dados da evolução do Covid-19 de forma clara atraves de gráficos que demonstram o número de obitos e infectados.
@@ -23,6 +25,13 @@ export default {
   margin-right: 10%;
   margin-left: 10%;
 }
+
+.titulo_principal{
+  margin-right: 10%;
+  margin-left: 10%;
+ text-align: center;
+}
+
 .box {
     display: flex;
     align-content: center;
