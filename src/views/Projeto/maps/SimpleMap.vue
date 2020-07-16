@@ -28,9 +28,7 @@ import { Data } from "../../../functions/index.js"
 import { latLng } from "leaflet";
 import { LGeoJson, LMap, LTileLayer, LMarker, LPopup, LIconDefault } from "vue2-leaflet";
 import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
-
 let api_data = new Data();
-
 export default {
 name: "Example",
 components: { LGeoJson, LMap, LTileLayer, LMarker, LPopup, LIconDefault, 'v-marker-cluster': Vue2LeafletMarkerCluster },
@@ -50,21 +48,21 @@ async created(){
     this.list_data();
     this.created();
 },
-
 methods: {
     async created(){
         const response = await fetch('https://raw.githubusercontent.com/dasprado12/Brasilia-RAs-georreferenciadas/master/Geojsons/All.geojson');
         this.geojson = await response.json();
     },
     async list_data(){
-        let last_date = (await api_data.get_last_date()).data.split("T")[0]
-        let data = (await api_data.get_region_by_date2(last_date) ).data
+        // (await api_data.get_last_date()).data.split("T")[0]
+        let last_date = '2020-03-29'
+        let data = (await api_data.get_region_by_date(last_date) ).data
         this.data = data.map(function(data){
             if(!data.latitude || !data.longitude){
                 data.latitude = "1.1"
                 data.longitude = "1.1"
             }
-            data['posicao'] = { lat: data.latitude.replace(",", "."), lng: data.longitude.replace(",", ".")}
+            data['posicao'] = { lat: data.latitude, lng: data.longitude}
             return data
         })
     },

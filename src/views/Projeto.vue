@@ -29,8 +29,8 @@ export default {
 .backgroundColor{
   background-color: rgb(255, 255, 255);
 }
-.view{
+/* .view{
   margin-left: 10px;
   margin-right: 10px;
-}
+} */
 </style>

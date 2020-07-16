@@ -1,24 +1,29 @@
 <template>
   <div class="equipe">
     <div class="titulo_principal"><br>
-        <h2 class="">Nossa Equipe </h2><br>
+        <h2 class="font-weight-bold">Nossa Equipe </h2><br>
     </div>
-
       <v-container>
-        <v-row no-gutters>
-          <v-col cols="4" v-for="item in equipe" :key="item.name">
-          <v-card flat>
-            <v-img 
+        <v-row>
+          <v-col xl="2" lg="3" md="3" sm="6" xs="6" v-for="item in equipe" :key="item.name">
+            <v-card
+              class="mx-auto"
+              max-width="900"
+            >
+              <v-img
+                class="white--text align-end"
+                height="200px"
                 :src="require(`@/assets/${item.fig}`)"
-                max-width="100"
-                max-height="150"
-              />
-            <div class="text-img">
-              <div class="text-img">{{item.name}}</div>
-              <div class="text-img">{{item.role}}</div>
-              <div class="text-img">{{item.un}}  </div>
-            </div>
-          </v-card>
+              >
+                <v-card-title>{{item.name}}</v-card-title>
+              </v-img>
+
+              <v-card-subtitle class="pb-0">{{item.un}}</v-card-subtitle>
+
+              <v-card-text class="text--primary">
+                <div>{{item.role}}</div>
+              </v-card-text>
+            </v-card>
           </v-col>
       </v-row>
       </v-container>
@@ -48,22 +53,19 @@ export default {
 </script>
 
 <style scoped>
-.equipe {
-  margin-left: 20%;
-  margin-right: 10%;
-}
+
 
 .titulo_principal{
   margin-right: 20%;
-  margin-left: 10%;
+  margin-left: 20%;
   text-align: center;
-  }
+}
 
 .text_image {
-    margin-left: 30%;
-    margin-right: 10%;
-    text-align: center;
-  }
+  margin-left: 30%;
+  margin-right: 10%;
+  text-align: center;
+}
 
 
 </style>

@@ -42,6 +42,10 @@ div.observacoes_texto{
   margin-left: 7%;
   margin-right: 7%;
 }
+.observacoes_texto{
+  padding-top:    30px;
+  padding-bottom: 30px;
+}
 
 div.observacoes{
   background-color: rgb(228, 228, 228);

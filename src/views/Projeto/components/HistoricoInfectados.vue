@@ -1,7 +1,7 @@
 <template>
     <div>
-        <v-card color="">
-            <v-card-title class="green lighten-4"> Infectados </v-card-title>
+        <v-card outlined color="grey lighten-4">
+            <v-card-title class="font-weight-normal"> Total - infectados </v-card-title>
             <v-card-text>
                 <one-line-chart
                     v-bind:time="time"
@@ -17,7 +17,6 @@
 import { Data } from "../../../functions/index.js"
 import OneLineChart from "../charts/OneLineChartInfectados.vue"
 let api_data = new Data()
-
 export default {
     props: [ 'region' ],
     components: {
@@ -39,11 +38,8 @@ export default {
         async historic_data(){
             let data = (await api_data.get_hist_data()).data
             let time = (await api_data.get_all_dates()).data
-
-            data = data.map(function(item){ return item.num })
-
             this.time = time.map(function(item){ return item.split("T")[0] })
-            this.data = data
+            this.data = data.map(function(item){ return item.num })
         }
     }
 }

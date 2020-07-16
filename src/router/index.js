@@ -4,7 +4,10 @@ import VueRouter from "vue-router";
 import LayoutProjeto from "../views/Projeto.vue";
 import Projeto from "../views/Projeto/Projeto.vue";
 import Equipe from "../views/Projeto/Equipe.vue";
+
+import beforeDados from "../views/Projeto/beforeDados.vue"
 import Dados from "../views/Projeto/Dados.vue"
+
 import Contato from "../views/Projeto/Contato.vue";
 
 Vue.use(VueRouter);
@@ -26,8 +29,14 @@ const routes = [
       },
       {
         path: "/dados",
-        name: "Dados",
-        component: Dados
+        component: beforeDados,
+        children: [
+          {
+            path: "/dados",
+            name: "Dados",
+            component: Dados
+          }
+        ]
       },
       {
         path: '/contato',

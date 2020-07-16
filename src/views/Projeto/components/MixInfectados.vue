@@ -1,16 +1,13 @@
 <template>
     <div>
-        <v-card flat outlined> 
-            <v-card-title>
-                <span class="font-weight-light">Infectados</span>
-            </v-card-title> <v-divider/>
+        <v-card outlined color="grey lighten-4"> 
+            <v-card-title class="font-weight-light"> Infectados por região </v-card-title>
             <line-chart
                 v-bind:time="time"
                 v-bind:data="data"
                 :key="numId"
             />
         </v-card>
-        <span class="font-weight-light">Histórico</span>
     </div>
 </template>
 

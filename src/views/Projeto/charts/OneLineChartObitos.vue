@@ -2,7 +2,7 @@
     <div id="app">
         <vue-apex-charts 
             width="100%"
-            type="line" 
+            type="area" 
             :options="options" 
             :series="series"
             :key="key"
@@ -12,7 +12,6 @@
 
 <script>
 import VueApexCharts from 'vue-apexcharts'
-
 export default {
     props: [ 
         'data', 'time'
@@ -28,10 +27,13 @@ export default {
     computed:{
         options(){
             return {
+                dataLabels: {
+                    enabled: false
+                },
                 stroke: {
                     curve: 'smooth'
                 },
-                colors: [ "#bf0000" ],
+                colors: [ "#bf000050" ],
                 chart: { id: 'vuechart-example' },
                 xaxis: { categories: this.time }
             }
@@ -47,7 +49,6 @@ export default {
         this.key++
     },
     methods: {
-
     }
 }
 </script>

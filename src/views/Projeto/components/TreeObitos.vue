@@ -1,9 +1,7 @@
 <template>
     <div>
-        <v-card flat outlined>
-            <v-card-title>
-                <span class="font-weight-light">Regiões com mais Óbitos</span>
-            </v-card-title>
+        <v-card outlined color="grey lighten-4"> 
+            <v-card-title class="font-weight-light"> Óbitos por região </v-card-title>
             <v-divider/>
             <tree-map-obt v-bind:obj="data_inf" :key="key"/>
         </v-card>
