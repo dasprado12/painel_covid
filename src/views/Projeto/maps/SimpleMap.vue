@@ -1,9 +1,9 @@
 <template>
-<div class="mapCss">
-    <l-map :zoom="zoom" :center="center" @update:center="centerUpdate" @update:zoom="zoomUpdate">
+<div id="map" class="mapCss">
+    <!-- <l-map :zoom="zoom" :center="center" @update:center="centerUpdate" @update:zoom="zoomUpdate">
     <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"/>
     <l-geo-json :geojson="geojson"></l-geo-json>
-        <l-icon-default :image-path="'../../../assets/marker.png'"></l-icon-default>
+        <l-icon-default></l-icon-default>
         <v-marker-cluster>
             <l-marker v-for="point in data" :key="point.regiao" :lat-lng="point.posicao">
                 <l-popup>
@@ -19,54 +19,165 @@
                 </l-popup>
             </l-marker>
         </v-marker-cluster>
-    </l-map>
+    </l-map> -->
 </div>
 </template>
 
 <script>
-import { Data } from "../../../functions/index.js"
-import { latLng } from "leaflet";
-import { LGeoJson, LMap, LTileLayer, LMarker, LPopup, LIconDefault } from "vue2-leaflet";
-import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
+// import { Data } from "../../../functions/index.js"
+// import { latLng } from "leaflet";
+import * as L from "leaflet";
 
-let api_data = new Data();
+// let api_data = new Data();
 
 export default {
 name: "Example",
-components: { LGeoJson, LMap, LTileLayer, LMarker, LPopup, LIconDefault, 'v-marker-cluster': Vue2LeafletMarkerCluster },
 data() {
     return {
         data: null,
-        last_date: null,
-        zoom: 10,
-        center: latLng(-15.793599, -47.814987),
-        url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        currentZoom: 11.5,
-        currentCenter: latLng(47.41322, -1.219482),
+        map:null,
+        // last_date: null,
+        tileLayer:null,
+        layers:[
+            {id:0,
+            active: true,
+            features:[],
+            }
+        ],
+        // geoLayer:null,
+        marker:null,
+        // zoom: 10,
+        // center: latLng(-15.793599, -47.814987),
+        // url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        // currentZoom: 11.5,
+        // currentCenter: latLng(47.41322, -1.219482),
         geojson: null
     };
+},
+mounted(){
+    this.createMap();
+    this.manipulate();
 },
 async created(){
     this.list_data();
     this.created();
+
+
 },
 
 methods: {
+
+    async getIncidencia(geoName){
+        console.log("AQUI")
+        console.log(geoName)
+        alert(geoName)
+
+
+    },
+    async addGeojson(){
+        let geo = this.geojson
+        let map = this.map
+        // let layer = this.geoLayer
+        let myStyle={
+            "color":"#ffbaba"
+        }
+
+        // let middle={
+        //     "color":"#ff7b7b"
+        // }
+
+        // let middleB={
+        //     "color":"#ff5252"
+        // }
+        // let grave={
+        //     "color":"#ff0000"
+        // }
+        // let muitoGrave={
+        //     "color":"#a70000"
+        // }
+        
+        // let incid;
+        
+       geo.features.forEach(function(geojson){
+           
+        //    let geoName= geojson.name
+//pegar o numero de incidencias
+// console.log("AQUI")
+//             console.log(this.data)
+//                 this.data.forEach(function(point){
+//                     let name = point.regiao.replace(/\s/g,'')
+//                     let nameReady = name.replace('/', "-")
+//                         if(geoName=== nameReady){
+//                             alert("Achei");
+
+//                         incid = point.incidencia
+//                         }
+//                          else incid=0;
+//                 })
+
+        //    let myStyle;
+
+            // if (incid<5){
+            //     // myStyle = leve;
+            // }
+            // else{
+            //     myStyle = muitoGrave
+            // }
+        // layer.addData(geojson.features, {style: myStyle})
+        // console.log(incid)
+           L.geoJSON(geojson.features,{style: myStyle}).addTo(map)
+        })
+    },
+    async createMap(){
+            this.map = L.map('map').setView([-15.793599, -47.814987], 10);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(this.map);
+      
+    },
     async created(){
         const response = await fetch('https://raw.githubusercontent.com/dasprado12/Brasilia-RAs-georreferenciadas/master/Geojsons/All.geojson');
         this.geojson = await response.json();
     },
+
+    async manipulate(){
+        let mapa = this.map
+        
+        let array=[]
+                let icon = new L.Icon.Default();
+                icon.options.shadowSize = [0, 0];
+        this.data.forEach(function(point){
+            // let mark = {
+            //         key: point.regiao,
+            //         type:"marker",
+            //         posicao: point.posicao,
+            //     }
+            let mark = L.marker(point.posicao).addTo(mapa);
+                array.push(mark)
+            //    console.log(mark)
+            //     console.log(mark)
+            // this.layers[0].features.push(mark)
+         
+        })
+        this.layers[0].features = array;
+    },
     async list_data(){
-        let last_date = (await api_data.get_last_date()).data.split("T")[0]
-        let data = (await api_data.get_region_by_date2(last_date) ).data
+        // let last_date = (await api_data.get_last_date()).data.split("T")[0]
+        // let data = (await api_data.get_region_by_date2(last_date) ).data
+        let data = [{"_id":"5ec4225498bbbca607865cd6","regiao":"Águas Claras","latitude":-15.835754999999999,"longitude":-48.023703999999995,"num":16,"porcentagem":9.4,"incidencia":9.38,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"},{"_id":"5ec4225498bbbca607865cd7","regiao":"Recanto Das Emas","latitude":-15.916970000000001,"longitude":-48.101851,"num":0,"porcentagem":0,"incidencia":0,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"},{"_id":"5ec4225498bbbca607865cd8","regiao":"Samambaia","latitude":-15.874647,"longitude":-48.101735,"num":2,"porcentagem":1.2,"incidencia":0.82,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"}, {"_id":"5ec4225498bbbca607865cde","regiao":"Sudoeste/Octogonal","latitude":-15.791981,"longitude":-47.929973,"num":19,"porcentagem":11.1,"incidencia":34.38,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"},{"_id":"5ec4225498bbbca607865cf3","regiao":"Jardim Botânico","latitude":-15.855691,"longitude":-47.809974,"num":3,"porcentagem":1.8,"incidencia":5.16,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"}]
         this.data = data.map(function(data){
             if(!data.latitude || !data.longitude){
                 data.latitude = "1.1"
                 data.longitude = "1.1"
             }
-            data['posicao'] = { lat: data.latitude.replace(",", "."), lng: data.longitude.replace(",", ".")}
-            return data
+            data['posicao'] = { lat: data.latitude.toString().replace(",", "."), lng: data.longitude.toString().replace(",", ".")};
+          
         })
+        // this.manipulate(data);
+        this.data = data
+    
+            
+
     },
     zoomUpdate(zoom) {
     this.currentZoom = zoom;
@@ -80,6 +191,14 @@ methods: {
     innerClick() {
     alert("Click!");
     }
+},
+    watch:{
+        geojson: function(){
+            // let map = this.map
+            // this.geoLayer = L.geoJSON().addTo(map);
+            this.addGeojson();
+        }
+
 }
 };
 </script>
