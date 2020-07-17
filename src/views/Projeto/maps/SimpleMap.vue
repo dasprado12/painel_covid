@@ -54,8 +54,8 @@ methods: {
         this.geojson = await response.json();
     },
     async list_data(){
-        // (await api_data.get_last_date()).data.split("T")[0]
-        let last_date = '2020-03-29'
+        // 
+        let last_date = (await api_data.get_last_date()).data.split("T")[0]
         let data = (await api_data.get_region_by_date(last_date) ).data
         this.data = data.map(function(data){
             if(!data.latitude || !data.longitude){

@@ -47,7 +47,10 @@
                 </v-btn>
             </v-snackbar>
         </v-app>
-        <router-view v-show="show"></router-view>
+        <router-view 
+            v-show="show"
+            :key="keyId"
+        ></router-view>
     </div>
 </template>
 
@@ -59,13 +62,15 @@ export default {
             password: '',
             snackbar: false,
             isDisplay: true,
-            show: false
+            show: false,
+            keyId: 0
         }
     },
     methods: {
         loginForm(){
             if(this.login == 'admin' && this.password == 'admin'){
                 this.show = true
+                this.keyId++
             }else{
                 this.snackbar = true;
             }
