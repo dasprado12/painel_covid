@@ -67,10 +67,24 @@ async created(){
 
 methods: {
 
-    async getIncidencia(geoName){
-        console.log("AQUI")
-        console.log(geoName)
-        alert(geoName)
+    getIncidencia(geoName, data){
+    
+        let incid
+            data.forEach(function(point){
+                    let name = point.regiao.replace(/\s/g,'')
+                    let nameReady = name.replace('/', "-")
+                        if(geoName=== nameReady){
+                            alert(geoName);
+
+                        incid = point.incidencia
+                        return incid
+                    
+                        }
+                        else{ incid = 0}
+                    
+                })
+
+                return incid;
 
 
     },
@@ -78,13 +92,20 @@ methods: {
         let geo = this.geojson
         let map = this.map
         // let layer = this.geoLayer
-        let myStyle={
-            "color":"#ffbaba"
-        }
+        let myStyle
+        let data = this.data
+      
+                let leve={
+            "color":"#ffbaba",
+            "fillColor":"#ffbaba",
+            "opacity":"0.2"
 
-        // let middle={
-        //     "color":"#ff7b7b"
-        // }
+        }
+        let middle={
+            "color":"#ff7b7b",
+            "fillOpacity":"0.8"
+
+        }
 
         // let middleB={
         //     "color":"#ff5252"
@@ -92,39 +113,49 @@ methods: {
         // let grave={
         //     "color":"#ff0000"
         // }
-        // let muitoGrave={
-        //     "color":"#a70000"
-        // }
+        let muitoGrave={
+            "color":"#a70000",
+            "fillColor":"#a70000",
+            "fillOpacity":"0.8"
+        }
         
-        // let incid;
-        
+        let incid=0;
+
        geo.features.forEach(function(geojson){
            
-        //    let geoName= geojson.name
+           let geoName= geojson.name
+        //    incid= esse.getIncidencia(geoName, data)
+           console.log("oooooo")
+           console.log(incid)
 //pegar o numero de incidencias
 // console.log("AQUI")
-//             console.log(this.data)
-//                 this.data.forEach(function(point){
-//                     let name = point.regiao.replace(/\s/g,'')
-//                     let nameReady = name.replace('/', "-")
-//                         if(geoName=== nameReady){
-//                             alert("Achei");
+                data.forEach(function(point){
+                    let name = point.regiao.replace(/\s/g,'')
+                    let nameReady = name.replace('/', "-")
+                        if(geoName=== nameReady){
 
-//                         incid = point.incidencia
-//                         }
-//                          else incid=0;
-//                 })
+                        incid = point.incidencia
+ 
+                        }
+                })
+
+                                    
 
         //    let myStyle;
 
-            // if (incid<5){
-            //     // myStyle = leve;
-            // }
-            // else{
-            //     myStyle = muitoGrave
-            // }
+            if (parseFloat(incid) <= 5){
+                myStyle = leve;
+            }
+            else if(parseFloat(incid) <= 10){
+                alert(geoName)
+                myStyle =middle;
+            }
+            else{
+                myStyle = muitoGrave
+            }
         // layer.addData(geojson.features, {style: myStyle})
-        // console.log(incid)
+        incid=0;
+        console.log(incid)
            L.geoJSON(geojson.features,{style: myStyle}).addTo(map)
         })
     },
@@ -164,7 +195,7 @@ methods: {
     async list_data(){
         // let last_date = (await api_data.get_last_date()).data.split("T")[0]
         // let data = (await api_data.get_region_by_date2(last_date) ).data
-        let data = [{"_id":"5ec4225498bbbca607865cd6","regiao":"Águas Claras","latitude":-15.835754999999999,"longitude":-48.023703999999995,"num":16,"porcentagem":9.4,"incidencia":9.38,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"},{"_id":"5ec4225498bbbca607865cd7","regiao":"Recanto Das Emas","latitude":-15.916970000000001,"longitude":-48.101851,"num":0,"porcentagem":0,"incidencia":0,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"},{"_id":"5ec4225498bbbca607865cd8","regiao":"Samambaia","latitude":-15.874647,"longitude":-48.101735,"num":2,"porcentagem":1.2,"incidencia":0.82,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"}, {"_id":"5ec4225498bbbca607865cde","regiao":"Sudoeste/Octogonal","latitude":-15.791981,"longitude":-47.929973,"num":19,"porcentagem":11.1,"incidencia":34.38,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"},{"_id":"5ec4225498bbbca607865cf3","regiao":"Jardim Botânico","latitude":-15.855691,"longitude":-47.809974,"num":3,"porcentagem":1.8,"incidencia":5.16,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"}]
+        let data = [{"_id":"5ec4225498bbbca607865cd6","regiao":"Águas Claras","latitude":-15.835754999999999,"longitude":-48.023703999999995,"num":16,"porcentagem":9.4,"incidencia":10.38,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"},{"_id":"5ec4225498bbbca607865cd7","regiao":"Recanto Das Emas","latitude":-15.916970000000001,"longitude":-48.101851,"num":0,"porcentagem":0,"incidencia":0,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"},{"_id":"5ec4225498bbbca607865cd8","regiao":"Samambaia","latitude":-15.874647,"longitude":-48.101735,"num":2,"porcentagem":1.2,"incidencia":0.82,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"}, {"_id":"5ec4225498bbbca607865cde","regiao":"Sudoeste/Octogonal","latitude":-15.791981,"longitude":-47.929973,"num":19,"porcentagem":11.1,"incidencia":34.38,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"},{"_id":"5ec4225498bbbca607865cf3","regiao":"Jardim Botânico","latitude":-15.855691,"longitude":-47.809974,"num":3,"porcentagem":1.8,"incidencia":5.16,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"},{"_id":"5ec4225498bbbca607865cd9","regiao":"Taguatinga","latitude":-15.829303,"longitude":-48.055925,"num":6,"porcentagem":3.5,"incidencia":6.88,"obitos":0,"porcentagem obitos":0,"dataExtracao":"2020-03-26T00:00:00.000Z"}]
         this.data = data.map(function(data){
             if(!data.latitude || !data.longitude){
                 data.latitude = "1.1"
