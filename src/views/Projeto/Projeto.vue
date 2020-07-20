@@ -56,6 +56,22 @@
           </v-container>
         </div>
       </div>
+      <div :class="backgroundColor">
+        <div class="box-gif">
+          <h2 class="font-weight-light">Exemplo</h2>
+          <v-container>
+            <v-row>
+              <v-col cols="8">
+                <p>Com os dados extraídos da Secretaria de Saúde do Distrito Federal (SESDF), foi possível anasizá-los de forma a
+                  criar uma série temporal.</p>
+                <p>Em forma de mapa de calor, é possível observar as regiões mais afetadas pela COVID-19 na Distrito Federal (DF)</p>
+                
+              </v-col>
+              <v-col cols="4" class="toCenter"> <v-img width="300" class="toCenter" :src="require(`@/assets/teste.gif`)"/> </v-col>
+            </v-row>
+          </v-container>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -79,6 +95,10 @@ export default {
   height: 300px;
 }
 .box-howto{
+  padding-top: 20px;
+  text-align: center;
+}
+.box-gif{
   padding-top: 20px;
   text-align: center;
 }
@@ -117,5 +137,10 @@ export default {
     margin-left: 60px;
     margin-right: 60px;
     text-indent: 4em;
+}
+
+.toCenter{
+  align-content: center;
+  text-align: center;
 }
 </style>

@@ -56,7 +56,7 @@ methods: {
     async list_data(){
         // 
         let last_date = (await api_data.get_last_date()).data.split("T")[0]
-        let data = (await api_data.get_region_by_date(last_date) ).data
+        let data = (await api_data.get_region_by_date2(last_date) ).data
         this.data = data.map(function(data){
             if(!data.latitude || !data.longitude){
                 data.latitude = "1.1"

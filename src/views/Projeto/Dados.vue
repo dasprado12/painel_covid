@@ -5,6 +5,9 @@
                 <h1 class="font-weight-bold">Região - DF</h1>
                 <v-divider/>
                     <v-layout row wrap>
+                        <v-col cols="12">
+                            <data-seletor v-bind:dates="dates" ></data-seletor>
+                        </v-col>
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-infectados v-bind:region="region"/></v-col>
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-infectados v-bind:region="region"></dia-infectados></v-col>
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-obitos v-bind:region="region"/></v-col>
@@ -54,6 +57,7 @@ import mixInfectados from "./components/MixInfectados.vue"
 import mixObitos from "./components/MixObitos.vue"
 import treeInfectados from "./components/TreeInfectados.vue"
 import treeObitos from "./components/TreeObitos.vue"
+import dataSeletor from "./components/Seletor.vue"
 
 import { Data } from "../../functions/index.js"
 let api_data = new Data()
@@ -68,10 +72,12 @@ export default {
         mixInfectados,
         mixObitos,
         treeInfectados,
-        treeObitos
+        treeObitos,
+        dataSeletor
     },
     data: () => ({
         dates: null,
+        data: null,
         region: [],
         regions: null,
         isSelected: false,
@@ -93,6 +99,7 @@ export default {
         async get_info(){
             this.dates = (await api_data.get_all_dates()).data
             this.regions = (await api_data.get_all_regions()).data
+            this.data = (await api_data.get_all_data()).data
             this.max = this.dates.length
         },
         position(val){

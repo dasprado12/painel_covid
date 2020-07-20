@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card outlined color="grey lighten-4">
-            <v-card-title class="font-weight-light"> Infectados por região </v-card-title>
+            <v-card-title class="font-weight-light"> Regiões com mais infectados </v-card-title>
                 <tree-map-inf v-bind:obj="data_inf" :key="key"></tree-map-inf>
         </v-card>
     </div>
