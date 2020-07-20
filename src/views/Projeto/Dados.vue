@@ -12,7 +12,8 @@
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-infectados v-bind:region="region"></dia-infectados></v-col>
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-obitos v-bind:region="region"/></v-col>
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-obitos v-bind:region="region"/></v-col>
-                        <v-col cols="12"><simple-map/></v-col>
+                        <v-col cols="6"><simple-map/></v-col>
+                        <v-col cols="6"><g-j-map></g-j-map></v-col>
                     </v-layout>
                     <v-layout>
                         <v-flex row wrap>
@@ -58,6 +59,7 @@ import mixObitos from "./components/MixObitos.vue"
 import treeInfectados from "./components/TreeInfectados.vue"
 import treeObitos from "./components/TreeObitos.vue"
 import dataSeletor from "./components/Seletor.vue"
+import GJMap from './components/GJMap.vue' 
 
 import { Data } from "../../functions/index.js"
 let api_data = new Data()
@@ -73,7 +75,8 @@ export default {
         mixObitos,
         treeInfectados,
         treeObitos,
-        dataSeletor
+        dataSeletor,
+        GJMap
     },
     data: () => ({
         dates: null,
