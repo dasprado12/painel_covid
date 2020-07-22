@@ -67,7 +67,7 @@
                 <p>Em forma de mapa de calor, é possível observar as regiões mais afetadas pela COVID-19 na Distrito Federal (DF)</p>
                 
               </v-col>
-              <v-col cols="4" class="toCenter"> <v-img width="300" class="toCenter" :src="require(`@/assets/teste.gif`)"/> </v-col>
+              <v-col cols="4" class="toCenter"> <v-img width="500" class="toCenter" :src="require(`@/assets/infectados.gif`)"/> </v-col>
             </v-row>
           </v-container>
         </div>

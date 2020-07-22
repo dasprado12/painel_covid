@@ -6,12 +6,12 @@
                 <v-divider/>
                     <v-layout row wrap>
                         <v-col cols="12">
-                            <data-seletor v-bind:dates="dates" ></data-seletor>
+                            <data-seletor :key="numId" @changeRange="dateRange" v-bind:dates="dates" ></data-seletor>
                         </v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-infectados v-bind:region="region"/></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-infectados v-bind:region="region"></dia-infectados></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-obitos v-bind:region="region"/></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-obitos v-bind:region="region"/></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-infectados v-bind:range="range" v-bind:region="region"/></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-infectados v-bind:range="range" v-bind:region="region"></dia-infectados></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-obitos v-bind:range="range" v-bind:region="region"/></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-obitos v-bind:range="range" v-bind:region="region"/></v-col>
                         <v-col cols="6"><simple-map/></v-col>
                         <v-col cols="6"><g-j-map></g-j-map></v-col>
                     </v-layout>
@@ -84,9 +84,11 @@ export default {
         region: [],
         regions: null,
         isSelected: false,
-        lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`
+        lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`,
+        range: null,
+        numId: 0
     }),
-    mounted(){
+    async mounted(){
         this.get_info()
     },
     watch: {
@@ -104,9 +106,13 @@ export default {
             this.regions = (await api_data.get_all_regions()).data
             this.data = (await api_data.get_all_data()).data
             this.max = this.dates.length
+            this.numId++
         },
         position(val){
             return this.dates[val]
+        },
+        dateRange(val){
+            this.range = val
         }
     }
 }

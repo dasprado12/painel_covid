@@ -1,43 +1,56 @@
 <template>
-<v-row>{{teste}}
-    <v-col class="pa-12">
-    <v-range-slider
-        :tick-labels="months"
-        :value="teste"
-        min="0"
-        max="4"
-        ticks="always"
-        tick-size="4"
-    >
-        <template v-slot:thumb-label="props">
-        <v-icon dark>
-            {{props.value}}
-        </v-icon>
-        </template>
-    </v-range-slider>
-    </v-col>
-</v-row>
+    <v-card flat color="grey lighten-4">
+        <v-card-text>
+            <v-row>
+                <v-col class="px-4">
+                <v-range-slider
+                    v-model="range"
+                    :max="max"
+                    :min="min"
+                    height="0"
+                    hide-details
+                    class="align-center"
+                    :key="numId"
+                />
+                </v-col>
+            </v-row>
+        </v-card-text>
+        <v-subheader> De: {{displayDates(range[0])}} <v-spacer/> Até: {{ displayDates(range[1]) }} </v-subheader>
+    </v-card>
 </template>
 
 
 <script>
-export default {
-props: [ 'dates' ],
-    data: () => ({
-        teste: [ 0,4 ], 
-        min: 0,
-    }),
-    computed: {
-        months() {
-            let dates = this.dates
-            let arr_ret = []
-            for(let i = 0; i < dates.length; i++){
-                if(new Date(dates[i]).getMonth() != new Date(dates[i-1]).getMonth() ){
-                    arr_ret.push(dates[i])
-                }
+    export default {
+        props: [ 'dates' ],
+        data () {
+            return {
+                min: null,
+                max: null,
+                range: [],
+                dateRange: [],
+                numId: 0,
             }
-            return arr_ret.map(function(item){ return item.substr(0,7) })
+        },
+        created(){
+            this.setSlider()
+        },
+        watch: {
+            range(){
+                this.$emit('changeRange', this.range)
+            },
+        },
+        methods: {
+            setSlider(){
+                let min = 0
+                let max = this.dates.length -1
+                this.range = [min,max]
+                this.min = min
+                this.max = max
+            },
+            displayDates(item){
+                return this.dates[item].split("T")[0]
+            }
         }
     }
-}
 </script>

@@ -62,7 +62,7 @@ methods: {
                 data.latitude = "1.1"
                 data.longitude = "1.1"
             }
-            data['posicao'] = { lat: data.latitude, lng: data.longitude}
+            data['posicao'] = { lat: data.latitude.replace(",", "."), lng: data.longitude.replace(",", ".")}
             return data
         })
     },

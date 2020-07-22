@@ -89,7 +89,7 @@ export default {
                     myStyle = leve;
                 }
                 else if(parseFloat(incid) <= 10){
-                    alert(geoName)
+                    // alert(geoName)
                     myStyle =middle;
                 }
                 else{
