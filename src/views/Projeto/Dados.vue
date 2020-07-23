@@ -30,7 +30,7 @@
 
                     <v-row row wrap v-show="isSelected">
                         <v-col cols="12" xs="12" sm="6" md="6" lg="6">
-                            <mix-infectados v-bind:regions="region"/>
+                            <mix-infectados :key="numId" v-bind:regions="region"/>
                         </v-col>
                         <v-col cols="12" xs="12" sm="6" md="6" lg="6">
                             <tree-infectados v-bind:regions="region"/>
@@ -81,9 +81,9 @@ export default {
     data: () => ({
         dates: null,
         data: null,
-        region: [],
+        region: [ 'Total DF' ],
         regions: null,
-        isSelected: false,
+        isSelected: true,
         lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`,
         range: null,
         numId: 0
@@ -103,7 +103,16 @@ export default {
     methods:{
         async get_info(){
             this.dates = (await api_data.get_all_dates()).data
-            this.regions = (await api_data.get_all_regions()).data
+            this.regions = (await api_data.get_all_regions()).data.filter(function(item){
+                if( item != "OESTE"     && 
+                    item != "SUL"       && 
+                    item != "LESTE"     && 
+                    item != "NORTE"     && 
+                    item != "CENTRAL"   && 
+                    item != "CENTRO SUL"   ){
+                    return item
+                }
+            })
             this.data = (await api_data.get_all_data()).data
             this.max = this.dates.length
             this.numId++

@@ -35,8 +35,8 @@ export default {
     },
     watch: {
         range(val){
-            this.filteredData = this.data.slice(val[0], val[1])
-            this.filteredTime = this.time.slice(val[0], val[1])
+            this.filteredData = this.data.slice(val[0], val[1]+1)
+            this.filteredTime = this.time.slice(val[0], val[1]+1)
         }
     },
     created(){
