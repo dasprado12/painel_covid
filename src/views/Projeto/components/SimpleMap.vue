@@ -1,8 +1,16 @@
 <template>
     <div>
         <v-card color="grey lighten-4" flat>
-            <v-card-title><span>Infectados e Óbitos - {{dia}}/{{mes}}/{{ano}}</span></v-card-title>
-            <simple-map></simple-map>
+            <v-card-title>
+                <span>Infectados/Óbitos - {{dia}}/{{mes}}/{{ano}}</span>
+                <v-spacer/>
+                <v-switch 
+                    color="red"
+                    v-model="switch1" flat 
+                    :label="`${currentOption.name.toString()}`"
+                />
+            </v-card-title>
+            <simple-map v-bind:type="currentOption.val" :key="numId"></simple-map>
         </v-card>
     </div>
 </template>
@@ -21,7 +29,21 @@ export default {
         return {
             dia: '',
             mes: '',
-            ano: ''    
+            ano: '',
+            type: 'obitos',
+            switch1: false,
+            currentOption: { name: "Infectados", val: "num" },
+            numId: 0
+        }
+    },
+    watch:{
+        switch1(val){
+            if(val == false){
+                this.currentOption = { name: "Infectados", val: "num" }
+            }else{
+                this.currentOption = { name: "Óbitos", val: "obitos" }
+            }
+            this.numId++
         }
     },
     mounted(){
