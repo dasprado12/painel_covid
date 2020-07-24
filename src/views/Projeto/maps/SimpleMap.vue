@@ -1,26 +1,29 @@
 <template>
-<div class="mapCss">
-    <l-map :zoom="zoom" :center="center" @update:center="centerUpdate" @update:zoom="zoomUpdate">
-    <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"/>
-    <l-geo-json :geojson="geojson"></l-geo-json>
-        <l-icon-default :image-path="'../../../assets/marker.png'"></l-icon-default>
-        <v-marker-cluster>
-            <l-marker v-for="point in data" :key="point.regiao" :lat-lng="point.posicao">
-                <l-popup>
-                    <div @click="innerClick">
-                        <v-card flat>
-                            <v-card-text>
-                                <b>Região:</b> {{ point.regiao }}
-                                <b>Infectados:</b> {{ point.num }}
-                                <b>Óbitos:</b> {{ point.obitos }}
-                            </v-card-text>
-                        </v-card>
-                    </div>
-                </l-popup>
-            </l-marker>
-        </v-marker-cluster>
-    </l-map>
-</div>
+    <div class="mapCss">
+        <l-map :zoom="zoom" :center="center" @update:center="centerUpdate" @update:zoom="zoomUpdate">
+        <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"/>
+        <span v-for="item in geojson" :key="item">
+            <l-geo-json :geojson="item" :options="item.style" ></l-geo-json>
+
+        </span>
+            <l-icon-default :image-path="'../../../assets/marker.png'"></l-icon-default>
+            <v-marker-cluster>
+                <l-marker v-for="point in data" :key="point.regiao" :lat-lng="point.posicao">
+                    <l-popup>
+                        <div @click="innerClick">
+                            <v-card flat>
+                                <v-card-text>
+                                    <b>Região:</b> {{ point.regiao }}
+                                    <b>Infectados:</b> {{ point.num }}
+                                    <b>Óbitos:</b> {{ point.obitos }}
+                                </v-card-text>
+                            </v-card>
+                        </div>
+                    </l-popup>
+                </l-marker>
+            </v-marker-cluster>
+        </l-map>
+    </div>
 </template>
 
 <script>
@@ -28,10 +31,20 @@ import { Data } from "../../../functions/index.js"
 import { latLng } from "leaflet";
 import { LGeoJson, LMap, LTileLayer, LMarker, LPopup, LIconDefault } from "vue2-leaflet";
 import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
+
 let api_data = new Data();
+
+
 export default {
-name: "Example",
-components: { LGeoJson, LMap, LTileLayer, LMarker, LPopup, LIconDefault, 'v-marker-cluster': Vue2LeafletMarkerCluster },
+name: "SimpleMap",
+components: { 
+        LGeoJson, 
+        LMap, 
+        LTileLayer, 
+        LMarker, 
+        LPopup, 
+        LIconDefault, 'v-marker-cluster': Vue2LeafletMarkerCluster 
+    },
 data() {
     return {
         data: null,
@@ -41,7 +54,7 @@ data() {
         url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         currentZoom: 11.5,
         currentCenter: latLng(47.41322, -1.219482),
-        geojson: null
+        geojson: null,
     };
 },
 async created(){
@@ -51,10 +64,19 @@ async created(){
 methods: {
     async created(){
         const response = await fetch('https://raw.githubusercontent.com/dasprado12/Brasilia-RAs-georreferenciadas/master/Geojsons/All.geojson');
-        this.geojson = await response.json();
+        let geojson = await response.json()
+        geojson.map(function(item){
+            if(item.name == 'Planaltina'){
+                item['style'] = { color: "#ffaa00" }
+            }else{
+                item['style'] = { color: "#ff0000" }
+
+            }
+            return item
+        })
+        this.geojson = geojson
     },
     async list_data(){
-        // 
         let last_date = (await api_data.get_last_date()).data.split("T")[0]
         let data = (await api_data.get_region_by_date2(last_date) ).data
         this.data = data.map(function(data){
@@ -67,16 +89,16 @@ methods: {
         })
     },
     zoomUpdate(zoom) {
-    this.currentZoom = zoom;
+        this.currentZoom = zoom;
     },
     centerUpdate(center) {
-    this.currentCenter = center;
+        this.currentCenter = center;
     },
     showLongText() {
-    this.showParagraph = !this.showParagraph;
+        this.showParagraph = !this.showParagraph;
     },
     innerClick() {
-    alert("Click!");
+        alert("Click!");
     }
 }
 };
