@@ -60,7 +60,7 @@ export default {
             let map = this.map
             let myStyle
             let data = this.data
-                    let leve={
+            let leve={
                 "color":"#ffbaba",
                 "fillColor":"#ffbaba",
                 "opacity":"0.2"

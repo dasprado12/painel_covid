@@ -62,7 +62,7 @@ export default {
             password: '',
             snackbar: false,
             isDisplay: true,
-            show: true, //True para passar direto por este componente
+            show: false, //True para passar direto por este componente
             keyId: 0
         }
     },

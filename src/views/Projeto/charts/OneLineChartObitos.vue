@@ -40,7 +40,7 @@ export default {
         },
         series(){
             return [{
-                    name: 'Infectados',
+                    name: 'Óbitos',
                     data: this.data
                 }]
         }

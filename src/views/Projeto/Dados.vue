@@ -14,14 +14,32 @@
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-obitos v-bind:range="range" v-bind:region="region"/></v-col>
                         <v-col cols="12"><simple-map/></v-col>
                         <!-- <v-col cols="6"><g-j-map></g-j-map></v-col> -->
-                    </v-layout>
+                    </v-layout><br>
                     <v-layout>
                         <v-flex row wrap>
                             <v-col>
                                 <h2 class="font-weight-normal">Por região</h2>
                             </v-col>
                             <v-col>
-                                <v-select label="Escolha as Regiões" dense v-model="region" :items="regions" attach chips multiple/>
+                                <!-- <v-select label="Escolha as Regiões" dense v-model="region" :items="regions" attach chips multiple/> -->
+                                <v-combobox
+                                    v-model="region"
+                                    :items="regions"
+                                    label="Escolha as Regiões"
+                                    multiple
+                                    small-chips
+                                    solo
+                                    dense
+                                >
+                                    <template v-slot:selection="{ item, parent }">
+                                        <v-chip color="blue lighten-3" label small>
+                                            <span class="pr-2">
+                                                {{ item }}
+                                            </span>
+                                            <v-icon small @click="parent.selectItem(item)">mdi-close</v-icon>
+                                        </v-chip>
+                                    </template>
+                                </v-combobox>
                             </v-col>
                         </v-flex>
                     </v-layout>
@@ -86,8 +104,33 @@ export default {
         isSelected: true,
         lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`,
         range: null,
-        numId: 0
-    }),
+        numId: 0,
+        activator: null,
+        attach: null,
+        editing: null,
+        index: -1,
+        items: [
+            { header: 'Select an option or create one' },
+            {
+            text: 'Foo',
+            color: 'blue',
+            },
+            {
+            text: 'Bar',
+            color: 'red',
+            },
+        ],
+        nonce: 1,
+        menu: false,
+        model: [
+            {
+            text: 'Foo',
+            color: 'blue',
+            },
+        ],
+        x: 0,
+        y: 0,
+        }),
     async mounted(){
         this.get_info()
     },
@@ -98,7 +141,27 @@ export default {
             }else{
                 this.isSelected = true
             }
-        }
+        },
+        watch: {
+            model (val, prev) {
+                if (val.length === prev.length) return
+
+                this.model = val.map(v => {
+                if (typeof v === 'string') {
+                    v = {
+                    text: v,
+                    color: this.colors[this.nonce - 1],
+                    }
+
+                    this.items.push(v)
+
+                    this.nonce++
+                }
+
+                return v
+                })
+            },
+        },
     },
     methods:{
         async get_info(){
@@ -108,8 +171,10 @@ export default {
                     item != "SUL"       && 
                     item != "LESTE"     && 
                     item != "NORTE"     && 
-                    item != "CENTRAL"   && 
+                    item != "CENTRAL"   &&
+                    item != "SUDOESTE"   && 
                     item != "CENTRO SUL"   ){
+
                     return item
                 }
             })
@@ -122,6 +187,15 @@ export default {
         },
         dateRange(val){
             this.range = val
+        },
+        edit (index, item) {
+            if (!this.editing) {
+            this.editing = item
+            this.index = index
+            } else {
+            this.editing = null
+            this.index = -1
+            }
         }
     }
 }

@@ -1,16 +1,24 @@
 <template>
     <div>
         <v-card color="grey lighten-4" flat>
-            <v-card-title>
+            <v-card-title> 
                 <span>Infectados/Óbitos - {{dia}}/{{mes}}/{{ano}}</span>
                 <v-spacer/>
+                <v-btn text @click="changeVisibility()">
+                    <span v-if="showPoints"> Marcadores </span>
+                    <span v-if="!showPoints" class="grey--text"> Marcadores </span>
+                </v-btn>
                 <v-switch 
                     color="red"
                     v-model="switch1" flat 
                     :label="`${currentOption.name.toString()}`"
                 />
             </v-card-title>
-            <simple-map v-bind:type="currentOption.val" :key="numId"></simple-map>
+            <simple-map 
+                v-bind:showPoints="showPoints" 
+                v-bind:type="currentOption.val" 
+                :key="numId"
+            ></simple-map>
         </v-card>
     </div>
 </template>
@@ -23,7 +31,7 @@ let api_data = new Data()
 
 export default {
     components: {
-        SimpleMap
+        SimpleMap,
     },
     data(){
         return {
@@ -32,6 +40,7 @@ export default {
             ano: '',
             type: 'obitos',
             switch1: false,
+            showPoints: true,
             currentOption: { name: "Infectados", val: "num" },
             numId: 0
         }
@@ -56,6 +65,10 @@ export default {
             this.mes = ultimoDia.substr(5,2)
             this.ano = ultimoDia.substr(0,4)
             this.ultimoDia=ultimoDia
+        },
+        changeVisibility(){
+            this.showPoints = !this.showPoints
+            this.numId++
         }
     }
 }

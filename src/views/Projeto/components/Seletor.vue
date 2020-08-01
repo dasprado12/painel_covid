@@ -11,11 +11,12 @@
                     hide-details
                     class="align-center"
                     :key="numId"
+                    v-on:mouseup="sendRange()"
                 />
                 </v-col>
             </v-row>
         </v-card-text>
-        <v-subheader> De: {{displayDates(range[0])}} <v-spacer/> Até: {{ displayDates(range[1]) }} </v-subheader>
+        <v-subheader> <h2>De: {{displayDates(range[0])}}</h2> <v-spacer/> <h2>Até: {{ displayDates(range[1])}}</h2> </v-subheader>
     </v-card>
 </template>
 
@@ -36,8 +37,9 @@
             this.setSlider()
         },
         watch: {
-            range(){
-                this.$emit('changeRange', this.range)
+            range(val1){
+                console.log(val1)
+                // this.$emit('changeRange', this.range)
             },
         },
         methods: {
@@ -50,6 +52,9 @@
             },
             displayDates(item){
                 return this.dates[item].split("T")[0]
+            },
+            sendRange(){
+                this.$emit('changeRange', this.range)
             }
         }
     }

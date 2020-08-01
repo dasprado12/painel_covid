@@ -2,7 +2,6 @@
     <div id="app">
         <vue-apex-charts 
             width="100%"
-            type="bar" 
             :options="options" 
             :series="series"
         ></vue-apex-charts>
@@ -13,7 +12,7 @@
 import VueApexCharts from 'vue-apexcharts'
 export default {
     props: [ 
-        'data', 'time'
+        'mms', 'data', 'time'
     ],
     components: {
         VueApexCharts
@@ -32,15 +31,20 @@ export default {
                 stroke: {
                     curve: 'smooth'
                 },
-                colors: [ "#bf000050" ],
+                colors: [ "#e8a7aa", "#82c7ff" ],
                 chart: { id: 'vuechart-example1' },
                 xaxis: { categories: this.time }
             }
         },
         series(){
             return [{
-                    name: 'Infectados',
+                    type: 'bar',
+                    name: 'Óbitos',
                     data: this.data 
+                },{
+                    type: 'line',
+                    name: 'MM Óbitos',
+                    data: this.mms
                 }]
         }
     },

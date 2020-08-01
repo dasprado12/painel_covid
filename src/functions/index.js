@@ -37,5 +37,7 @@ export class Data {
     get_region_by_date = (time) => axios.get(url+'?dataExtracao='+time)
     get_region_by_date2 =(time) => axios.get(url2+'?dataExtracao='+time)
 
+    get_incid = () => axios.get(url2+'maxincid')
+
     // get_all = () => axios.get(endpoints.all)
 }

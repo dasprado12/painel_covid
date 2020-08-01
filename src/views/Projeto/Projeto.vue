@@ -61,13 +61,13 @@
           <h2 class="font-weight-light">Exemplo</h2>
           <v-container>
             <v-row>
-              <v-col cols="8">
+              <v-col cols="12">
                 <p>Com os dados extraídos da Secretaria de Saúde do Distrito Federal (SESDF), foi possível anasizá-los de forma a
                   criar uma série temporal.</p>
                 <p>Em forma de mapa de calor, é possível observar as regiões mais afetadas pela COVID-19 na Distrito Federal (DF)</p>
                 
               </v-col>
-              <v-col cols="4" class="toCenter"> <v-img width="500" class="toCenter" :src="require(`@/assets/infectados.gif`)"/> </v-col>
+              <v-col cols="12" class="toCenter"> <v-img width="650" class="toCenter" :src="require(`@/assets/infectados.gif`)"/> </v-col>
             </v-row>
           </v-container>
         </div>
@@ -115,7 +115,6 @@ export default {
   margin-left: 10%;
   text-align: center;
 }
-
 .box {
     display: flex;
     align-content: center;
@@ -123,12 +122,10 @@ export default {
     flex-direction: column;
     margin-top: 20vh;
 }
-
 .imgSettings{
   text-align: center;
   align-content: center;
 }
-
 .p {
     display: flex;
     align-items: center;
@@ -138,9 +135,9 @@ export default {
     margin-right: 60px;
     text-indent: 4em;
 }
-
 .toCenter{
   align-content: center;
   text-align: center;
+  margin: 0 auto;
 }
 </style>
