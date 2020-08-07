@@ -4,10 +4,10 @@
             <v-card-title> 
                 <span>Infectados/Óbitos - {{dia}}/{{mes}}/{{ano}}</span>
                 <v-spacer/>
-                <v-btn text @click="changeVisibility()">
+                <!-- <v-btn text @click="changeVisibility()">
                     <span v-if="showPoints"> Marcadores </span>
                     <span v-if="!showPoints" class="grey--text"> Marcadores </span>
-                </v-btn>
+                </v-btn> -->
                 <v-switch 
                     color="red"
                     v-model="switch1" flat 

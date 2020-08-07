@@ -1,6 +1,6 @@
 <template>
     <div class="mapCss">
-        <div class="legend">
+        <div class="legenda">
             <v-card elevation="5" class="cardColor">
                 <v-card-title>
                     {{currentOption.name}}
@@ -8,6 +8,17 @@
                 <v-card-text>
                     <span> Infectados: {{currentOption.num}} </span><br>
                     <span> Óbitos: {{currentOption.obitos}} </span>
+                </v-card-text>
+            </v-card>
+        </div>
+        <div class="legenda-cores">
+            <v-card flat color="transparent">
+                <v-card-text>
+                    <div v-for="(item,idx) in legenda()" :key="item">
+                        <span v-if="idx==0"> <v-badge :color="getColor(type, idx)"/> <span class="spaco-simples"/> 0 - {{item.menor-1}}  </span>
+                        <span v-if="idx>=1 && idx <=3"> <v-badge :color="getColor(type, idx)"/> <span class="spaco-simples"/> {{item.maior}} - {{item.menor-1}}  </span>
+                        <span v-if="idx==4"> <v-badge :color="getColor(type, idx)"/> <span class="spaco-simples"/> {{item.maior}} - maior  </span>
+                    </div>
                 </v-card-text>
             </v-card>
         </div>
@@ -62,14 +73,14 @@ data() {
         last_date: null,
         zoom: 10,
         colors: {
-            num:    [ '#e7f2e6', '#b5e3b1', '#75cf6d', '#1a8722', '#0c6305' ],
+            num:    [ '#c7f0cf', '#8ed49b', '#62b371', '#39964a', '#177529' ],
             obitos: [ '#f2e6e6', '#edbbbb', '#d67c7c', '#b33e3e', '#660404' ]
         },
         center: latLng(-15.793599, -47.814987),
         currentZoom: 11.5,
         currentCenter: latLng(47.41322, -1.219482),
         range: {
-            num: [ 500, 1000, 1500, 2000 ],
+            num: [ 1000, 2000, 3000, 4000 ],
             obitos:[ 10, 20, 30, 40 ]
         },
         currentOption: {
@@ -79,15 +90,18 @@ data() {
         }
     }
 },
-async created(){
-    this.created();
+async mounted(){
+    this.create();
 },
 methods: {
-    async created(){
+    async create(){
         const response = await fetch('https://raw.githubusercontent.com/dasprado12/Brasilia-RAs-georreferenciadas/master/Geojsons/All.geojson');
         let geojson = await response.json() 
         let last_date = (await api_data.get_last_date()).data.split("T")[0]
-        this.range = (await api_data.get_incid()).data
+        this.range = {
+            num: [ 1000, 2000, 3000, 4000 ],
+            obitos:[ 10, 20, 30, 40 ]
+        }//(await api_data.get_incid()).data.map(function(item){return ~~item})
         let data = (await api_data.get_region_by_date(last_date) ).data.map(function(data){
             if(!data.latitude || !data.longitude){
                 data.latitude = "1.1"
@@ -102,18 +116,18 @@ methods: {
                 if(geojson[i].name == data[j].regiao){
                     geojson[i]['data'] = { "regiao": data[j].regiao, "num": data[j].num, "obitos": data[j].obitos   }
                     if(data[j][this.type] < this.range[this.type][0]){
-                        geojson[i]['style'] = { color: this.colors[this.type][0], weight: 1.5 }
+                        geojson[i]['style'] = { color: this.colors[this.type][0], weight: 2 }
                     }else if(data[j][this.type] >= this.range[this.type][0] && data[j][this.type] < this.range[this.type][1] ){
-                        geojson[i]['style'] = { color: this.colors[this.type][1], weight: 1.5 }
+                        geojson[i]['style'] = { color: this.colors[this.type][1], weight: 2 }
                     
                     }else if(data[j][this.type] >= this.range[this.type][1] && data[j][this.type] < this.range[this.type][2]){
-                        geojson[i]['style'] = { color: this.colors[this.type][2], weight: 1.5 }
+                        geojson[i]['style'] = { color: this.colors[this.type][2], weight: 2 }
                     
                     }else if(data[j][this.type] >= this.range[this.type][2] && data[j][this.type] < this.range[this.type][3] ){
-                        geojson[i]['style'] = { color: this.colors[this.type][3], weight: 1.5 }
+                        geojson[i]['style'] = { color: this.colors[this.type][3], weight: 2 }
                     
                     }else if(data[j][this.type] >= this.range[this.type][3]){
-                        geojson[i]['style'] = { color: this.colors[this.type][4], weight: 1.5 }
+                        geojson[i]['style'] = { color: this.colors[this.type][4], weight: 2 }
                     
                     }else{
                         geojson[i]['style'] = { color: "#828282" }
@@ -122,6 +136,26 @@ methods: {
             }
         }
         this.geojson = geojson
+    },
+    legenda(){
+        let ret = this.range[this.type]
+        let arr_ret = []
+        for(let i = 0; i < ret.length; i++){
+            if(i==0){
+                arr_ret.push({'menor': ret[i]})
+            }else if(i == 1){
+                arr_ret.push({'maior': ret[i-1], 'menor': ret[i]})
+            }else if(i == 2){
+                arr_ret.push({'maior': ret[i-1], 'menor': ret[i]})
+            }else if(i == 3){
+                arr_ret.push({'maior': ret[i-1], 'menor': ret[i]})
+                arr_ret.push({'maior': ret[i]})
+            }
+        }
+        return arr_ret
+    },
+    getColor(tipo, posicao){
+        return this.colors[this.type][posicao]
     },
     zoomUpdate(zoom) {
         this.currentZoom = zoom;
@@ -164,9 +198,9 @@ methods: {
     width: 100%
 }
 .cardColor{
-    background-color: rgb(224, 224, 224);
+    background-color: rgb(240, 240, 240);
 }
-.legend{
+.legenda{
     margin-left: 30px;
     margin-top: 350px;
     position: absolute;
@@ -174,4 +208,18 @@ methods: {
     // color: rgb(202, 109, 109);
 }
 
+.legenda-cores{
+    margin-left: 88%;
+    margin-top: 350px;
+    position: absolute;
+    z-index: 500;
+}
+
+.text-legend{
+    position: absolute;
+    z-index: 500;
+}
+.spaco-simples{
+    padding-left: 20px;
+}
 </style>

@@ -20,7 +20,6 @@
                             prepend-icon="mdi-email"
                             type="text"
                         />
-
                         <v-text-field
                             id="password"
                             label="Password"

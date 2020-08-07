@@ -25,6 +25,9 @@ export default {
     computed:{
         options(){
             return {
+                bar: {
+                    colors: 'blue'
+                },
                 dataLabels: {
                     enabled: false
                 },

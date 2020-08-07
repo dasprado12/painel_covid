@@ -4,7 +4,7 @@
             <v-card-title> 
                 <span class="font-weight-normal">Óbitos por dia</span> 
                 <v-spacer></v-spacer>
-                <span class="font-weight-thin mms">Média Móvel: 15 dias</span>
+                <span class="font-weight-thin mms">Média Móvel: 7 dias</span>
             </v-card-title>
             <v-card-text>
                 <one-line-chart
@@ -63,7 +63,7 @@ export default {
                     arr_return.push(data[i] - data[i-1])
                 }
             }
-            let mediaMovel = this.mms(arr_return, 15)
+            let mediaMovel = this.mms(arr_return, 7)
             this.mediaMovel = mediaMovel
             this.filteredMovel = mediaMovel
             this.data = arr_return
