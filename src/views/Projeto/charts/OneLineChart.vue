@@ -37,20 +37,15 @@ export default {
                     id: 'vuechart-example1', 
                 },
                 xaxis: { 
+                    type: 'datetime',
                     categories: this.time,
                     tickAmount: 6,
                     labels: {
-                        format: 'ddMM'
-                    }
-                },
-                yaxis: {
-                    labels: {
-                        // formatter: function(val){
-                        //     return val/1000 + " mil"
-                        // }
+                        datetimeFormatter: {
+                            year: 'yyyy'
+                        }
                     }
                 }
-                
             }
         },
         series(){

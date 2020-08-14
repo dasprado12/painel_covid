@@ -36,8 +36,13 @@ export default {
                     width: [ 0,4 ]
                 },
                 colors: [ "#eb950c", "#454545" ],
-                chart: { id: 'vuechart-example1' },
-                xaxis: { categories: this.time }
+                chart: { 
+                    id: 'vuechart-example1' 
+                },
+                xaxis: {
+                    type: 'datetime', 
+                    categories: this.time 
+                }
             }
         },
         series(){

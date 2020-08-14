@@ -13,7 +13,7 @@
 import VueApexCharts from 'vue-apexcharts'
 export default {
     props: [ 
-        'mms', 'data', 'time'
+        'mms', 'data', 'time', 'color', 'name'
     ],
     components: {
         VueApexCharts
@@ -31,11 +31,12 @@ export default {
                 },
                 stroke: {
                     curve: 'smooth',
-                    width: [ 0,4 ]
+                    width: [ 0,2 ]
                 },
-                colors: [ "#e8a7aa", "#454545" ],
+                colors: this.color,
                 chart: { id: 'vuechart-example1' },
                 xaxis: { 
+                    type: 'datetime',
                     categories: this.time,
                 },
             }
@@ -43,11 +44,11 @@ export default {
         series(){
             return [{
                     type: 'column',
-                    name: 'Óbitos',
+                    name: this.name,
                     data: this.data 
                 },{
                     type: 'line',
-                    name: 'MM Óbitos',
+                    name: `MM ${this.name}`,
                     data: this.mms
                 }]
         }

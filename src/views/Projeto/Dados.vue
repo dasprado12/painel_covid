@@ -106,6 +106,7 @@ export default {
             num: null,
             obitos: null,
         },
+        
         region: [ 'Total DF' ],
         regions: null,
         isSelected: true,

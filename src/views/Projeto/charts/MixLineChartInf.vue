@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app">oi
         <vue-apex-charts :type="type" :options="options" :series="series"/>
     </div>
 </template>
@@ -16,7 +16,16 @@ export default {
         return {
             type: 'line',
             options: {  stroke: { curve: 'smooth'}, chart: { id: 'vuechart-example', },
-                xaxis: { categories: this.time }
+                xaxis: {
+                    type: 'datetime', 
+                    categories: this.time,
+                    tickAmount: 6,
+                    labels: {
+                        datetimeFormatter: {
+                            year: 'yyyy'
+                        }
+                    } 
+                }
             },
             series: this.data,
             numId: 0

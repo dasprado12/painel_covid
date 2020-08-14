@@ -8,9 +8,11 @@
             </v-card-title>
             <v-card-text>
                 <one-line-chart
-                    v-bind:mms="mms(dataset.num, 7)"
-                    v-bind:time="dataset.dates"
-                    v-bind:data="dia(dataset.num)"
+                    :mms="mms(dataset.num, 7)"
+                    :time="dataset.dates"
+                    :data="dia(dataset.num)"
+                    :color="color"
+                    name="Infectados"
                     :key="key"
                 />
             </v-card-text>
@@ -19,7 +21,7 @@
 </template>
 
 <script>
-import OneLineChart from "../charts/InfectadosDia.vue"
+import OneLineChart from "../charts/LineBar.vue"
 
 export default {
     props: [ 'dataset' ],
@@ -28,7 +30,8 @@ export default {
     },
     data(){
         return {
-            key: 0
+            key: 0,
+            color: [ "#eb950c", "#454545" ]
         }
     },
     methods: {
