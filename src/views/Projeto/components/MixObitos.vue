@@ -8,7 +8,6 @@
                 :key="numId"
             />
         </v-card>
-        <span class="font-weight-light">Histórico</span>
     </div>
 </template>
 

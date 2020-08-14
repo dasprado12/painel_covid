@@ -55,3 +55,9 @@
         }
     }
 </script>
+
+<style scoped>
+h2:hover{
+    /* transform: scale(1.1) */
+}
+</style>

@@ -12,21 +12,23 @@
                         <v-col cols="12">
                             <v-card outlined color="grey lighten-4">
                                 <v-layout>
-                                    <v-col cols="6">oi</v-col>
+                                    <v-col cols="6"></v-col>
                                     <v-divider vertical/>
                                     <v-col cols="6">
-                                        Média móvel:
-                                        <v-btn small @click="changeMM(7)" >7</v-btn>
-                                        <v-btn small @click="changeMM(15)" >15</v-btn>
-                                        <v-btn small @click="changeMM(21)" >21</v-btn>
+                                        <div class="teste">
+                                            <span class="titleMM font-weight-light"> Média móvel: </span>
+                                            <v-btn class="mmBtn" rounded small @click="changeMM(7)" >7</v-btn>
+                                            <v-btn class="mmBtn" rounded small @click="changeMM(15)" >15</v-btn>
+                                            <v-btn class="mmBtn" rounded small @click="changeMM(21)" >21</v-btn>
+                                        </div>
                                     </v-col>
                                 </v-layout>
                             </v-card>
                         </v-col>
-                        <v-col xl="3" lg="6" md="6" sm="6" xs="12"><historico-infectados :dataset="filteredData" /></v-col>
-                        <v-col xl="3" lg="6" md="6" sm="6" xs="12"><dia-infectados :dataset="filteredData" :mm="currentMM" /></v-col>
-                        <v-col xl="3" lg="6" md="6" sm="6" xs="12"><historico-obitos :dataset="filteredData" /></v-col>
-                        <v-col xl="3" lg="6" md="6" sm="6" xs="12"><dia-obitos :dataset="filteredData" :mm="currentMM" /></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-infectados :dataset="filteredData" /></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-infectados :dataset="filteredData" :mm="currentMM" /></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-obitos :dataset="filteredData" /></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-obitos :dataset="filteredData" :mm="currentMM" /></v-col>
                         <v-col cols="12"><simple-map/></v-col>
                     </v-layout><br>
                     <v-layout>
@@ -196,5 +198,12 @@ export default {
 <style scoped>
 h1, h2{
     color: rgb(77, 77, 77);
+}
+.mmBtn{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.teste{
+    text-align: center;
 }
 </style>

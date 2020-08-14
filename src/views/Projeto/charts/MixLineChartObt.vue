@@ -15,8 +15,18 @@ export default {
     data(){
         return {
             type: 'line', 
-            options: { colors: [ '#a3212188', '#96a32188', '#bd821c88', '#1394ab88', '#8d13ab88',  ], stroke: { curve: 'smooth'}, chart: { id: 'vuechart-example', },
-                xaxis: { categories: this.time }
+            options: { 
+                colors: [ '#a3212188', '#96a32188', '#bd821c88', '#1394ab88', '#8d13ab88',  ], 
+                stroke: { 
+                    curve: 'smooth'
+                }, 
+                chart: {  
+                    id: 'vuechart-example', 
+                },
+                xaxis: { 
+                    type: 'datetime',
+                    categories: this.time
+                }
             },
             series: this.data,
             numId: 0

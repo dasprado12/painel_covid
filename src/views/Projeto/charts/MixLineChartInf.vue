@@ -1,5 +1,5 @@
 <template>
-    <div id="app">oi
+    <div id="app">
         <vue-apex-charts :type="type" :options="options" :series="series"/>
     </div>
 </template>

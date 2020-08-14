@@ -17,16 +17,16 @@
           <v-container>
             <v-row>
               <v-col cols="4">
-                <v-card color="grey lighten-2" outlined height="140">
+                <v-card color="iconCard grey lighten-2" outlined height="140">
                   <br>
                   <v-icon large color="green darken-2">fas fa-wrench</v-icon>
                   <v-card-text class="font-weight-bold">
-                    Extração de dados via Scrapping ou API das secretarias de saúde dos estados
+                    Extração de dados via Scrapping  das secretarias de saúde dos estados
                   </v-card-text>
                 </v-card>
               </v-col>
               <v-col cols="4">
-                <v-card color="grey lighten-2" outlined height="140">
+                <v-card color="iconCard grey lighten-2" outlined height="140">
                   <br>
                   <v-icon large color="green darken-2">fas fa-cogs</v-icon>
                   <v-card-text class="font-weight-bold">
@@ -35,7 +35,7 @@
                 </v-card>
               </v-col>
               <v-col cols="4">
-                <v-card color="grey lighten-2" outlined height="140">
+                <v-card color="iconCard grey lighten-2" outlined height="140">
                   <br>
                   <v-icon large color="green darken-2">fas fa-desktop</v-icon>
                   <v-card-text class="font-weight-bold">
@@ -44,7 +44,7 @@
                 </v-card>
               </v-col>
               <v-col cols="12">
-                <v-card color="grey lighten-2" outlined>
+                <v-card color="iconCard grey lighten-2" outlined>
                 <br>
                   <v-icon large color="green darken-2">fas fa-clock</v-icon>
                   <v-card-text class="font-weight-bold">
@@ -92,7 +92,7 @@ export default {
 }
 .box-presentation{
   text-align: center;
-  height: 300px;
+  padding-bottom: 30px;
 }
 .box-howto{
   padding-top: 20px;
@@ -139,5 +139,10 @@ export default {
   align-content: center;
   text-align: center;
   margin: 0 auto;
+}
+.iconCard:hover{
+  transform: scale(1.05);
+  transition: 0.15s;
+  -webkit-transition: padding 2s;
 }
 </style>

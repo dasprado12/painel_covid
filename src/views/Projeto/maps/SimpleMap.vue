@@ -1,25 +1,32 @@
 <template>
     <div class="mapCss">
         <div class="legenda">
-            <v-card elevation="5" class="cardColor">
-                <v-card-title>
-                    {{currentOption.name}}
-                </v-card-title>
-                <v-card-text>
-                    <span> Infectados: {{currentOption.num}} </span><br>
-                    <span> Óbitos: {{currentOption.obitos}} </span>
-                </v-card-text>
+            <v-card elevation="5">
+                <v-row>
+                    <v-col cols="6">
+                        <v-card-title class="`white--text`">
+                            <h5 :class="`${changeTxtColor(currentOption.color)}--text`">{{currentOption.name}}</h5>
+                        </v-card-title>
+                        <v-card-text>
+                            <span class="legenda-texto"> <b>Infectados:</b> {{currentOption.num}} </span><br>
+                            <span class="legenda-texto"> <b>Óbitos:</b> {{currentOption.obitos}} </span>
+                        </v-card-text>
+                    </v-col>
+                    <v-col cols="6">
+                            <v-card-text>
+                                <div v-for="(item,idx) in legenda()" :key="item">
+                                    <span v-if="idx==0"> <v-badge :color="getColor(type, idx)"/> <span class="simple-space"/> 0 - {{item.menor-1}}  </span>
+                                    <span v-if="idx>=1 && idx <=3"> <v-badge :color="getColor(type, idx)"/> <span class="simple-space"/> {{item.maior}} - {{item.menor-1}}  </span>
+                                    <span v-if="idx==4"> <v-badge :color="getColor(type, idx)"/> <span class="simple-space"/> {{item.maior}} - maior  </span>
+                                </div>
+                            </v-card-text>
+                    </v-col>
+                </v-row>
             </v-card>
         </div>
-        <div class="legenda-cores">
+        <div class="legenda2">
             <v-card flat color="transparent">
-                <v-card-text>
-                    <div v-for="(item,idx) in legenda()" :key="item">
-                        <span v-if="idx==0"> <v-badge :color="getColor(type, idx)"/> <span class="spaco-simples"/> 0 - {{item.menor-1}}  </span>
-                        <span v-if="idx>=1 && idx <=3"> <v-badge :color="getColor(type, idx)"/> <span class="spaco-simples"/> {{item.maior}} - {{item.menor-1}}  </span>
-                        <span v-if="idx==4"> <v-badge :color="getColor(type, idx)"/> <span class="spaco-simples"/> {{item.maior}} - maior  </span>
-                    </div>
-                </v-card-text>
+                
             </v-card>
         </div>
         <l-map :zoom="zoom" :center="center" @update:center="centerUpdate" @update:zoom="zoomUpdate">
@@ -73,7 +80,7 @@ data() {
         last_date: null,
         zoom: 10,
         colors: {
-            num:    [ '#ede2d1', '#e8cda2', '#c9a56b', '#a87e3b', '#704b11' ],
+            num:    [ '#edded1', '#e3bd9d', '#d4935d', '#d16b17', '#854007' ],
             obitos: [ '#f2e6e6', '#edbbbb', '#d67c7c', '#b33e3e', '#660404' ]
         },
         center: latLng(-15.793599, -47.814987),
@@ -86,7 +93,8 @@ data() {
         currentOption: {
             name: 'Região',
             num: '',
-            obitos: ''
+            obitos: '',
+            color: null
         }
     }
 },
@@ -176,9 +184,14 @@ methods: {
         this.setCurrent(item)
     },
     setCurrent(item){
+        console.log(item.style)
+        this.currentOption.color = item.style.color
         this.currentOption.name = item.data.regiao
         this.currentOption.num = item.data.num
         this.currentOption.obitos = item.data.obitos
+    },
+    changeTxtColor(color){
+        console.log(color)
     }
 }
 };
@@ -201,25 +214,24 @@ methods: {
     background-color: rgb(240, 240, 240);
 }
 .legenda{
-    margin-left: 30px;
-    margin-top: 350px;
+    margin-left: 25px;
+    margin-top: 305px;
     position: absolute;
     z-index: 500;
-    // color: rgb(202, 109, 109);
-}
-
-.legenda-cores{
-    margin-left: 88%;
-    margin-top: 350px;
-    position: absolute;
-    z-index: 500;
+    color: rgb(202, 109, 109);
 }
 
 .text-legend{
     position: absolute;
     z-index: 500;
 }
-.spaco-simples{
+
+.simple-space{
     padding-left: 20px;
 }
+
+.currentColor{
+    position: absolute;
+}
+
 </style>
