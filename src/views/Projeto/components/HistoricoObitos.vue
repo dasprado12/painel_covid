@@ -5,7 +5,7 @@
             <v-card-text>
                 <one-line-chart
                     :time="dataset.dates"
-                    :data="dataset.num"
+                    :data="dataset.obitos"
                     :color="color"
                     :key="key"
                 />

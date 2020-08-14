@@ -13,6 +13,7 @@
     "core-js": "^3.6.4",
     "leaflet": "^1.6.0",
     "lottie-vuejs": "^0.3.7",
+    "moment": "^2.27.0",
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.5.3",
     "vue-choropleth": "^0.3.1",

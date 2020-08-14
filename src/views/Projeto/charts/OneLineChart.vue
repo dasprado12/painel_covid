@@ -40,16 +40,14 @@ export default {
                     categories: this.time,
                     tickAmount: 6,
                     labels: {
-                        formatter: function(val) {
-                        return val
-                        }
+                        format: 'ddMM'
                     }
                 },
                 yaxis: {
                     labels: {
-                        formatter: function(val){
-                            return val/1000 + " mil"
-                        }
+                        // formatter: function(val){
+                        //     return val/1000 + " mil"
+                        // }
                     }
                 }
                 

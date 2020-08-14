@@ -73,7 +73,7 @@ data() {
         last_date: null,
         zoom: 10,
         colors: {
-            num:    [ '#c7f0cf', '#8ed49b', '#62b371', '#39964a', '#177529' ],
+            num:    [ '#ede2d1', '#e8cda2', '#c9a56b', '#a87e3b', '#704b11' ],
             obitos: [ '#f2e6e6', '#edbbbb', '#d67c7c', '#b33e3e', '#660404' ]
         },
         center: latLng(-15.793599, -47.814987),
