@@ -10,7 +10,7 @@
                 <one-line-chart
                     v-bind:mms="mms(dataset.num, 7)"
                     v-bind:time="dataset.dates"
-                    v-bind:data="dataset.num"
+                    v-bind:data="dia(dataset.num)"
                     :key="key"
                 />
             </v-card-text>
@@ -32,7 +32,20 @@ export default {
         }
     },
     methods: {
+        dia(data){
+            let arr_ret = []
+            for(let i = 0; i < data.length; i++){
+                if(i == 0){
+                    arr_ret.push(data[i])
+                }else{
+                    arr_ret.push( (data[i] - data[i-1]) < 0 ? 0 : data[i] - data[i-1] )
+                }
+            }
+            arr_ret[0] = arr_ret[1]
+            return arr_ret
+        },
         mms(data, period){
+            data = this.dia(data)
             let arr_ret = []
             for(let i = 0; i < data.length; i++){
                 if(i < period){

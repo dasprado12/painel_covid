@@ -3,6 +3,7 @@
         <div class="regioes">
             <v-container>
                 <h1 class="font-weight-bold">Região - DF</h1>
+                <teste></teste>
                 <v-divider/>
                     <v-layout row wrap>
                         <v-col cols="12">
@@ -91,7 +92,6 @@ export default {
         treeInfectados,
         treeObitos,
         dataSeletor,
-        // GJMap
     },
     data: () => ({
         rawData: {
