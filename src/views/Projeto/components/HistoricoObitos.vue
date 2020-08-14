@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import OneLineChart from "../charts/OneLineChart.vue"
+import OneLineChart from "../charts/SimpleLineChart.vue"
 
 export default {
     props: [ 'dataset' ],

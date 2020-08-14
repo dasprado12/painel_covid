@@ -4,11 +4,11 @@
             <v-card-title> 
                 <span class="font-weight-normal">Infectados por dia</span> 
                 <v-spacer></v-spacer>
-                <span class="font-weight-thin mms">Média Móvel: 7 dias</span>
+                <span class="font-weight-thin mms">Média Móvel: {{mm}} dias</span>
             </v-card-title>
             <v-card-text>
                 <one-line-chart
-                    :mms="mms(dataset.num, 7)"
+                    :mms="mms(dataset.num, mm)"
                     :time="dataset.dates"
                     :data="dia(dataset.num)"
                     :color="color"
@@ -24,7 +24,7 @@
 import OneLineChart from "../charts/LineBar.vue"
 
 export default {
-    props: [ 'dataset' ],
+    props: [ 'dataset', 'mm' ],
     components: {
         OneLineChart
     },

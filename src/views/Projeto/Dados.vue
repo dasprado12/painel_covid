@@ -9,10 +9,24 @@
                         <v-col cols="12">
                             <data-seletor @changeRange="dateRange" v-bind:dates="rawData.dates"/>
                         </v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-infectados :dataset="filteredData" /></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-infectados :dataset="filteredData" /></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-obitos :dataset="filteredData" /></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-obitos :dataset="filteredData" /></v-col>
+                        <v-col cols="12">
+                            <v-card outlined color="grey lighten-4">
+                                <v-layout>
+                                    <v-col cols="6">oi</v-col>
+                                    <v-divider vertical/>
+                                    <v-col cols="6">
+                                        Média móvel:
+                                        <v-btn small @click="changeMM(7)" >7</v-btn>
+                                        <v-btn small @click="changeMM(15)" >15</v-btn>
+                                        <v-btn small @click="changeMM(21)" >21</v-btn>
+                                    </v-col>
+                                </v-layout>
+                            </v-card>
+                        </v-col>
+                        <v-col xl="3" lg="6" md="6" sm="6" xs="12"><historico-infectados :dataset="filteredData" /></v-col>
+                        <v-col xl="3" lg="6" md="6" sm="6" xs="12"><dia-infectados :dataset="filteredData" :mm="currentMM" /></v-col>
+                        <v-col xl="3" lg="6" md="6" sm="6" xs="12"><historico-obitos :dataset="filteredData" /></v-col>
+                        <v-col xl="3" lg="6" md="6" sm="6" xs="12"><dia-obitos :dataset="filteredData" :mm="currentMM" /></v-col>
                         <v-col cols="12"><simple-map/></v-col>
                     </v-layout><br>
                     <v-layout>
@@ -106,7 +120,7 @@ export default {
             num: null,
             obitos: null,
         },
-        
+        currentMM: 7,
         region: [ 'Total DF' ],
         regions: null,
         isSelected: true,
@@ -172,6 +186,9 @@ export default {
         dateRange(val){
             this.range = val
         },
+        changeMM(option){
+            this.currentMM = option
+        }
     }
 }
 </script>
