@@ -35,7 +35,9 @@ export default {
                 },
                 colors: [ "#e8a7aa", "#454545" ],
                 chart: { id: 'vuechart-example1' },
-                xaxis: { categories: this.time }
+                xaxis: { 
+                    categories: this.time,
+                },
             }
         },
         series(){

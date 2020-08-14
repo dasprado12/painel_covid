@@ -4,8 +4,9 @@
             <v-card-title class="font-weight-normal"> Total - Infectados </v-card-title>
             <v-card-text>
                 <one-line-chart
-                    v-bind:time="dataset.dates"
-                    v-bind:data="dataset.num"
+                    :time="dataset.dates"
+                    :data="dataset.num"
+                    :color="color"
                     :key="key"
                 />
             </v-card-text>
@@ -14,7 +15,7 @@
 </template>
 
 <script>
-import OneLineChart from "../charts/OneLineChartInfectados.vue"
+import OneLineChart from "../charts/OneLineChart.vue"
 
 export default {
     props: [ 'dataset' ],
@@ -23,6 +24,7 @@ export default {
     },
     data(){
         return {
+            color: [ "#eb950c" ],
             filteredTime: null,
             filteredData: null,
         }

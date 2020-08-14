@@ -12,7 +12,7 @@
 import VueApexCharts from 'vue-apexcharts'
 export default {
     props: [ 
-        'data', 'time'
+        'data', 'time', 'color'
     ],
     components: {
         VueApexCharts
@@ -26,17 +26,33 @@ export default {
         options(){
             return {
                 dataLabels: {
-                    enabled: false
+                    enabled: false,
                 },
                 stroke: {
                     curve: 'smooth'
                 },
-                colors: [ "#eb950c" ],
+                colors: this.color,
                 chart: {
                     type: 'area',
                     id: 'vuechart-example1', 
                 },
-                xaxis: { categories: this.time }
+                xaxis: { 
+                    categories: this.time,
+                    tickAmount: 6,
+                    labels: {
+                        formatter: function(val) {
+                        return val
+                        }
+                    }
+                },
+                yaxis: {
+                    labels: {
+                        formatter: function(val){
+                            return val/1000 + " mil"
+                        }
+                    }
+                }
+                
             }
         },
         series(){
