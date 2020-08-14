@@ -2,7 +2,6 @@
     <div id="app">
         <vue-apex-charts 
             width="100%"
-            type="area" 
             :options="options" 
             :series="series"
             :key="key"
@@ -33,8 +32,11 @@ export default {
                 stroke: {
                     curve: 'smooth'
                 },
-                colors: [ "#bf000050" ],
-                chart: { id: 'vuechart-example' },
+                colors: [ "#bf0000" ],
+                chart: {
+                    type: 'area', 
+                    id: 'vuechart-example' 
+                },
                 xaxis: { categories: this.time }
             }
         },

@@ -33,23 +33,19 @@
                 numId: 0,
             }
         },
-        created(){
+        mounted(){
             this.setSlider()
         },
         watch: {
-            range(val1){
-                console.log(val1)
-                // this.$emit('changeRange', this.range)
-            },
-        },
-        methods: {
-            setSlider(){
+            dates(val){
                 let min = 0
-                let max = this.dates.length -1
+                let max = val.length -1
                 this.range = [min,max]
                 this.min = min
                 this.max = max
             },
+        },
+        methods: {
             displayDates(item){
                 return this.dates[item].split("T")[0]
             },

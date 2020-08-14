@@ -6,14 +6,13 @@
                 <v-divider/>
                     <v-layout row wrap>
                         <v-col cols="12">
-                            <data-seletor :key="numId" @changeRange="dateRange" v-bind:dates="dates" ></data-seletor>
+                            <data-seletor @changeRange="dateRange" v-bind:dates="rawData.dates"/>
                         </v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-infectados v-bind:range="range" v-bind:region="region"/></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-infectados v-bind:range="range" v-bind:region="region"></dia-infectados></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-obitos v-bind:range="range" v-bind:region="region"/></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-obitos v-bind:range="range" v-bind:region="region"/></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-infectados :dataset="filteredData" /></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-infectados :dataset="filteredData" /></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-obitos :dataset="filteredData" /></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-obitos :dataset="filteredData" /></v-col>
                         <v-col cols="12"><simple-map/></v-col>
-                        <!-- <v-col cols="6"><g-j-map></g-j-map></v-col> -->
                     </v-layout><br>
                     <v-layout>
                         <v-flex row wrap>
@@ -21,7 +20,6 @@
                                 <h2 class="font-weight-normal">Por região</h2>
                             </v-col>
                             <v-col>
-                                <!-- <v-select label="Escolha as Regiões" dense v-model="region" :items="regions" attach chips multiple/> -->
                                 <v-combobox
                                     v-model="region"
                                     :items="regions"
@@ -45,7 +43,6 @@
                     </v-layout>
                     <v-divider/>
                     <v-container>
-
                     <v-row row wrap v-show="isSelected">
                         <v-col cols="12" xs="12" sm="6" md="6" lg="6">
                             <mix-infectados :key="numId" v-bind:regions="region"/>
@@ -97,42 +94,30 @@ export default {
         // GJMap
     },
     data: () => ({
-        dates: null,
-        data: null,
+        rawData: {
+            amountData: null,
+            dates: null,
+            num: null,
+            obitos: null,
+        },
+        filteredData: {
+            amountData: null,
+            dates: null,
+            num: null,
+            obitos: null,
+        },
         region: [ 'Total DF' ],
         regions: null,
         isSelected: true,
-        lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`,
         range: null,
         numId: 0,
         activator: null,
-        attach: null,
-        editing: null,
         index: -1,
-        items: [
-            { header: 'Select an option or create one' },
-            {
-            text: 'Foo',
-            color: 'blue',
-            },
-            {
-            text: 'Bar',
-            color: 'red',
-            },
-        ],
         nonce: 1,
-        menu: false,
-        model: [
-            {
-            text: 'Foo',
-            color: 'blue',
-            },
-        ],
-        x: 0,
-        y: 0,
-        }),
-    async mounted(){
-        this.get_info()
+    }),
+    async created(){
+        this.getData()
+
     },
     watch: {
         region(val){
@@ -142,61 +127,50 @@ export default {
                 this.isSelected = true
             }
         },
+        range(val){
+            this.filterData(val)
+            this.numId++
+        },
         watch: {
             model (val, prev) {
                 if (val.length === prev.length) return
-
                 this.model = val.map(v => {
-                if (typeof v === 'string') {
-                    v = {
-                    text: v,
-                    color: this.colors[this.nonce - 1],
+                    if (typeof v === 'string') {
+                        v = {
+                            text: v,
+                            color: this.colors[this.nonce - 1],
+                        }
+                        this.items.push(v)
+                        this.nonce++
                     }
-
-                    this.items.push(v)
-
-                    this.nonce++
-                }
-
-                return v
+                    return v
                 })
             },
         },
     },
     methods:{
-        async get_info(){
-            this.dates = (await api_data.get_all_dates()).data
-            this.regions = (await api_data.get_all_regions()).data.filter(function(item){
-                if( item != "OESTE"     && 
-                    item != "SUL"       && 
-                    item != "LESTE"     && 
-                    item != "NORTE"     && 
-                    item != "CENTRAL"   &&
-                    item != "SUDOESTE"   && 
-                    item != "CENTRO SUL"   ){
+        async getData(){
+            this.rawData.amountData = (await api_data.get_hist_data()).data
+            this.rawData.num = (await api_data.get_hist_data()).data.map(function(item){ return item.num })
+            this.rawData.obitos = (await api_data.get_hist_data()).data.map(function(item){ return item.obitos })
+            this.rawData.dates = (await api_data.get_all_dates()).data
 
-                    return item
-                }
-            })
-            this.data = (await api_data.get_all_data()).data
-            this.max = this.dates.length
-            this.numId++
+            this.filteredData.amountData = (await api_data.get_hist_data()).data
+            this.filteredData.num = (await api_data.get_hist_data()).data.map(function(item){ return item.num })
+            this.filteredData.obitos = (await api_data.get_hist_data()).data.map(function(item){ return item.obitos })
+            this.filteredData.dates = (await api_data.get_all_dates()).data
+            
+            this.regions = (await api_data.get_all_regions()).data.filter(function(item){ if( item != "OESTE" && item != "SUL" &&  item != "LESTE" && item != "NORTE" && item != "CENTRAL" && item != "SUDOESTE" && item != "CENTRO SUL" ){ return item } })
         },
-        position(val){
-            return this.dates[val]
+        filterData(val){
+            this.filteredData.amountData = this.rawData.amountData.slice(val[0], val[1]+1)
+            this.filteredData.dates = this.rawData.dates.slice(val[0], val[1]+1)
+            this.filteredData.num = this.rawData.num.slice(val[0], val[1]+1)
+            this.filteredData.obitos = this.rawData.obitos.slice(val[0], val[1]+1)
         },
         dateRange(val){
             this.range = val
         },
-        edit (index, item) {
-            if (!this.editing) {
-            this.editing = item
-            this.index = index
-            } else {
-            this.editing = null
-            this.index = -1
-            }
-        }
     }
 }
 </script>

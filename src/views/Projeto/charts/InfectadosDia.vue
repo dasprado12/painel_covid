@@ -32,9 +32,10 @@ export default {
                     enabled: false
                 },
                 stroke: {
-                    curve: 'smooth'
+                    curve: 'smooth',
+                    width: [ 0,4 ]
                 },
-                colors: [ "#8debba", "#82c7ff" ],
+                colors: [ "#eb950c", "#454545" ],
                 chart: { id: 'vuechart-example1' },
                 xaxis: { categories: this.time }
             }

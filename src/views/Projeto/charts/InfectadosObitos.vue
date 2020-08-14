@@ -2,6 +2,7 @@
     <div id="app">
         <vue-apex-charts 
             width="100%"
+            type="line"
             :options="options" 
             :series="series"
         ></vue-apex-charts>
@@ -29,16 +30,17 @@ export default {
                     enabled: false
                 },
                 stroke: {
-                    curve: 'smooth'
+                    curve: 'smooth',
+                    width: [ 0,4 ]
                 },
-                colors: [ "#e8a7aa", "#82c7ff" ],
+                colors: [ "#e8a7aa", "#454545" ],
                 chart: { id: 'vuechart-example1' },
                 xaxis: { categories: this.time }
             }
         },
         series(){
             return [{
-                    type: 'bar',
+                    type: 'column',
                     name: 'Óbitos',
                     data: this.data 
                 },{
