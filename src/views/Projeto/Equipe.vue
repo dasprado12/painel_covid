@@ -3,52 +3,70 @@
     <div class="titulo_principal"><br>
         <h2 class="font-weight-bold">Nossa Equipe </h2><br>
     </div>
-      <v-container>
-        <v-row>
-          <v-col xl="2" lg="3" md="3" sm="6" xs="6" v-for="item in equipe" :key="item.name">
-            <v-card
-              class="mx-auto"
-              max-width="900"
-            >
-              <v-img
-                class="white--text align-end"
-                height="200px"
-                :src="require(`@/assets/${item.fig}`)"
-              >
-                <v-card-title>{{item.name}}</v-card-title>
-              </v-img>
-
-              <v-card-subtitle class="pb-0">{{item.un}}</v-card-subtitle>
-
-              <v-card-text class="text--primary">
-                <div>{{item.role}}</div>
-              </v-card-text>
-            </v-card>
-          </v-col>
-      </v-row>
-      </v-container>
+      <div class="flex-container">
+        <div class="column">
+          <v-simple-table fixed-header height="500px" class="table">
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">Nome</th>
+                  <th class="text-left">Ocupação</th>
+                  <th class="text-left">Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in desserts" :key="item.name">
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.role }}</td>
+                  <td>{{ item.email }}</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </div>
+      </div>
   </div>
+
 </template>
 
 <script>
 export default {
   data(){
     return {
-      
-    }
-  },
-  computed: {
-    equipe(){
-      return [
-        { name: "Rafael T. de Sousa Júnior", role: "Prof. Dr. Adjunto", un: "ENE/FT/UnB", fig: "timoteo.jpg" },
-        { name: "Francisco L. Caldas", role: "Doutorando", un: "ENE/FT/UnB", fig: "francisco.jpg" },
-        { name: "Lucas Coelho", role: "Mestrando", un: "ENE/FT/UnB", fig: "lucas_coelho.jpg" },
-        { name: "Jonathas Alves", role: "Mestrando", un: "ENE/FT/UnB", fig: "profile.png" },
-        { name: "Daniel Prado", role: "Graduando", un: "ENE/FT/UnB", fig: "daniel.jpg" },
-        { name: "Natália A. Marques", role: "Graduando", un: "ENE/FT/UnB", fig: "natalia.jpg" },
-      ]
-  }
-    }
+      desserts: [
+          {
+            name: 'Rafael T. de Sousa Júnior',
+            role: 'Prof. Dr. Adjunto',
+            email: 'xxxxxxxxxxx@xxxx.com'
+          },
+          {
+            name: 'Francisco L. Caldas',
+            role: 'Doutorando',
+            email: 'xxxxxxxxxxx@xxxx.com'
+          },
+          {
+            name: 'Lucas Coelho',
+            role: 'Mestrando',
+            email: 'xxxxxxxxxxx@xxxx.com'
+          },
+          {
+            name: 'Jonathas Alves',
+            role: 'Mestrando',
+            email: 'xxxxxxxxxxx@xxxx.com'
+          },
+          {
+            name: 'Daniel Prado',
+            role: 'Graduando',
+            email: 'xxxxxxxxxxx@xxxx.com'
+          },
+          {
+            name: 'Natália A. Marques',
+            role: 'Graduando',
+            email: 'xxxxxxxxxxx@xxxx.com'
+          },
+        ],
+      }
+    },
 }
 </script>
 
@@ -59,12 +77,15 @@ export default {
   margin-right: 20%;
   margin-left: 20%;
   text-align: center;
+  margin-top: 30px;
 }
-
-.text_image {
-  margin-left: 30%;
-  margin-right: 10%;
-  text-align: center;
+.flex-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+.column {
+  width: 80%;
 }
 
 
