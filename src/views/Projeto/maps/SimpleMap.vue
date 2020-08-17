@@ -91,7 +91,7 @@ data() {
             obitos:[ 10, 20, 30, 40 ]
         },
         currentOption: {
-            name: 'Região',
+            name: '',
             num: '',
             obitos: '',
             color: null
@@ -100,6 +100,7 @@ data() {
 },
 async mounted(){
     this.create();
+    this.setCurrent({style:{color:''}, data:{regiao:'Região', num:'--------', obitos: '---------' }})
 },
 methods: {
     async create(){
@@ -184,7 +185,6 @@ methods: {
         this.setCurrent(item)
     },
     setCurrent(item){
-        console.log(item.style)
         this.currentOption.color = item.style.color
         this.currentOption.name = item.data.regiao
         this.currentOption.num = item.data.num

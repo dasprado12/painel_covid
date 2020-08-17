@@ -30,6 +30,7 @@ export default {
     },
     data(){
         return {
+            
             key: 0,
             color: [ "#eb950c", "#454545" ]
         }
@@ -52,7 +53,7 @@ export default {
             let arr_ret = []
             for(let i = 0; i < data.length; i++){
                 if(i < period){
-                    arr_ret.push(0)
+                    arr_ret.push( data[i]/2 )
                 }else{
                     let aux = 0
                     for(let j = 0; j < period; j++){

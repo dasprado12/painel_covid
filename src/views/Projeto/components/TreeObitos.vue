@@ -1,31 +1,33 @@
 <template>
     <div>
-        <v-card outlined color="grey lighten-4"> 
-            <v-card-title class="font-weight-light"> Regiões com mais óbitos  </v-card-title>
-            <v-divider/>
-            <tree-map-obt v-bind:obj="data_inf" :key="key"/>
+        <v-card outlined color="grey lighten-4">
+            <v-card-title class="font-weight-light"> Regiões com mais óbitos </v-card-title>
+                <tree-map-inf 
+                    :data="amountData"
+                    :regions="amountRegions"
+                    :colors="colors"
+                    v-bind:obj="data_inf" 
+                    :key="key"
+                />
         </v-card>
     </div>
 </template>
 
 <script>
-import TreeMapObt from "../charts/TreeChartObitos.vue";
+import TreeMapInf from "../charts/PieChart.vue";
 import { Data } from "../../../functions/index.js";
 
 let api_data = new Data();
 
 export default {
-    props: [ 'color', 'title', 'time', 'regions' ],
-    components: { TreeMapObt },
+    props: [ 'regions' ],
+    components: { TreeMapInf },
     data(){
         return {
-            data: null,
-            data_inf: {
-                color: this.color,
-                data: []
-            },
             filter_data: [],
-            last_date: null, 
+            amountData: [],
+            amountRegions: [],
+            colors: [ '#e85046', '#e88746', '#e8c046', '#851c3b', '#481c85'  ],
             key: 0,
         }
     },
@@ -36,16 +38,16 @@ export default {
         async get_data(regions){
             let last_date = (await api_data.get_last_date()).data.split("T")[0]
             let data = ( await api_data.get_region_by_date(last_date) ).data
-            this.data = data
-            let filter_data = []
+            this.amountData = []
+            this.amountRegions = []
             for(let i = 0; i < data.length; i++){
                 for(let j = 0; j < regions.length; j++){
                     if(data[i].regiao == regions[j]){
-                        filter_data.push({ City: data[i].regiao, Count: data[i].obitos })
+                        this.amountData.push(data[i].obitos)
+                        this.amountRegions.push(data[i].regiao)
                     }
                 }
             }
-            this.data_inf.data=filter_data
             this.key++
         },
     },

@@ -52,7 +52,7 @@ export default {
             data = this.dia(data)
             for(let i = 0; i < data.length; i++){
                 if(i < period){
-                        arr_ret.push(0)
+                        arr_ret.push(data[i]/2)
                 }else{
                     let aux = 0
                     for(let j = 0; j < period; j++){

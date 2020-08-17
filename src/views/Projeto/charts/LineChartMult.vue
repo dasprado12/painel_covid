@@ -1,6 +1,10 @@
 <template>
     <div id="app">
-        <vue-apex-charts :type="type" :options="options" :series="series"/>
+        <vue-apex-charts 
+            type="area" 
+            :options="options" 
+            :series="series"
+        />
     </div>
 </template>
 
@@ -11,11 +15,20 @@ export default {
     components: {
         VueApexCharts
     },
-    props: [ 'time', 'data' ],
+    props: [ 'time', 'data', 'colors' ],
     data(){
         return {
-            type: 'line',
-            options: {  stroke: { curve: 'smooth'}, chart: { id: 'vuechart-example', },
+            options: { 
+                dataLabels: {
+                    enabled: false,
+                }, 
+                stroke: { 
+                    curve: 'smooth'
+                }, 
+                chart: { 
+                    id: 'vuechart-example' 
+                },
+                colors: this.colors,
                 xaxis: {
                     type: 'datetime', 
                     categories: this.time,

@@ -34,10 +34,5 @@ export default {
             return this.dataset.map(function(item){return item})
         }
     },
-    watch: {
-        dataset(){
-            console.log('oi')
-        },
-    },
 }
 </script>

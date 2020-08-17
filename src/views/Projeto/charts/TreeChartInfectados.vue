@@ -19,14 +19,6 @@ export default {
     props: [ 'obj' ],
     data: function() {
         return {
-            // dataSource: this.obj.data,
-            // weightValuePath: 'Count',
-            // leafItemSettings: {
-            //     labelPath: 'City',
-            //     labelFormat: '${City}<br>${Count} casos',
-            //     gap:5,
-            //     fill: 'green'
-            // }
         }
     },
     computed:{

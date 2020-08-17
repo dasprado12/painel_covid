@@ -3,8 +3,9 @@
         <v-card outlined color="grey lighten-4"> 
             <v-card-title class="font-weight-light"> Acumulado - Óbitos por região </v-card-title>
             <line-chart
-                v-bind:time="time"
-                v-bind:data="data"
+                :time="time"
+                :data="data"
+                :colors="colors"
                 :key="numId"
             />
         </v-card>
@@ -12,7 +13,7 @@
 </template>
 
 <script>
-import lineChart from "../charts/MixLineChartObt"
+import lineChart from "../charts/LineChartMult.vue"
 import { Data } from "../../../functions/index.js";
 
 let api_data = new Data();
@@ -25,11 +26,12 @@ export default {
             time: [],
             data: null,
             items: [],
+            colors: [ '#e85046', '#e88746', '#e8c046', '#851c3b', '#481c85' ],
             numId: 0
         }
     },
-    async mounted(){    
-        this.get_many_data()
+    mounted(){
+        this.get_many_data('Total DF')
     },
     watch: {
         regions(val){

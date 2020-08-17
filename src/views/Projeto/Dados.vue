@@ -2,8 +2,7 @@
     <div class="dados">
         <div class="regioes">
             <v-container>
-                <h1 class="font-weight-bold">Região - DF</h1>
-                <teste></teste>
+                <h1 class="font-weight-bold">Distrito Federal</h1>
                 <v-divider/>
                     <v-layout row wrap>
                         <v-col cols="12">
@@ -26,15 +25,15 @@
                             </v-card>
                         </v-col>
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-infectados :dataset="filteredData" /></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-infectados :dataset="filteredData" :mm="currentMM" /></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-obitos :dataset="filteredData" /></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-obitos :dataset="filteredData" :mm="currentMM" /></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-infectados       :dataset="filteredData" :mm="currentMM" /></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-obitos     :dataset="filteredData" /></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-obitos           :dataset="filteredData" :mm="currentMM" /></v-col>
                         <v-col cols="12"><simple-map/></v-col>
                     </v-layout><br>
                     <v-layout>
                         <v-flex row wrap>
                             <v-col>
-                                <h2 class="font-weight-normal">Por região</h2>
+                                <h2 class="font-weight-normal">Análise por região</h2>
                             </v-col>
                             <v-col>
                                 <v-combobox
@@ -61,18 +60,10 @@
                     <v-divider/>
                     <v-container>
                     <v-row row wrap v-show="isSelected">
-                        <v-col cols="12" xs="12" sm="6" md="6" lg="6">
-                            <mix-infectados :key="numId" v-bind:regions="region"/>
-                        </v-col>
-                        <v-col cols="12" xs="12" sm="6" md="6" lg="6">
-                            <tree-infectados v-bind:regions="region"/>
-                        </v-col>
-                        <v-col cols="12" xs="12" sm="6" md="6" lg="6">
-                            <mix-obitos v-bind:regions="region"/>
-                        </v-col>
-                        <v-col cols="12" xs="12" sm="6" md="6" lg="6">
-                            <tree-obitos v-bind:regions="region"/>
-                        </v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><mix-infectados v-bind:regions="region"/></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><tree-infectados v-bind:regions="region"/></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><mix-obitos v-bind:regions="region"/></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><tree-obitos v-bind:regions="region"/></v-col>
                     </v-row>
                     </v-container>
             </v-container>
@@ -177,7 +168,7 @@ export default {
             this.filteredData.obitos = (await api_data.get_hist_data()).data.map(function(item){ return item.obitos })
             this.filteredData.dates = (await api_data.get_all_dates()).data
             
-            this.regions = (await api_data.get_all_regions()).data.filter(function(item){ if( item != "OESTE" && item != "SUL" &&  item != "LESTE" && item != "NORTE" && item != "CENTRAL" && item != "SUDOESTE" && item != "CENTRO SUL" ){ return item } })
+            this.regions = (await api_data.get_all_regions()).data.filter(function(item){ if( item != "OESTE" && item != "SUL" &&  item != "LESTE" && item != "NORTE" && item != "CENTRAL" && item != "SUDOESTE" && item != "CENTRO SUL" ){ return item } }).sort()
         },
         filterData(val){
             this.filteredData.amountData = this.rawData.amountData.slice(val[0], val[1]+1)

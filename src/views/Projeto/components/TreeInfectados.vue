@@ -2,29 +2,32 @@
     <div>
         <v-card outlined color="grey lighten-4">
             <v-card-title class="font-weight-light"> Regiões com mais infectados </v-card-title>
-                <tree-map-inf v-bind:obj="data_inf" :key="key"></tree-map-inf>
+                <tree-map-inf 
+                    :data="amountData"
+                    :regions="amountRegions"
+                    v-bind:obj="data_inf" 
+                    :key="key"
+                />
         </v-card>
     </div>
 </template>
 
 <script>
-import TreeMapInf from "../charts/TreeChartInfectados.vue";
+import TreeMapInf from "../charts/PieChart.vue";
 import { Data } from "../../../functions/index.js";
 
 let api_data = new Data();
 
 export default {
-    props: [ 'title', 'time', 'regions' ],
+    props: [ 'regions' ],
     components: { TreeMapInf },
     data(){
         return {
             data: null,
-            data_inf: {
-                color: this.color,
-                data: []
-            },
             filter_data: [],
             last_date: null, 
+            amountData: [],
+            amountRegions: [],
             key: 0,
         }
     },
@@ -35,16 +38,16 @@ export default {
         async get_data(regions){
             let last_date = (await api_data.get_last_date()).data.split("T")[0]
             let data = ( await api_data.get_region_by_date(last_date) ).data
-            this.data = data
-            let filter_data = []
+            this.amountData = []
+            this.amountRegions = []
             for(let i = 0; i < data.length; i++){
                 for(let j = 0; j < regions.length; j++){
                     if(data[i].regiao == regions[j]){
-                        filter_data.push({ City: data[i].regiao, Count: data[i].num })
+                        this.amountData.push(data[i].num)
+                        this.amountRegions.push(data[i].regiao)
                     }
                 }
             }
-            this.data_inf.data=filter_data
             this.key++
         },
     },

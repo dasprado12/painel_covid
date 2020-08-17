@@ -1,5 +1,9 @@
 <template>
-  <div class="footer"><br><br>
+  <div class="footer">
+    <div class="primeira-observacao">
+      
+
+    </div>
     <div class="observacoes">
         <v-divider></v-divider>
       <div class="observacoes_texto font-weight-light">
@@ -15,7 +19,7 @@
         </div>
         <div class="column">
           <img style="width:100%" src="../assets/brasao-unb.png"/>
-       </div>
+        </div>
       </div>
     </div>
     
@@ -62,5 +66,14 @@ div.parceiros{
 }
 .text-footer {
   width: 60%;
+}
+
+.primeira-observacao{
+  color: rgb(110, 110, 110);
+  text-align: center;
+  padding-top: 10%;
+  padding-bottom: 2%;
+  padding-left: 7%;
+  padding-right: 7%;
 }
 </style>

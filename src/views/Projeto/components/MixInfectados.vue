@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import lineChart from "../charts/MixLineChartInf"
+import lineChart from "../charts/LineChartMult.vue"
 import { Data } from "../../../functions/index.js";
 
 let api_data = new Data();
@@ -28,8 +28,8 @@ export default {
             numId: 0
         }
     },
-    async mounted(){    
-        this.get_many_data()
+    mounted(){
+        this.get_many_data('Total DF')
     },
     watch: {
         regions(val){
