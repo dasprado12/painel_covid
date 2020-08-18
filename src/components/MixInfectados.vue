@@ -3,8 +3,9 @@
         <v-card outlined color="grey lighten-4"> 
             <v-card-title class="font-weight-light"> Acumulado - Infectados por região </v-card-title>
             <line-chart
-                v-bind:time="time"
-                v-bind:data="data"
+                :colors="colors"
+                :time="time"
+                :data="data"
                 :key="numId"
             />
         </v-card>
@@ -25,7 +26,7 @@ export default {
             time: [],
             data: null,
             items: [],
-            numId: 0
+            numId: 0,
         }
     },
     mounted(){

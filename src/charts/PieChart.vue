@@ -18,13 +18,13 @@ export default {
     props: [ 'colors', 'data', 'regions' ],
     data(){
         return {
-            series: this.data,
+            series: this.data.reverse(),
             chartOptions: {
                 chart: {
                     type: 'pie',
                 },
                 colors: this.colors,
-                labels: this.regions,
+                labels: this.regions.reverse(),
                 responsive: [{
                 breakpoint: 480,
                 options: {

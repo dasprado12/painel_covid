@@ -1,5 +1,5 @@
 <template>
-    <div class="dados">{{filteredData.MMnum}}
+    <div class="dados">
         <div class="regioes">
             <v-container>
                 <h1 class="font-weight-bold">Distrito Federal</h1>
