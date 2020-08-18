@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { Data } from "../../../functions/index.js"
+import { Data } from "../functions/index.js"
 import { latLng } from "leaflet";
 import { LGeoJson, LMap, LTileLayer, LMarker, LPopup, LIconDefault } from "vue2-leaflet";
 import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'

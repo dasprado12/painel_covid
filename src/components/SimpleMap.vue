@@ -21,7 +21,7 @@
 
 <script>
 import SimpleMap from "../maps/SimpleMap.vue"
-import { Data } from "../../../functions/index.js"
+import { Data } from "../functions/index.js"
 
 let api_data = new Data()
 

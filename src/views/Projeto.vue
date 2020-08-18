@@ -1,36 +1,148 @@
 <template>
-    <v-app class="main_project">
-        <Toolbar/>
-            <v-content class="backgroundColor">
-                <router-view class="view"></router-view>
-            </v-content>
-        <Footer></Footer>
-    </v-app>
+  <div>
+      <div :class="backgroundColor">
+        <div class="box-presentation">
+          <h2 class="titulo_principal"> Projeto Painel Covid-19 </h2>
+            <p class="p">  
+              O projeto do Painel Covid-19 é uma iniciativa do Latitude - Laboratório de Tecnologias de Tomada de Decisão (ENE/FT/UnB) em parceria com a Universidade Federal do Ceará (UFC). O projeto tem por objetivo auxiliar a comunidade na analise dos dados da evolução do Covid-19 de forma clara atraves de gráficos que demonstram o número de obitos e infectados.
+            </p>  
+          <v-btn to="dados" outlined color="black">
+            Ir para dados
+          </v-btn>
+        </div>
+      </div>
+      <div class="data-ext">
+        <div class="box-howto">
+            <h2 class="font-weight-light">O que nós fazemos</h2>
+          <v-container>
+            <v-row>
+              <v-col cols="4">
+                <v-card color="iconCard grey lighten-2" outlined height="140">
+                  <br>
+                  <v-icon large color="green darken-2">fas fa-wrench</v-icon>
+                  <v-card-text class="font-weight-bold">
+                    Extração de dados via Scrapping  das secretarias de saúde dos estados
+                  </v-card-text>
+                </v-card>
+              </v-col>
+              <v-col cols="4">
+                <v-card color="iconCard grey lighten-2" outlined height="140">
+                  <br>
+                  <v-icon large color="green darken-2">fas fa-cogs</v-icon>
+                  <v-card-text class="font-weight-bold">
+                    Armazenamento e manipulação dos dados
+                  </v-card-text>
+                </v-card>
+              </v-col>
+              <v-col cols="4">
+                <v-card color="iconCard grey lighten-2" outlined height="140">
+                  <br>
+                  <v-icon large color="green darken-2">fas fa-desktop</v-icon>
+                  <v-card-text class="font-weight-bold">
+                    Visualização
+                  </v-card-text>
+                </v-card>
+              </v-col>
+              <v-col cols="12">
+                <v-card color="iconCard grey lighten-2" outlined>
+                <br>
+                  <v-icon large color="green darken-2">fas fa-clock</v-icon>
+                  <v-card-text class="font-weight-bold">
+                    Projeção de dados! Como este algorítmo, é possível analisar os dados vindos das secretarias de saúde e visualizar um futuro cenário para os dados. Com alta precisão, é possível prever como estará o panorama futuro da COVID em cada estado brasileiro
+                  </v-card-text>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
+        </div>
+      </div>
+      <div :class="backgroundColor">
+        <div class="box-gif">
+          <h2 class="font-weight-light">Exemplo</h2>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <p>Com os dados extraídos da Secretaria de Saúde do Distrito Federal (SESDF), foi possível anasizá-los de forma a
+                  criar uma série temporal.</p>
+                <p>Em forma de mapa de calor, é possível observar as regiões mais afetadas pela COVID-19 na Distrito Federal (DF)</p>
+                
+              </v-col>
+              <v-col cols="12" class="toCenter"> <v-img width="650" class="toCenter" :src="require(`@/assets/infectados.gif`)"/> </v-col>
+            </v-row>
+          </v-container>
+        </div>
+      </div>
+  </div>
 </template>
 
-
-
 <script>
-import Toolbar from "../components/Toolbar.vue"
-import Footer from "../components/Footer.vue"
 export default {
-  components: {
-    Toolbar,
-    Footer
-  },
-
-  data: () => ({
-    //
-  })
-};
+    data(){
+        return {
+          backgroundColor: 'green lighten-4',
+        }
+    },
+    
+}
 </script>
 
 <style scoped>
-.backgroundColor{
+.teste{
+  position: absolute;
+}
+.box-presentation{
+  text-align: center;
+  padding-bottom: 30px;
+}
+.box-howto{
+  padding-top: 20px;
+  text-align: center;
+}
+.box-gif{
+  padding-top: 20px;
+  text-align: center;
+}
+.projeto {
+  margin-right: 10%;
+  margin-left: 10%;
+}
+.data-ext{
   background-color: rgb(255, 255, 255);
 }
-/* .view{
-  margin-left: 10px;
-  margin-right: 10px;
-} */
+.titulo_principal{
+  padding-top: 60px;
+  margin-right: 10%;
+  margin-left: 10%;
+  text-align: center;
+}
+.box {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20vh;
+}
+.imgSettings{
+  text-align: center;
+  align-content: center;
+}
+.p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 60px;
+    margin-right: 60px;
+    text-indent: 4em;
+}
+.toCenter{
+  align-content: center;
+  text-align: center;
+  margin: 0 auto;
+}
+.iconCard:hover{
+  transform: scale(1.05);
+  transition: 0.15s;
+  -webkit-transition: padding 2s;
+}
 </style>

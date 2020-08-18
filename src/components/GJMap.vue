@@ -9,7 +9,7 @@
 
 <script>
 import GJMap from "../maps/GJMap.vue"
-import { Data } from "../../../functions/index.js"
+import { Data } from "../functions/index.js"
 
 let api_data = new Data()
 
