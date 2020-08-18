@@ -8,9 +8,9 @@
             </v-card-title>
             <v-card-text>
                 <one-line-chart
-                    :mms="mms(dataset.num, mm)"
+                    :mms="dataset.MMnum"
                     :time="dataset.dates"
-                    :data="dia(dataset.num)"
+                    :data="dataset.Dianum"
                     :color="color"
                     name="Infectados"
                     :key="key"
@@ -30,41 +30,10 @@ export default {
     },
     data(){
         return {
-            
             key: 0,
             color: [ "#eb950c", "#454545" ]
         }
     },
-    methods: {
-        dia(data){
-            let arr_ret = []
-            for(let i = 0; i < data.length; i++){
-                if(i == 0){
-                    arr_ret.push(data[i])
-                }else{
-                    arr_ret.push( (data[i] - data[i-1]) < 0 ? 0 : data[i] - data[i-1] )
-                }
-            }
-            arr_ret[0] = arr_ret[1]
-            return arr_ret
-        },
-        mms(data, period){
-            data = this.dia(data)
-            let arr_ret = []
-            for(let i = 0; i < data.length; i++){
-                if(i < period){
-                    arr_ret.push( data[i]/2 )
-                }else{
-                    let aux = 0
-                    for(let j = 0; j < period; j++){
-                        aux += data[i - j]
-                    }
-                    arr_ret.push(~~(aux/period))
-                }
-            }
-            return arr_ret
-        }
-    }
 }
 </script>
 

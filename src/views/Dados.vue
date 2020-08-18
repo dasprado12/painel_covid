@@ -1,5 +1,5 @@
 <template>
-    <div class="dados">
+    <div class="dados">{{filteredData.MMnum}}
         <div class="regioes">
             <v-container>
                 <h1 class="font-weight-bold">Distrito Federal</h1>
@@ -82,9 +82,9 @@ import mixObitos from "../components/MixObitos.vue"
 import treeInfectados from "../components/TreeInfectados.vue"
 import treeObitos from "../components/TreeObitos.vue"
 import dataSeletor from "../components/Seletor.vue"
-// import GJMap from './components/GJMap.vue' 
 
 import { Data } from "../functions/index.js"
+
 let api_data = new Data()
 
 export default {
@@ -106,26 +106,27 @@ export default {
             dates: null,
             num: null,
             obitos: null,
-        },
+            Dianum: null,
+            Diaobitos: null,
+            MMnum: null,
+            MMobitos: null,},
         filteredData: {
             amountData: null,
             dates: null,
             num: null,
             obitos: null,
-        },
+            Dianum: null,
+            Diaobitos: null,
+            MMnum: null,
+            MMobitos: null,},
         currentMM: 7,
         region: [ 'Total DF' ],
         regions: null,
         isSelected: true,
         range: null,
-        numId: 0,
-        activator: null,
-        index: -1,
-        nonce: 1,
     }),
     async created(){
         this.getData()
-
     },
     watch: {
         region(val){
@@ -137,24 +138,8 @@ export default {
         },
         range(val){
             this.filterData(val)
-            this.numId++
         },
-        watch: {
-            model (val, prev) {
-                if (val.length === prev.length) return
-                this.model = val.map(v => {
-                    if (typeof v === 'string') {
-                        v = {
-                            text: v,
-                            color: this.colors[this.nonce - 1],
-                        }
-                        this.items.push(v)
-                        this.nonce++
-                    }
-                    return v
-                })
-            },
-        },
+        
     },
     methods:{
         async getData(){
@@ -162,12 +147,20 @@ export default {
             this.rawData.num = (await api_data.get_hist_data()).data.map(function(item){ return item.num })
             this.rawData.obitos = (await api_data.get_hist_data()).data.map(function(item){ return item.obitos })
             this.rawData.dates = (await api_data.get_all_dates()).data
+            this.rawData.Dianum = await this.calcDia(this.rawData.num)
+            this.rawData.Diaobitos = await this.calcDia(this.rawData.obitos)
+            this.rawData.MMnum = this.calcMms(this.rawData.num, this.currentMM)
+            this.rawData.MMobitos = this.calcMms(this.rawData.obitos, this.currentMM)
 
             this.filteredData.amountData = (await api_data.get_hist_data()).data
             this.filteredData.num = (await api_data.get_hist_data()).data.map(function(item){ return item.num })
             this.filteredData.obitos = (await api_data.get_hist_data()).data.map(function(item){ return item.obitos })
             this.filteredData.dates = (await api_data.get_all_dates()).data
-            
+            this.filteredData.Dianum = await this.calcDia(this.rawData.num)
+            this.filteredData.Diaobitos = await this.calcDia(this.rawData.obitos)
+            this.filteredData.MMnum = this.calcMms(this.rawData.num, this.currentMM)
+            this.filteredData.MMobitos = this.calcMms(this.rawData.obitos, this.currentMM)
+
             this.regions = (await api_data.get_all_regions()).data.filter(function(item){ if( item != "OESTE" && item != "SUL" &&  item != "LESTE" && item != "NORTE" && item != "CENTRAL" && item != "SUDOESTE" && item != "CENTRO SUL" ){ return item } }).sort()
         },
         filterData(val){
@@ -175,12 +168,45 @@ export default {
             this.filteredData.dates = this.rawData.dates.slice(val[0], val[1]+1)
             this.filteredData.num = this.rawData.num.slice(val[0], val[1]+1)
             this.filteredData.obitos = this.rawData.obitos.slice(val[0], val[1]+1)
+            this.filteredData.Dianum = this.rawData.Dianum.slice(val[0], val[1]+1)
+            this.filteredData.Diaobitos = this.rawData.Diaobitos.slice(val[0], val[1]+1)
+            this.changeMM(this.currentMM)
         },
         dateRange(val){
             this.range = val
         },
         changeMM(option){
             this.currentMM = option
+            this.filteredData.MMnum = this.calcMms(this.rawData.num, option).slice(this.range[0], this.range[1]+1)
+            this.filteredData.MMobitos = this.calcMms(this.rawData.obitos, option).slice(this.range[0], this.range[1]+1)
+        },
+        calcMms(data, period){
+            data = this.calcDia(data)
+            let arr_ret = []
+            for(let i = 0; i < data.length; i++){
+                if(i < period){
+                    arr_ret.push( data[i]/2 )
+                }else{
+                    let aux = 0
+                    for(let j = 0; j < period; j++){
+                        aux += data[i - j]
+                    }
+                    arr_ret.push(~~(aux/period))
+                }
+            }
+            return arr_ret
+        },
+        calcDia(data){
+            let arr_ret = []
+            for(let i = 0; i < data.length; i++){
+                if(i == 0){
+                    arr_ret.push(data[i])
+                }else{
+                    arr_ret.push( (data[i] - data[i-1]) < 0 ? 0 : data[i] - data[i-1] )
+                }
+            }
+            arr_ret[0] = arr_ret[1]
+            return arr_ret
         }
     }
 }
