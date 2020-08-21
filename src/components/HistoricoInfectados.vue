@@ -7,7 +7,6 @@
                     :time="dataset.dates"
                     :data="dataset.num"
                     :color="color"
-                    :key="key"
                 />
             </v-card-text>
         </v-card>

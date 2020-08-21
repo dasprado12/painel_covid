@@ -40,11 +40,11 @@ export default {
             let data = ( await api_data.get_region_by_date(last_date) ).data
             this.amountData = []
             this.amountRegions = []
-            for(let i = 0; i < data.length; i++){
-                for(let j = 0; j < regions.length; j++){
-                    if(data[i].regiao == regions[j]){
-                        this.amountData.push(data[i].obitos)
-                        this.amountRegions.push(data[i].regiao)
+            for(let i = 0; i < regions.length; i++){
+                for(let j = 0; j < data.length; j++){
+                    if(regions[i] == data[j].regiao){
+                        this.amountData.push(data[j].obitos)
+                        this.amountRegions.push(data[j].regiao)
                     }
                 }
             }

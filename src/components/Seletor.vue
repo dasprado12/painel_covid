@@ -33,9 +33,6 @@
                 numId: 0,
             }
         },
-        mounted(){
-            this.setSlider()
-        },
         watch: {
             dates(val){
                 let min = 0

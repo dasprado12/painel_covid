@@ -40,9 +40,13 @@ export default {
                     } 
                 }
             },
-            series: this.data,
             numId: 0
         }
     },
+    computed:{
+        series(){
+            return this.data
+        }
+    }
 }
 </script>

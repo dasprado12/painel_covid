@@ -32,6 +32,12 @@ export default {
             key: 0,
         }
     },
+    computed: {
+        colors(){
+            let colors = [ "#2b5875", "#c2c41b", "#00a830", "#a80076", "#e30909", "#09e3dc", "#e39309" ]
+            return colors
+        }
+    },
     async created(){
         this.get_data(this.regions)
     },
@@ -41,11 +47,11 @@ export default {
             let data = ( await api_data.get_region_by_date(last_date) ).data
             this.amountData = []
             this.amountRegions = []
-            for(let i = 0; i < data.length; i++){
-                for(let j = 0; j < regions.length; j++){
-                    if(data[i].regiao == regions[j]){
-                        this.amountData.push(data[i].num)
-                        this.amountRegions.push(data[i].regiao)
+            for(let i = 0; i < regions.length; i++){
+                for(let j = 0; j < data.length; j++){
+                    if(regions[i] == data[j].regiao){
+                        this.amountData.push(data[j].num)
+                        this.amountRegions.push(data[j].regiao)
                     }
                 }
             }

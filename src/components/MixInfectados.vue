@@ -23,6 +23,7 @@ export default {
     components: { lineChart },
     data(){
         return {
+            colors: [ "#2b5875", "#c2c41b", "#00a830", "#a80076", "#e30909", "#09e3dc", "#e39309"  ],
             time: [],
             data: null,
             items: [],
