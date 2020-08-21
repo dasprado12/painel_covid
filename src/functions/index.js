@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const url = process.env.VUE_APP_API + '/api/regions'
 const url2 = process.env.VUE_APP_APIv2 + '/apiv2/regiao/'
+const url3 = process.env.VUE_APP_APIv2 + '/apiv2/predicao/'
 
 const endpoints = {
     all_data: url,
@@ -21,14 +22,11 @@ export class Data {
     
     get_all_dates = () => axios.get(endpoints.all_dates)
 
-    // async get_last_date(){
-    //     let last_date = await axios.get(endpoints.dates)
-    //     console.log("TESTANDO: " + last_date)
-    //     return last_date(-1)[0]
-    // }
     get_last_date = () => axios.get(endpoints.last_date)
 
     get_data_by_region = (region) => axios.get(url+'?regiao='+region)
+
+    get_precision_data = () => axios.get(url3+'?regiao=Total DF&diasPredicao=7')
 
     get_many_data(type, regions){
         if(!type){
