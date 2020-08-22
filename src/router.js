@@ -6,12 +6,18 @@ import Equipe from "./views/Equipe.vue";
 
 import beforeDados from "./views/beforeDados.vue"
 import Dados from "./views/Dados.vue"
+import Previsao from "./views/Previsao.vue"
 
 import Contato from "./views/Contato.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/",
+    name: "Previsao",
+    component: Previsao
+  },
     {
       path: "/",
       name: "Projeto",

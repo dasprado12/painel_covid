@@ -20,33 +20,7 @@
                         </v-col>
                         <v-col xl="12" lg="12" md="12" sm="12" xs="12"><dia-infectados       :dataset="filteredData" /></v-col>
                     </v-layout><br>
-                    <v-layout>
-                        <v-flex row wrap>
-                            <v-col>
-                                <h2 class="font-weight-normal">Análise por região</h2>
-                            </v-col>
-                            <v-col>
-                                <v-combobox
-                                    v-model="region"
-                                    :items="regions"
-                                    label="Escolha as Regiões"
-                                    multiple
-                                    small-chips
-                                    solo
-                                    dense
-                                >
-                                    <template v-slot:selection="{ item, parent }">
-                                        <v-chip color="blue lighten-3" label small>
-                                            <span class="pr-2">
-                                                {{ item }}
-                                            </span>
-                                            <v-icon small @click="parent.selectItem(item)">mdi-close</v-icon>
-                                        </v-chip>
-                                    </template>
-                                </v-combobox>
-                            </v-col>
-                        </v-flex>
-                    </v-layout>
+                    
                     <v-divider/>
                     <v-container>
                     <v-row row wrap v-show="isSelected">
@@ -137,13 +111,16 @@ export default {
     methods:{
         async getData(){
             this.rawData.amountData = (await api_data.get_hist_data()).data
-            this.rawData.num = (await api_data.get_hist_data()).data.map(function(item){ return item.num })
-            this.rawData.dates = (await api_data.get_precision_data()).data
+            this.rawData.num = (await api_data.get_prevision_data()).data.map(function(item){ return item.num })
+            this.rawData.dates = (await api_data.get_prevision_data()).data.map(function(item){ return item.dataExtracao })
+            console.log("olha aqui")
+            console.log(this.rawData.dates)
+            console.log(this.rawData.num)
             this.rawData.Dianum = await this.calcDia(this.rawData.num)
 
             this.filteredData.amountData = (await api_data.get_hist_data()).data
-            this.filteredData.num = (await api_data.get_hist_data()).data.map(function(item){ return item.num })
-            this.filteredData.dates = (await api_data.get_all_dates()).data
+            this.filteredData.num = (await api_data.get_prevision_data()).data.map(function(item){ return item.num })
+            this.filteredData.dates = (await api_data.get_prevision_data()).data.map(function(item){ return item.dataExtracao })
             this.filteredData.Dianum = await this.calcDia(this.rawData.num)
 
             this.regions = (await api_data.get_all_regions()).data.filter(function(item){ if( item != "OESTE" && item != "SUL" &&  item != "LESTE" && item != "NORTE" && item != "CENTRAL" && item != "SUDOESTE" && item != "CENTRO SUL" ){ return item } }).sort()

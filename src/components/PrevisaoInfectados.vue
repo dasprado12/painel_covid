@@ -8,7 +8,7 @@
             <v-card-text>
                 <one-line-chart
                     :time="dataset.dates"
-                    :data="dataset.Dianum"
+                    :data="dataset.num"
                     :color="color"
                     name="Previsão Infectados"
                     :key="key"
@@ -22,7 +22,7 @@
 import OneLineChart from "../charts/LineBar.vue"
 
 export default {
-    props: [ 'dataset', 'mm' ],
+    props: [ 'dataset'],
     components: {
         OneLineChart
     },

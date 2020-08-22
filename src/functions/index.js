@@ -26,7 +26,7 @@ export class Data {
 
     get_data_by_region = (region) => axios.get(url+'?regiao='+region)
 
-    get_precision_data = () => axios.get(url3+'?regiao=Total DF&diasPredicao=7')
+    get_prevision_data = () => axios.get(url3+'?regiao=Total DF&diasPredicao=200')
 
     get_many_data(type, regions){
         if(!type){
