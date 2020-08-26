@@ -2,7 +2,7 @@
     <div>
         <v-card outlined color="grey lighten-4">
             <v-card-title> 
-                <span class="font-weight-normal">Previsão de Infectados em 7 dias</span> 
+                <span class="font-weight-normal">Previsão de Infectados</span> 
                 <v-spacer></v-spacer>
             </v-card-title>
             <v-card-text>

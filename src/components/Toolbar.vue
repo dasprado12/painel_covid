@@ -20,6 +20,7 @@ export default {
             pages: [
                 { title: "Projeto", router: "/", color: "white" },
                 { title: "Dados", router: "/dados", color: "green lighten-2" },
+                { title: "Previsão", router: "/previsao", color: "green lighten-2" },
                 { title: "Equipe", router: "/equipe", color: "green lighten-2" },
                 { title: "Contato", router: "/contato", color: "green lighten-2" }
             ],

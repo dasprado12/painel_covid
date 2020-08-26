@@ -13,11 +13,6 @@ import Contato from "./views/Contato.vue";
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/",
-    name: "Previsao",
-    component: Previsao
-  },
     {
       path: "/",
       name: "Projeto",
@@ -36,6 +31,17 @@ const routes = [
           path: "/dados",
           name: "Dados",
           component: Dados
+        }
+      ]
+    },
+    {
+      path: "/previsao",
+      component: beforeDados,
+      children:[
+        {
+          path: "/previsao",
+          name: "Previsao",
+          component: Previsao
         }
       ]
     },
