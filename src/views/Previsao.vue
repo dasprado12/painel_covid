@@ -22,14 +22,7 @@
                     </v-layout><br>
                     
                     <v-divider/>
-                    <v-container>
-                    <v-row row wrap v-show="isSelected">
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><mix-infectados v-bind:regions="region"/></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><tree-infectados v-bind:regions="region"/></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><mix-obitos v-bind:regions="region"/></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><tree-obitos v-bind:regions="region"/></v-col>
-                    </v-row>
-                    </v-container>
+
             </v-container>
         </div>
     </div>
