@@ -41,6 +41,19 @@ export default {
                 dataLabels: {
                     enabled: false
                 },
+                annotations: {
+                    xaxis: [
+                        {
+                        x: new Date().getTime(),
+                        borderColor: '#775DD0',
+                        label: {
+                            style: {
+                            },
+                            text: 'Hoje'
+                        }
+                        }
+                    ]
+                },
                 stroke: {
                     curve: 'smooth',
                     width: [ 0,2 ]
