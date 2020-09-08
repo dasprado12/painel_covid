@@ -17,7 +17,7 @@ export class Data {
 
     get_all_data = () => axios.get(endpoints.all_data)
 
-    get_hist_data = () => axios.get(url)
+    get_hist_data = () => axios.get(url+'?regiao=Total DF')
 
     get_all_regions = () => axios.get(endpoints.all_regions)
     
@@ -30,9 +30,7 @@ export class Data {
     get_prevision_data = () => axios.get(url3+'?regiao=Total DF&diasPredicao=200')
 
     get_many_data(type, regions){
-        if(!type){
-            type = 'num'
-        }
+        if(!type){ type = 'num' }
         return axios.get(endpoints.many_regions+`/${type}`+'?regiao='+regions)
     } 
 

@@ -6,7 +6,7 @@
                     <v-card-title>
                         <h2 class="font-weight-bold">{{ currentState.title }}</h2> 
                         <v-icon></v-icon>
-                        <v-menu open-on-hover bottom offset-y>
+                        <!-- <v-menu open-on-hover bottom offset-y>
                             <template v-slot:activator="{ on, attrs }">
                                 <v-btn
                                     text
@@ -23,7 +23,7 @@
                                     <v-list-item-title >{{ state.title }}</v-list-item-title>
                                 </v-list-item>
                             </v-list>
-                        </v-menu>
+                        </v-menu> -->
                     </v-card-title>
                 </v-card>         
                 <v-divider/>
@@ -124,9 +124,9 @@ export default {
         dataSeletor,
     },
     data: () => ({
-        currentState: { title: 'Ceará', abrv: 'CE' },
+        currentState: { title: 'Distrito Federal', abrv: 'DF' },
         states: [
-            { title: 'Distito Federal', abrv: 'DF' },
+            { title: 'Distrito Federal', abrv: 'DF' },
             { title: 'Ceará', abrv: 'CE' }
         ],
         rawData: {
