@@ -10,6 +10,7 @@
                     :label="`${currentOption.name.toString()}`"
                 />
             </v-card-title>
+            {{incid}}
             <simple-map 
                 v-bind:showPoints="showPoints" 
                 v-bind:type="currentOption.val" 
@@ -38,7 +39,8 @@ export default {
             switch1: false,
             showPoints: true,
             currentOption: { name: "Infectados", val: "num" },
-            numId: 0
+            numId: 0,
+            incid: null
         }
     },
     watch:{
@@ -53,6 +55,7 @@ export default {
     },
     mounted(){
         this.last_date()
+        this.getIncid()
     }, 
     methods: {
         async last_date(){
@@ -65,6 +68,9 @@ export default {
         changeVisibility(){
             this.showPoints = !this.showPoints
             this.numId++
+        },
+        async getIncid(){
+            this.incid = ( await api_data.get_incid() .data)
         }
     }
 }

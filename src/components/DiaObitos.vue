@@ -2,7 +2,7 @@
     <div>
         <v-card outlined color="grey lighten-4">
             <v-card-title> 
-                <span class="font-weight-normal">Infectados por dia</span> 
+                <span class="font-weight-normal"> Óbitos por dia</span> 
                 <v-spacer></v-spacer>
                 <span class="font-weight-thin mms">Média Móvel: {{mm}} dias</span>
             </v-card-title>

@@ -12,11 +12,12 @@ const endpoints = {
     last_date: url + '/newestDate'
 }
 
+
 export class Data {
 
     get_all_data = () => axios.get(endpoints.all_data)
 
-    get_hist_data = () => axios.get(url+'?regiao=Total DF')
+    get_hist_data = () => axios.get(url)
 
     get_all_regions = () => axios.get(endpoints.all_regions)
     

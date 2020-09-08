@@ -40,6 +40,7 @@
                 this.range = [min,max]
                 this.min = min
                 this.max = max
+                this.$emit('changeRange', this.range)
             },
         },
         methods: {
