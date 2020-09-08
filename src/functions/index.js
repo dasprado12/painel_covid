@@ -26,8 +26,10 @@ export class Data {
     get_last_date = () => axios.get(endpoints.last_date)
 
     get_data_by_region = (region) => axios.get(url+'?regiao='+region)
+    get_data_by_state = (state) => axios.get(url+'?UF='+state)
 
-    get_prevision_data = () => axios.get(url3+'?regiao=Total DF&diasPredicao=200')
+
+    get_prevision_data = () => axios.get(url3+'?regiao=Total DF&diasPredicao=70')
 
     get_many_data(type, regions){
         if(!type){ type = 'num' }

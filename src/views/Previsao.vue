@@ -29,16 +29,8 @@
 </template>
 
 <script>
-// import historicoInfectados from "../components/HistoricoInfectados.vue"
-// import diaInfectados from "../components/DiaInfectados.vue"
+
 import diaInfectados from "../components/PrevisaoInfectados"
-// import historicoObitos from "../components/HistoricoObitos.vue"
-// import diaObitos from "../components/DiaObitos.vue"
-// import simpleMap from "../components/SimpleMap.vue"
-// import mixInfectados from "../components/MixInfectados.vue"
-// import mixObitos from "../components/MixObitos.vue"
-// import treeInfectados from "../components/TreeInfectados.vue"
-// import treeObitos from "../components/TreeObitos.vue"
 import dataSeletor from "../components/Seletor.vue"
 
 import { Data } from "../functions/index.js"
@@ -48,15 +40,7 @@ let api_data = new Data()
 
 export default {
     components: {
-        // historicoInfectados,
         diaInfectados,
-        // historicoObitos,
-        // diaObitos,
-        // simpleMap,
-        // mixInfectados,
-        // mixObitos,
-        // treeInfectados,
-        // treeObitos,
         dataSeletor,
     },
     data: () => ({
@@ -73,11 +57,8 @@ export default {
             amountData: null,
             dates: null,
             num: null,
-            // obitos: null,
             Dianum: null,
-            // Diaobitos: null,
-            // MMnum: null,
-            // MMobitos: null,
+
             },
         currentMM: 7,
         region: [ 'Total DF' ],
