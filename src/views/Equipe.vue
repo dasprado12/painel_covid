@@ -1,24 +1,26 @@
 <template>
   <div class="equipe">
     <div class="titulo_principal"><br>
-        <h2 class="font-weight-bold">Nossa Equipe </h2><br>
+        <h2 class="font-weight-bold text-center"> Equipe </h2><br>
     </div>
       <div class="flex-container">
         <div class="column">
-          <v-simple-table fixed-header height="500px" class="table">
+          <v-simple-table fixed-header height="800px" class="table">
             <template v-slot:default>
               <thead>
                 <tr>
-                  <th class="text-left">Nome</th>
-                  <th class="text-left">Ocupação</th>
-                  <th class="text-left">Email</th>
+                  <th class="text-left">Pesquisadores</th>
+                  <th class="text-left">Titulação</th>
+                  <th class="text-left">Curso</th>
+                  <th class="text-left">Instituição</th>
                 </tr>
               </thead>
               <tbody>
                 <tr v-for="item in desserts" :key="item.name">
                   <td>{{ item.name }}</td>
                   <td>{{ item.role }}</td>
-                  <td>{{ item.email }}</td>
+                  <td>{{ item.curso }}</td>
+                  <td>{{ item.instituto }}</td>
                 </tr>
               </tbody>
             </template>
@@ -37,32 +39,80 @@ export default {
           {
             name: 'Rafael T. de Sousa Júnior',
             role: 'Prof. Dr. Adjunto',
-            email: 'xxxxxxxxxxx@xxxx.com'
+            curso: '---',
+            instituto: 'UIoT'
           },
           {
             name: 'Francisco L. Caldas',
             role: 'Doutorando',
-            email: 'xxxxxxxxxxx@xxxx.com'
+            curso: 'PPGEE | UnB',
+            instituto: 'UIoT'
           },
           {
-            name: 'Lucas Coelho',
-            role: 'Mestrando',
-            email: 'xxxxxxxxxxx@xxxx.com'
+            name: 'André Lima Férrer de Almeida',
+            role: 'Prof. Dr.',
+            curso: '---',
+            instituto: 'UFC'
+          },
+          {
+            name: 'Diego Aguiar Sousa',
+            role: 'Prof. Dr.',
+            curso: '---',
+            instituto: 'IFCE'
+          },
+          {
+            name: 'Tarcisio Ferreira Maciel',
+            role: 'Prof. Dr.',
+            curso: '---',
+            instituto: 'UFC'
           },
           {
             name: 'Jonathas Alves',
             role: 'Mestrando',
-            email: 'xxxxxxxxxxx@xxxx.com'
+            curso: 'PPGEE | UnB',
+            instituto: 'UIoT'
+          },
+          {
+            name: 'Lucas Coelho',
+            role: 'Mestrando',
+            curso: 'PPGEE | UnB',
+            instituto: 'UIoT'
+          },
+          {
+            name: 'Paulo Henrique Ferreira',
+            role: 'Mestrando',
+            curso: 'PPGEE | UnB',
+            instituto: 'UIoT'
+          },
+          {
+            name: 'André C. Ribeiro',
+            role: 'Graduando',
+            curso: 'Engenharia de Redes | UnB',
+            instituto: 'UIoT'
           },
           {
             name: 'Daniel Prado',
             role: 'Graduando',
-            email: 'xxxxxxxxxxx@xxxx.com'
+            curso: 'Engenharia de Redes | UnB',
+            instituto: 'UIoT'
           },
           {
             name: 'Natália A. Marques',
             role: 'Graduando',
-            email: 'xxxxxxxxxxx@xxxx.com'
+            curso: 'Engenharia de Redes | UnB',
+            instituto: 'UIoT'
+          },
+          {
+            name: 'Nayara Silva',
+            role: 'Graduando',
+            curso: 'Ciência da Computação | UnB',
+            instituto: 'UIoT'
+          },
+          {
+            name: 'Victor Hugo Campos de Oliveira',
+            role: 'Graduando',
+            curso: 'Computação | UnB',
+            instituto: 'UIoT'
           },
         ],
       }
