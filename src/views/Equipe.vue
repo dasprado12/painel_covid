@@ -39,7 +39,7 @@ export default {
           {
             name: 'Rafael T. de Sousa Júnior',
             role: 'Prof. Dr. Adjunto',
-            curso: '---',
+            curso: 'UnB',
             instituto: 'UIoT'
           },
           {
@@ -51,20 +51,20 @@ export default {
           {
             name: 'André Lima Férrer de Almeida',
             role: 'Prof. Dr.',
-            curso: '---',
-            instituto: 'UFC'
+            curso: 'UFC',
+            instituto: 'GPSI'
           },
           {
             name: 'Diego Aguiar Sousa',
             role: 'Prof. Dr.',
-            curso: '---',
-            instituto: 'IFCE'
+            curso: 'IFCE',
+            instituto: 'GPSI'
           },
           {
             name: 'Tarcisio Ferreira Maciel',
             role: 'Prof. Dr.',
-            curso: '---',
-            instituto: 'UFC'
+            curso: 'UFC',
+            instituto: 'GPSI'
           },
           {
             name: 'Jonathas Alves',
