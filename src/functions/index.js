@@ -6,7 +6,7 @@ const url3 = process.env.VUE_APP_APIv2 + '/apiv2/predicao/'
 
 const endpoints = {
     all_data: url,
-    summary_data: url + '/date-summary/DF',
+    summary_data: url + '/date-summary/',
     many_regions: url + '/listMany',
     all_regions: url + '/list',
     all_dates: url + '/dates',
@@ -22,11 +22,11 @@ export class Data {
 
     get_all_data = () => axios.get(endpoints.all_data)
 
-    get_hist_data = () => axios.get(endpoints.summary_data)
+    get_hist_data = () => axios.get(endpoints.summary_data+this.uf)
 
-    get_all_regions = () => axios.get(endpoints.all_regions)
-    
-    get_all_dates = () => axios.get(endpoints.all_dates)
+    get_all_regions = () => axios.get(endpoints.all_regions+`?UF=${this.uf}`)
+        
+    get_all_dates = () => axios.get(endpoints.all_dates+`?UF=${this.uf}`)
 
     get_last_date = () => axios.get(endpoints.last_date)
 
@@ -45,6 +45,7 @@ export class Data {
     // get_one_region_by_data = (date) => axios.get(url)
 
     get_region_by_date = (time) => axios.get(url+'?dataExtracao='+time)
+
     get_region_by_date2 =(time) => axios.get(url2+'?dataExtracao='+time)
 
     get_incid = () => axios.get(url2+'maxincid')

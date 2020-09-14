@@ -2,6 +2,8 @@
     <div>
         <v-card color="grey lighten-4" flat>
             <v-card-title> 
+                {{state.title}}
+                <v-divider vertical class="mx-3 mb-3 mt-3"/>
                 <span>Infectados/Óbitos - {{dia}}/{{mes}}/{{ano}}</span>
                 <v-spacer/>
                 <v-switch 
@@ -11,11 +13,22 @@
                 />
             </v-card-title>
             {{incid}}
-            <simple-map 
-                v-bind:showPoints="showPoints" 
-                v-bind:type="currentOption.val" 
-                :key="numId"
-            ></simple-map>
+            <span v-if="state.abrv == 'CE'">
+                <v-card outlined>
+                    <v-card-title>
+                        <v-spacer/>
+                        Sem visualização
+                        <v-spacer/>
+                    </v-card-title>
+                </v-card>
+            </span>
+            <span v-else>
+                <simple-map 
+                    v-bind:showPoints="showPoints" 
+                    v-bind:type="currentOption.val" 
+                    :key="numId"
+                ></simple-map>
+            </span>
         </v-card>
     </div>
 </template>
@@ -27,6 +40,7 @@ import { Data } from "../functions/index.js"
 let api_data = new Data()
 
 export default {
+    props: [ 'state' ],
     components: {
         SimpleMap,
     },

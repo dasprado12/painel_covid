@@ -1,7 +1,7 @@
 <template>
     <div class="dados">
         <div class="regioes">
-            <v-container> 
+            <v-container>
                 <v-card flat>
                     <v-card-title>
                         <h2 class="font-weight-bold">{{ currentState.title }}</h2> 
@@ -25,7 +25,7 @@
                             </v-list>
                         </v-menu>
                     </v-card-title>
-                </v-card>         
+                </v-card>        
                 <v-divider/>
                     <v-layout row wrap>
                         <v-col cols="12">
@@ -51,7 +51,7 @@
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-infectados       :dataset="filteredData" :mm="currentMM" /></v-col>
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-obitos     :dataset="filteredData" /></v-col>
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-obitos           :dataset="filteredData" :mm="currentMM" /></v-col>
-                        <v-col cols="12"><simple-map/></v-col>
+                        <v-col cols="12"><simple-map :state="currentState"/></v-col>
                     </v-layout><br>
                     <v-layout>
                         <v-flex row wrap>
@@ -59,15 +59,7 @@
                                 <h2 class="font-weight-normal">Análise por região</h2>
                             </v-col>
                             <v-col>
-                                <v-combobox
-                                    v-model="region"
-                                    :items="regions"
-                                    label="Escolha as Regiões"
-                                    multiple
-                                    small-chips
-                                    solo
-                                    dense
-                                >
+                                <v-combobox v-model="region" :items="regions" label="Escolha as Regiões" multiple small-chips solo dense                                >
                                     <template v-slot:selection="{ item, parent }">
                                         <v-chip color="blue lighten-3" label small>
                                             <span class="pr-2">
@@ -108,7 +100,7 @@ import dataSeletor from "../components/Seletor.vue"
 
 import { Data } from "../functions/index.js"
 
-let api_data = new Data()
+
 
 export default {
     components: {
@@ -155,6 +147,7 @@ export default {
     }),
     async mounted(){
         this.getData()
+        this.getRegions()
     },
     watch: {
         region(val){
@@ -170,13 +163,13 @@ export default {
     },
     methods:{
         async getData(){
-            let dados = (await api_data.get_hist_data()).data
+            let dados = (await new Data(this.currentState.abrv).get_hist_data()).data
             console.log(dados)
             this.rawData.amountData = dados
             this.rawData.num = dados.map(function(item){ return item.num })
             this.rawData.obitos = dados.map(function(item){ return item.obitos })
-            this.rawData.dates = (await api_data.get_all_dates()).data
-            this.rawData.Dianum = await this.calcDia(this.rawData.num)
+            this.rawData.dates = dados.map(function(ret){ return ret.dataExtracao })
+            this.rawData.Dianum = (await this.calcDia(this.rawData.num))
             this.rawData.Diaobitos = await this.calcDia(this.rawData.obitos)
             this.rawData.MMnum = this.calcMms(this.rawData.num, this.currentMM)
             this.rawData.MMobitos = this.calcMms(this.rawData.obitos, this.currentMM)
@@ -184,14 +177,14 @@ export default {
             this.filteredData.amountData = dados
             this.filteredData.num = dados.map(function(item){ return item.num })
             this.filteredData.obitos = dados.map(function(item){ return item.obitos })
-            this.filteredData.dates = (await api_data.get_all_dates()).data
+            this.filteredData.dates = dados.map(function(ret){ return ret.dataExtracao })
             this.filteredData.Dianum = await this.calcDia(this.rawData.num)
             this.filteredData.Diaobitos = await this.calcDia(this.rawData.obitos)
             this.filteredData.MMnum = this.calcMms(this.rawData.num, this.currentMM)
             this.filteredData.MMobitos = this.calcMms(this.rawData.obitos, this.currentMM)
-
-            this.regions = (await api_data.get_all_regions()).data.filter(function(item){ if( item != "OESTE" && item != "SUL" &&  item != "LESTE" && item != "NORTE" && item != "CENTRAL" && item != "SUDOESTE" && item != "CENTRO SUL" ){ return item } }).sort()
-        
+        },
+        async getRegions(){
+            this.regions = (await new Data(this.currentState.abrv).get_all_regions()).data.filter(function(item){ if( item != "OESTE" && item != "SUL" &&  item != "LESTE" && item != "NORTE" && item != "CENTRAL" && item != "SUDOESTE" && item != "CENTRO SUL" ){ return item } }).sort()
         },
         filterData(val){
             this.filteredData.amountData = this.rawData.amountData.slice(val[0], val[1]+1)
@@ -242,7 +235,8 @@ export default {
         changeState(state){
             this.currentState.title = state.title
             this.currentState.abrv = state.abrv
-            alert('eae glr')
+            this.getData()
+            this.getRegions()
         }
     }
 }
