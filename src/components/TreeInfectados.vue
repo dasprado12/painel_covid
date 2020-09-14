@@ -5,8 +5,7 @@
                 <tree-map-inf 
                     :data="amountData"
                     :regions="amountRegions"
-                    :colors="colors"
-                    v-bind:obj="data_inf" 
+                    :colors="colors" 
                     :key="key"
                 />
         </v-card>

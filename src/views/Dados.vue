@@ -1,8 +1,31 @@
 <template>
     <div class="dados">
         <div class="regioes">
-            <v-container>
-                <h1 class="font-weight-bold">Distrito Federal</h1>
+            <v-container> 
+                <v-card flat>
+                    <v-card-title>
+                        <h2 class="font-weight-bold">{{ currentState.title }}</h2> 
+                        <v-icon></v-icon>
+                        <v-menu open-on-hover bottom offset-y>
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-btn
+                                    text
+                                    color="black"
+                                    dark
+                                    v-bind="attrs"
+                                    v-on="on"
+                                >
+                                <v-icon> mdi-arrow-bottom-right </v-icon>
+                                </v-btn>
+                            </template>
+                            <v-list>
+                                <v-list-item v-for="(state, index) in states" :key="index" @click="changeState(state)">
+                                    <v-list-item-title >{{ state.title }}</v-list-item-title>
+                                </v-list-item>
+                            </v-list>
+                        </v-menu>
+                    </v-card-title>
+                </v-card>         
                 <v-divider/>
                     <v-layout row wrap>
                         <v-col cols="12">
@@ -101,6 +124,11 @@ export default {
         dataSeletor,
     },
     data: () => ({
+        currentState: { title: 'Distrito Federal', abrv: 'DF' },
+        states: [
+            { title: 'Distrito Federal', abrv: 'DF' },
+            { title: 'Ceará', abrv: 'CE' }
+        ],
         rawData: {
             amountData: null,
             dates: null,
@@ -125,7 +153,7 @@ export default {
         isSelected: true,
         range: null,
     }),
-    async created(){
+    async mounted(){
         this.getData()
     },
     watch: {
@@ -139,22 +167,23 @@ export default {
         range(val){
             this.filterData(val)
         },
-        
     },
     methods:{
         async getData(){
-            this.rawData.amountData = (await api_data.get_hist_data()).data
-            this.rawData.num = (await api_data.get_hist_data()).data.map(function(item){ return item.num })
-            this.rawData.obitos = (await api_data.get_hist_data()).data.map(function(item){ return item.obitos })
+            let dados = (await api_data.get_hist_data()).data
+            console.log(dados)
+            this.rawData.amountData = dados
+            this.rawData.num = dados.map(function(item){ return item.num })
+            this.rawData.obitos = dados.map(function(item){ return item.obitos })
             this.rawData.dates = (await api_data.get_all_dates()).data
             this.rawData.Dianum = await this.calcDia(this.rawData.num)
             this.rawData.Diaobitos = await this.calcDia(this.rawData.obitos)
             this.rawData.MMnum = this.calcMms(this.rawData.num, this.currentMM)
             this.rawData.MMobitos = this.calcMms(this.rawData.obitos, this.currentMM)
 
-            this.filteredData.amountData = (await api_data.get_hist_data()).data
-            this.filteredData.num = (await api_data.get_hist_data()).data.map(function(item){ return item.num })
-            this.filteredData.obitos = (await api_data.get_hist_data()).data.map(function(item){ return item.obitos })
+            this.filteredData.amountData = dados
+            this.filteredData.num = dados.map(function(item){ return item.num })
+            this.filteredData.obitos = dados.map(function(item){ return item.obitos })
             this.filteredData.dates = (await api_data.get_all_dates()).data
             this.filteredData.Dianum = await this.calcDia(this.rawData.num)
             this.filteredData.Diaobitos = await this.calcDia(this.rawData.obitos)
@@ -162,6 +191,7 @@ export default {
             this.filteredData.MMobitos = this.calcMms(this.rawData.obitos, this.currentMM)
 
             this.regions = (await api_data.get_all_regions()).data.filter(function(item){ if( item != "OESTE" && item != "SUL" &&  item != "LESTE" && item != "NORTE" && item != "CENTRAL" && item != "SUDOESTE" && item != "CENTRO SUL" ){ return item } }).sort()
+        
         },
         filterData(val){
             this.filteredData.amountData = this.rawData.amountData.slice(val[0], val[1]+1)
@@ -178,6 +208,7 @@ export default {
         changeMM(option){
             this.currentMM = option
             this.filteredData.MMnum = this.calcMms(this.rawData.num, option).slice(this.range[0], this.range[1]+1)
+            console.log(this.filteredData.MMnum)
             this.filteredData.MMobitos = this.calcMms(this.rawData.obitos, option).slice(this.range[0], this.range[1]+1)
         },
         calcMms(data, period){
@@ -207,6 +238,11 @@ export default {
             }
             arr_ret[0] = arr_ret[1]
             return arr_ret
+        },
+        changeState(state){
+            this.currentState.title = state.title
+            this.currentState.abrv = state.abrv
+            alert('eae glr')
         }
     }
 }

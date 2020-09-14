@@ -6,17 +6,23 @@ const url3 = process.env.VUE_APP_APIv2 + '/apiv2/predicao/'
 
 const endpoints = {
     all_data: url,
+    summary_data: url + '/date-summary/DF',
     many_regions: url + '/listMany',
     all_regions: url + '/list',
     all_dates: url + '/dates',
     last_date: url + '/newestDate'
 }
 
+
 export class Data {
+
+    constructor(uf){
+        this.uf = uf
+    }
 
     get_all_data = () => axios.get(endpoints.all_data)
 
-    get_hist_data = () => axios.get(url+'?regiao=Total DF')
+    get_hist_data = () => axios.get(endpoints.summary_data)
 
     get_all_regions = () => axios.get(endpoints.all_regions)
     
@@ -25,13 +31,14 @@ export class Data {
     get_last_date = () => axios.get(endpoints.last_date)
 
     get_data_by_region = (region) => axios.get(url+'?regiao='+region)
+    
+    get_data_by_state = (state) => axios.get(url+'?UF='+state)
 
-    get_prevision_data = () => axios.get(url3+'?regiao=Total DF&diasPredicao=200')
+
+    get_prevision_data = () => axios.get(url3+'?regiao=Total DF&diasPredicao=70')
 
     get_many_data(type, regions){
-        if(!type){
-            type = 'num'
-        }
+        if(!type){ type = 'num' }
         return axios.get(endpoints.many_regions+`/${type}`+'?regiao='+regions)
     } 
 

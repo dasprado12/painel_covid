@@ -25,14 +25,8 @@ const routes = [
     },
     {
       path: "/dados",
-      component: beforeDados,
-      children: [
-        {
-          path: "/dados",
-          name: "Dados",
-          component: Dados
-        }
-      ]
+      name: "Dados",
+      component: Dados
     },
     {
       path: "/previsao",
