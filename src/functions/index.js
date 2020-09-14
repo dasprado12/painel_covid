@@ -6,6 +6,7 @@ const url3 = process.env.VUE_APP_APIv2 + '/apiv2/predicao/'
 
 const endpoints = {
     all_data: url,
+    summary_data: url + '/date-summary/DF',
     many_regions: url + '/listMany',
     all_regions: url + '/list',
     all_dates: url + '/dates',
@@ -17,7 +18,7 @@ export class Data {
 
     get_all_data = () => axios.get(endpoints.all_data)
 
-    get_hist_data = () => axios.get(url+'?regiao=Total DF')
+    get_hist_data = () => axios.get(endpoints.summary_data)
 
     get_all_regions = () => axios.get(endpoints.all_regions)
     
