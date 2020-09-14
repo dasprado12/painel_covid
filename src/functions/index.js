@@ -16,6 +16,10 @@ const endpoints = {
 
 export class Data {
 
+    constructor(uf){
+        this.uf = uf
+    }
+
     get_all_data = () => axios.get(endpoints.all_data)
 
     get_hist_data = () => axios.get(endpoints.summary_data)
@@ -27,6 +31,7 @@ export class Data {
     get_last_date = () => axios.get(endpoints.last_date)
 
     get_data_by_region = (region) => axios.get(url+'?regiao='+region)
+    
     get_data_by_state = (state) => axios.get(url+'?UF='+state)
 
 
