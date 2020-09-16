@@ -1,9 +1,5 @@
 <template>
-  <div class="footer">
-    <div class="primeira-observacao">
-      
-
-    </div>
+  <div>
     <div class="observacoes">
         <v-divider></v-divider>
       <div class="observacoes_texto font-weight-light">
