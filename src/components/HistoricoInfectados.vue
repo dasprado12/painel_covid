@@ -7,6 +7,7 @@
                     :time="dataset.dates"
                     :data="dataset.num"
                     :color="color"
+                    :label="label"
                 />
             </v-card-text>
         </v-card>
@@ -23,6 +24,7 @@ export default {
     },
     data(){
         return {
+            label: "Infectados",
             color: [ "#eb950c" ],
             filteredTime: null,
             filteredData: null,

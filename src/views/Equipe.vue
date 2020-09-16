@@ -12,7 +12,7 @@
                   <th class="text-left">Pesquisadores</th>
                   <th class="text-left">Titulação</th>
                   <th class="text-left">Curso</th>
-                  <th class="text-left">Instituição</th>
+                  <th class="text-left">Laboratório</th>
                 </tr>
               </thead>
               <tbody>

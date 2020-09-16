@@ -28,7 +28,7 @@ export class Data {
         
     get_all_dates = () => axios.get(endpoints.all_dates+`?UF=${this.uf}`)
 
-    get_last_date = () => axios.get(endpoints.last_date)
+    get_last_date = () => axios.get(endpoints.last_date+`?UF=${this.uf}`)
 
     get_data_by_region = (region) => axios.get(url+'?regiao='+region)
     
