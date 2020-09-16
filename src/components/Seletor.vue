@@ -1,5 +1,5 @@
 <template>
-    <v-card flat color="grey lighten-4">
+    <v-card color="grey lighten-4">
         <v-card-text>
             <v-row>
                 <v-col class="px-4">

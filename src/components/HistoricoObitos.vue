@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-card outlined color="grey lighten-4">
+        <v-card elevation="3" color="grey lighten-4">
             <v-card-title class="font-weight-normal"> Cumulativo de óbitos </v-card-title>
             <v-card-text>
                 <one-line-chart
