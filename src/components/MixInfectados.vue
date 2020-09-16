@@ -19,7 +19,7 @@ import { Data } from "../functions/index.js";
 let api_data = new Data();
 
 export default {
-    props: [ 'type', 'regions' ],
+    props: [ 'uf', 'type', 'regions' ],
     components: { lineChart },
     data(){
         return {
@@ -42,7 +42,7 @@ export default {
     methods: {
         async get_many_data(string){
             this.data = (await api_data.get_many_data(this.type, string)).data
-            this.time = (await api_data.get_all_dates()).data.map(function(item){ return item.split("T")[0] })
+            this.time = (await new Data(this.uf).get_all_dates()).data.map(function(item){ return item.split("T")[0] })
             this.numId++
         }
     }       

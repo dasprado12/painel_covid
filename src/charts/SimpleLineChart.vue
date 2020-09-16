@@ -5,6 +5,7 @@
             :options="options" 
             :series="series"
         ></vue-apex-charts>
+        
     </div>
 </template>
 
@@ -12,7 +13,7 @@
 import VueApexCharts from 'vue-apexcharts'
 export default {
     props: [ 
-        'data', 'time', 'color'
+        'data', 'time', 'color', 'label'
     ],
     components: {
         VueApexCharts
@@ -29,7 +30,8 @@ export default {
                     enabled: false,
                 },
                 stroke: {
-                    curve: 'smooth'
+                    curve: 'smooth',
+                    width: [ 2 ]
                 },
                 colors: this.color,
                 chart: {
@@ -50,7 +52,7 @@ export default {
         },
         series(){
             return [{
-                    name: 'Infectados',
+                    name: this.label,
                     data: this.data 
                 }]
         }

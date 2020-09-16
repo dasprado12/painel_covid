@@ -7,6 +7,7 @@
                     :time="dataset.dates"
                     :data="dataset.obitos"
                     :color="color"
+                    :label="label"
                 />
             </v-card-text>
         </v-card>
@@ -23,6 +24,7 @@ export default {
     },
     data(){
         return {
+            label: "Óbitos",
             color: [ "#bf0000" ],
             filteredTime: null,
             filteredData: null,
