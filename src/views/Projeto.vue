@@ -84,9 +84,7 @@
                   <tr>
                     <td>Rafael T. de Sousa Júnior</td>
                     <td>Prof. Dr. Adjunto</td>
-                    <td>---
-                        
-                    </td>
+                    <td>UnB</td>
                     <td>UIoT</td>
                   </tr>
                   <tr>
@@ -96,39 +94,69 @@
                     <td>UIoT</td>
                   </tr>
                   <tr>
+                    <td>André Lima Férrer de Almeida</td>
+                    <td>Prof. Dr.</td>
+                    <td>UFC</td>
+                    <td>SPIRAL</td>
+                  </tr>
+                  <tr>
+                    <td>Diego Aguiar Sousa</td>
+                    <td>Prof. Dr.</td>
+                    <td>IFCE</td>
+                    <td>SPIRAL</td>
+                  </tr>
+                  <tr>
+                    <td>Tarcisio Ferreira Maciel</td>
+                    <td>Prof. Dr.</td>
+                    <td>UFC</td>
+                    <td>SPIRAL</td>
+                  </tr>
+                   <tr>
+                    <td>Jonathas Alves</td>
+                    <td>Mestrando</td>
+                    <td>PPGEE | UnB</td>
+                    <td>UIoT</td>
+                  </tr>
+                  <tr>
                     <td>Lucas Coelho</td>
                     <td>Mestrando</td>
-                    <td>PPGEE</td>
+                    <td>PPGEE | UnB</td>
                     <td>UIoT</td>
                   </tr>
                   <tr>
                     <td>Paulo Henrique Ferreira</td>
                     <td>Mestrando</td>
-                    <td>PPGEE</td>
+                    <td>PPGEE | UnB</td>
                     <td>UIoT</td>
                   </tr>
                   <tr>
                     <td>André C. Ribeiro</td>
                     <td>Graduando</td>
-                    <td>Engenharia de Redes</td>
+                    <td>Engenharia de Redes | UnB</td>
+                    <td>UIoT</td>
+                  </tr>
+                   <tr>
+                    <td>Daniel Prado</td>
+                    <td>Graduando</td>
+                    <td>Engenharia de Redes | UnB</td>
                     <td>UIoT</td>
                   </tr>
                   <tr>
                     <td>Natália A. Marques</td>
                     <td>Graduanda</td>
-                    <td>Engenharia de Redes</td>
+                    <td>Engenharia de Redes | UnB</td>
                     <td>UIoT</td>
                   </tr>
                   <tr>
                     <td>Nayara Silva</td>
                     <td>Graduanda</td>
-                    <td>Ciência da Computação</td>
+                    <td>Ciência da Computação | UnB</td>
                     <td>UIoT</td>
                   </tr>
                   <tr>
-                    <td>Leonardo O. Almeida</td>
+                    <td>Victor H. C. de Oliveira</td>
                     <td>Graduando</td>
-                    <td>Engenharia de Redes</td>
+                    <td>Computação | UnB</td>
                     <td>UIoT</td>
                   </tr>
                 </tbody>

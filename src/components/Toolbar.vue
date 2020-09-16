@@ -25,7 +25,7 @@
                 </li>
                 <!-- Dropdown Menu -->          
                 <li class="nav-item dropdown"> 
-                    <a class="nav-link dropdown-toggle page-scroll" href="#details" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">GRÁFICOS</a>
+                    <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">GRÁFICOS</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/#/dados"><span class="item-text">ATUAL</span></a>
                         <div class="dropdown-items-divide-hr"></div>
