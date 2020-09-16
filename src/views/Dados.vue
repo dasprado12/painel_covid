@@ -1,5 +1,5 @@
 <template>
-    <div class="dados">
+    <div id="dados">
         <div class="regioes">
             <v-container>
                 <v-card flat>
@@ -18,9 +18,9 @@
                                 <v-icon> mdi-arrow-bottom-right </v-icon>
                                 </v-btn>
                             </template>
-                            <v-list>
+                            <v-list color="#133e79">
                                 <v-list-item v-for="(state, index) in states" :key="index" @click="changeState(state)">
-                                    <v-list-item-title >{{ state.title }}</v-list-item-title>
+                                    <v-list-item-title class="white--text">{{ state.title }}</v-list-item-title>
                                 </v-list-item>
                             </v-list>
                         </v-menu>
@@ -32,7 +32,7 @@
                             <data-seletor @changeRange="dateRange" v-bind:dates="rawData.dates"/>
                         </v-col>
                         <v-col cols="12">
-                            <v-card outlined color="grey lighten-4">
+                            <v-card elevation="3" color="grey lighten-4">
                                 <v-layout>
                                     <v-col cols="6"></v-col>
                                     <v-divider vertical/>
@@ -243,12 +243,15 @@ export default {
 </script>
 
 <style scoped>
+#dados{
+    padding-top: 110px;
+}
 h1, h2{
     color: rgb(77, 77, 77);
 }
 .mmBtn{
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 .teste{
     text-align: center;

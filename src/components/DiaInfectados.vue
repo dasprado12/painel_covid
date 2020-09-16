@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-card outlined color="grey lighten-4">
+        <v-card elevation="3" color="grey lighten-4">
             <v-card-title> 
                 <span class="font-weight-normal">Infectados por dia</span> 
                 <v-spacer></v-spacer>

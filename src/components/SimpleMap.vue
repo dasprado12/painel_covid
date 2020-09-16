@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-card color="grey lighten-4" flat>
+        <v-card color="grey lighten-4" >
             <v-card-title> 
                 {{state.title}}
                 <v-divider vertical class="mx-3 mb-3 mt-3"/>

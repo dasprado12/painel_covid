@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-card outlined color="grey lighten-4">
+        <v-card color="grey lighten-4">
             <v-card-title class="font-weight-light"> Regiões com mais infectados </v-card-title>
                 <tree-map-inf 
                     :data="amountData"
