@@ -167,7 +167,7 @@
                     <ul class="list-unstyled li-space-lg">
                         <li class="address">Envie-nos uma mensagem</li>
                         <li><i class="fas fa-map-marker-alt"></i>Universidade de Brasília, Distrito Federal, Brasil</li>
-                        <li><i class="fas fa-envelope"></i><a href="mailto:office@leno.com">XXXXXXX@XXXXXXX.com</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:simop@uiot.org">simop@uiot.org</a></li>
                     </ul>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
