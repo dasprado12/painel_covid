@@ -43,20 +43,20 @@
         <div class="row">
           <div class="col-lg-12">
             <h2>O que nós fazemos</h2>
-            <div style="display: flex; -webkit-filter: drop-shadow(1px 3px 3px #222); filter: drop-shadow(1px 3px 3px #222); margin-top: 3rem; flex-wrap: wrap">
-              <div style="margin-right:1rem; width: 32%; flex-wrap: nowrap; display: flex; background: linear-gradient(to bottom right, rgba(72, 72, 212, 0), rgba(241, 104, 104, 0)), #FFFAF0 center center no-repeat; border-radius: 10px; padding: 1rem;">
+            <div class="conten">
+              <div class="caixa1">
                 <i class="fas fa-wrench fa-4x" style="margin-right: 1rem;"></i>
                 <p>Extração de dados via Scrapping  das secretarias de saúde dos estados</p>
               </div>
-              <div style="margin-right:1rem; width: 33%; flex-wrap: nowrap; display: flex; background: linear-gradient(to bottom right, rgba(72, 72, 212, 0), rgba(241, 104, 104, 0)), #FFFAF0 center center no-repeat; border-radius: 10px; padding: 1rem;">
+              <div class="caixa2">
                 <i class="fas fa-cogs fa-4x" style="margin-right: 1rem;"></i>
                 <p>Armazenamento e manipulação dos dados</p>
               </div>
-              <div style="width: 32%; flex-wrap: nowrap; display: flex; background: linear-gradient(to bottom right, rgba(72, 72, 212, 0), rgba(241, 104, 104, 0)), #FFFAF0 center center no-repeat; border-radius: 10px; padding: 1rem;">
+              <div class="caixa3">
                 <i class="fas fa-desktop fa-4x" style="margin-right: 1rem;"></i>
                 <p>Visualização</p>
               </div>
-              <div style="width: 100%; flex-wrap: nowrap; display: flex; background: linear-gradient(to bottom right, rgba(72, 72, 212, 0), rgba(241, 104, 104, 0)), #FFFAF0 center center no-repeat; border-radius: 10px; padding: 1rem; margin-top: 2rem;">
+              <div class="caixa4">
                 <i class="fas fa-clock fa-4x" style="margin-right: 1rem;"></i>
                 <p>Projeção de dados! Como este algorítmo, é possível analisar os dados vindos das secretarias de saúde e visualizar um futuro cenário para os dados. Com alta precisão, é possível prever como estará o panorama futuro da COVID em cada estado brasileiro</p>
               </div>
@@ -114,19 +114,19 @@
                    <tr>
                     <td>Jonathas Alves</td>
                     <td>Mestrando</td>
-                    <td>PPGEE | UnB</td>
+                    <td>PPEE | UnB</td>
                     <td>UIoT</td>
                   </tr>
                   <tr>
                     <td>Lucas Coelho</td>
                     <td>Mestrando</td>
-                    <td>PPGEE | UnB</td>
+                    <td>PPEE | UnB</td>
                     <td>UIoT</td>
                   </tr>
                   <tr>
                     <td>Paulo Henrique Ferreira</td>
                     <td>Mestrando</td>
-                    <td>PPGEE | UnB</td>
+                    <td>PPEE | UnB</td>
                     <td>UIoT</td>
                   </tr>
                   <tr>

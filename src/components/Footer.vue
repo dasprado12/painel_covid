@@ -33,7 +33,7 @@
 </script>
 
 <style scoped>
-div.observacoes_texto{
+.observacoes_texto{
   margin-left: 7%;
   margin-right: 7%;
   font-size: small;
@@ -44,10 +44,10 @@ div.observacoes_texto{
   padding-bottom: 30px;
 }
 
-div.observacoes{
+.observacoes{
   background-color: rgb(228, 228, 228);
 }
-div.parceiros{
+.parceiros{
   margin-left: 10%;
   margin-right: 10%;
   align-content: right;
@@ -70,5 +70,19 @@ div.parceiros{
   padding-bottom: 2%;
   padding-left: 7%;
   padding-right: 7%;
+}
+
+@media (max-width: 769px) {
+  .observacoes_texto {
+    display: block;
+  }
+  .text-footer {
+    text-align: center;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  .column {
+    margin-bottom: 1rem;
+  }
 }
 </style>
