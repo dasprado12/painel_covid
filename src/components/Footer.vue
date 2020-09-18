@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="observacoes">
-        <v-divider></v-divider>
       <div class="observacoes_texto font-weight-light">
         <div class="text-footer"> 
           Este projeto é uma parceria entre pequisadores da Universidade de Brasília (UnB)
@@ -17,8 +16,8 @@
           <img style="width:100%" src="../assets/brasao-unb.png"/>
         </div>
       </div>
+      <p class="p-small" style="text-align: center; margin-bottom: 0">Copyright © 2020 based in <a href="https://inovatik.com">Inovatik</a> - University of Brasília - All rights reserved</p>
     </div>
-    
   </div>
 </template>
 
@@ -34,7 +33,7 @@
 </script>
 
 <style scoped>
-div.observacoes_texto{
+.observacoes_texto{
   margin-left: 7%;
   margin-right: 7%;
   font-size: small;
@@ -45,10 +44,10 @@ div.observacoes_texto{
   padding-bottom: 30px;
 }
 
-div.observacoes{
+.observacoes{
   background-color: rgb(228, 228, 228);
 }
-div.parceiros{
+.parceiros{
   margin-left: 10%;
   margin-right: 10%;
   align-content: right;
@@ -71,5 +70,19 @@ div.parceiros{
   padding-bottom: 2%;
   padding-left: 7%;
   padding-right: 7%;
+}
+
+@media (max-width: 769px) {
+  .observacoes_texto {
+    display: block;
+  }
+  .text-footer {
+    text-align: center;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  .column {
+    margin-bottom: 1rem;
+  }
 }
 </style>

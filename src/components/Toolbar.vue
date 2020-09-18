@@ -15,7 +15,7 @@
         <div v-if="currentRoute != 'Dados' && currentRoute != 'Predicao'" class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#header">HOME <span class="sr-only">(current)</span></a>
+                    <a class="nav-link page-scroll" href="#">HOME <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="#features">SOBRE</a>
@@ -25,7 +25,7 @@
                 </li>
                 <!-- Dropdown Menu -->          
                 <li class="nav-item dropdown"> 
-                    <a class="nav-link dropdown-toggle page-scroll" href="#details" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">GRÁFICOS</a>
+                    <a class="nav-link dropdown-toggle page-scroll" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">GRÁFICOS</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/#/dados"><span class="item-text">ATUAL</span></a>
                         <div class="dropdown-items-divide-hr"></div>
