@@ -37,7 +37,7 @@
 import SimpleMap from "../maps/SimpleMap.vue"
 import { Data } from "../functions/index.js"
 
-let api_data = new Data()
+// let api_data = new Data()
 
 export default {
     props: [ 'state' ],
@@ -73,7 +73,8 @@ export default {
     }, 
     methods: {
         async last_date(){
-            let ultimoDia = (await api_data.get_last_date()).data.split("T")[0]
+            let ultimoDia = (await new Data('DF').get_last_date()).data.split("T")[0]
+            console.log("Último dia é: " + ultimoDia)
             this.dia = ultimoDia.substr(8,10)
             this.mes = ultimoDia.substr(5,2)
             this.ano = ultimoDia.substr(0,4)
@@ -83,9 +84,9 @@ export default {
             this.showPoints = !this.showPoints
             this.numId++
         },
-        async getIncid(){
-            this.incid = ( await api_data.get_incid() .data)
-        }
+        // async getIncid(){
+        //     this.incid = ( await api_data.get_incid() .data)
+        // }
     }
 }
 </script>

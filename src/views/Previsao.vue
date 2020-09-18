@@ -87,9 +87,6 @@ export default {
             this.rawData.amountData = (await api_data.get_hist_data()).data
             this.rawData.num = (await api_data.get_prevision_data()).data.map(function(item){ return item.num })
             this.rawData.dates = (await api_data.get_prevision_data()).data.map(function(item){ return item.dataExtracao })
-            console.log("olha aqui")
-            console.log(this.rawData.dates)
-            console.log(this.rawData.num)
             this.rawData.Dianum = await this.calcDia(this.rawData.num)
 
             this.filteredData.amountData = (await api_data.get_hist_data()).data

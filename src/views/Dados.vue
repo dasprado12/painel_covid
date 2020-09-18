@@ -51,7 +51,7 @@
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-infectados       :dataset="filteredData" :mm="currentMM" /></v-col>
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><historico-obitos     :dataset="filteredData" /></v-col>
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><dia-obitos           :dataset="filteredData" :mm="currentMM" /></v-col>
-                        <v-col cols="12"><simple-map :state="currentState"/></v-col>
+                        <v-col cols="12" v-if="currentState.abrv == 'DF'"><simple-map :state="currentState"/></v-col>
                     </v-layout><br>
                     <v-layout>
                         <v-flex row wrap>
@@ -76,9 +76,9 @@
                     <v-container>
                     <v-row row wrap v-show="isSelected">
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><mix-infectados :uf="currentState.abrv" v-bind:regions="region"/></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><tree-infectados :uf="currentState.abrv" v-bind:regions="region"/></v-col>
+                        <v-col v-if="currentState.abrv == 'DF'" xl="6" lg="6" md="6" sm="6" xs="12"><tree-infectados :uf="currentState.abrv" v-bind:regions="region"/></v-col>
                         <v-col xl="6" lg="6" md="6" sm="6" xs="12"><mix-obitos :uf="currentState.abrv" v-bind:regions="region"/></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><tree-obitos :uf="currentState.abrv" v-bind:regions="region"/></v-col>
+                        <v-col v-if="currentState.abrv == 'DF'" xl="6" lg="6" md="6" sm="6" xs="12"><tree-obitos :uf="currentState.abrv" v-bind:regions="region"/></v-col>
                     </v-row>
                     </v-container>
             </v-container>
@@ -164,7 +164,6 @@ export default {
     methods:{
         async getData(){
             let dados = (await new Data(this.currentState.abrv).get_hist_data()).data
-            console.log(dados)
             this.rawData.amountData = dados
             this.rawData.num = dados.map(function(item){ return item.num })
             this.rawData.obitos = dados.map(function(item){ return item.obitos })
@@ -201,7 +200,6 @@ export default {
         changeMM(option){
             this.currentMM = option
             this.filteredData.MMnum = this.calcMms(this.rawData.num, option).slice(this.range[0], this.range[1]+1)
-            console.log(this.filteredData.MMnum)
             this.filteredData.MMobitos = this.calcMms(this.rawData.obitos, option).slice(this.range[0], this.range[1]+1)
         },
         calcMms(data, period){

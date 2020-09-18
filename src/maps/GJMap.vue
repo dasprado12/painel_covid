@@ -77,7 +77,6 @@ export default {
             let incid=0;
             geo.features.forEach(function(geojson){
             let geoName= geojson.name
-            console.log(incid)
                 data.forEach(function(point){
                     let name = point.regiao.replace(/\s/g,'')
                     let nameReady = name.replace('/', "-")
@@ -89,7 +88,6 @@ export default {
                     myStyle = leve;
                 }
                 else if(parseFloat(incid) <= 10){
-                    // alert(geoName)
                     myStyle =middle;
                 }
                 else{
@@ -97,7 +95,6 @@ export default {
                 }
                 // layer.addData(geojson.features, {style: myStyle})
                 incid=0;
-                console.log(incid)
                 L.geoJSON(geojson.features,{style: myStyle}).addTo(map)
             })
         },
@@ -124,7 +121,6 @@ export default {
                 //     }
                 let mark = L.marker(point.posicao).addTo(mapa);
                     array.push(mark)
-                    console.log(mark)
                 // this.layers[0].features.push(mark)
             })
             this.layers[0].features = array;

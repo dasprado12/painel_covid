@@ -81,55 +81,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Rafael T. de Sousa Júnior</td>
-                    <td>Prof. Dr. Adjunto</td>
-                    <td>---
-                        
-                    </td>
-                    <td>UIoT</td>
-                  </tr>
-                  <tr>
-                    <td>Francisco Caldas</td>
-                    <td>Doutorando</td>
-                    <td>PPGEE</td>
-                    <td>UIoT</td>
-                  </tr>
-                  <tr>
-                    <td>Lucas Coelho</td>
-                    <td>Mestrando</td>
-                    <td>PPGEE</td>
-                    <td>UIoT</td>
-                  </tr>
-                  <tr>
-                    <td>Paulo Henrique Ferreira</td>
-                    <td>Mestrando</td>
-                    <td>PPGEE</td>
-                    <td>UIoT</td>
-                  </tr>
-                  <tr>
-                    <td>André C. Ribeiro</td>
-                    <td>Graduando</td>
-                    <td>Engenharia de Redes</td>
-                    <td>UIoT</td>
-                  </tr>
-                  <tr>
-                    <td>Natália A. Marques</td>
-                    <td>Graduanda</td>
-                    <td>Engenharia de Redes</td>
-                    <td>UIoT</td>
-                  </tr>
-                  <tr>
-                    <td>Nayara Silva</td>
-                    <td>Graduanda</td>
-                    <td>Ciência da Computação</td>
-                    <td>UIoT</td>
-                  </tr>
-                  <tr>
-                    <td>Leonardo O. Almeida</td>
-                    <td>Graduando</td>
-                    <td>Engenharia de Redes</td>
-                    <td>UIoT</td>
+                  <tr v-for="item in pessoas" :key="item.name">
+                    <td>{{item.nome}}</td>
+                    <td>{{item.titulacao}}</td>
+                    <td>{{item.curso}}</td>
+                    <td>{{item.laboratorio}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -154,6 +110,19 @@ export default {
     data(){
         return {
           backgroundColor: 'green lighten-4',
+          pessoas: [ 
+            { nome: "Rafael T. de Sousa Júnior", titulacao: "Prof. Dr. Adjunto", curso: "", laboratorio: "" },
+            { nome: "Francisco Caldas", titulacao: "Doutorando", curso: "PPGEE", laboratorio: "UIoT" },
+            { nome: "Lucas Coelho", titulacao: "Mestrando", curso: "PPGEE", laboratorio: "UIoT" },
+            { nome: "Paulo Henrique Ferreira", titulacao: "Mestrando", curso: "PPGEE", laboratorio: "UIoT" },
+            { nome: "Jonathas Alves", titulacao: "Mestrando", curso: "PPGEE", laboratorio: "UIoT" },
+            { nome: "André C. Ribeiro", titulacao: "Graduando", curso: "Engenharia de Redes", laboratorio: "UIoT" },
+            { nome: "Daniel Prado", titulacao: "Graduando", curso: "Engenharia de Redes", laboratorio: "UIoT" },
+            { nome: "Natália A. Marques", titulacao: "Graduanda", curso: "Engenharia de Redes", laboratorio: "UIoT" },
+            { nome: "Leonardo O. Almeida", titulacao: "Graduando", curso: "Engenharia de Redes", laboratorio: "UIoT" },
+            { nome: "Nayara Silva", titulacao: "Graduanda", curso: "Ciencia da Computação", laboratorio: "UIoT" },
+            { nome: "Victor Campos", titulacao: "Graduando", curso: "Ciencia da Computação", laboratorio: "UIoT" },
+          ]
         }
     },
     

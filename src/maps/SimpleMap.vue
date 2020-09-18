@@ -5,7 +5,7 @@
                 <v-row>
                     <v-col cols="6">
                         <v-card-title class="`white--text`">
-                            <h5 :class="`${changeTxtColor(currentOption.color)}--text`">{{currentOption.name}}</h5>
+                            <h5>{{currentOption.name}}</h5>
                         </v-card-title>
                         <v-card-text>
                             <span class="legenda-texto"> <b>Infectados:</b> {{currentOption.num}} </span><br>
@@ -190,9 +190,6 @@ methods: {
         this.currentOption.num = item.data.num
         this.currentOption.obitos = item.data.obitos
     },
-    changeTxtColor(color){
-        console.log(color)
-    }
 }
 };
 </script>
