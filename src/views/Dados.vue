@@ -140,7 +140,7 @@ export default {
             MMnum: null,
             MMobitos: null,},
         currentMM: 7,
-        region: [ 'Total DF' ],
+        region: [ 'Ceilândia', 'Taguatinga' ],
         regions: null,
         isSelected: true,
         range: null,
