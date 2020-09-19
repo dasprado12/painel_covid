@@ -2,35 +2,45 @@
     <div class="dados">
         <div class="regioes">
             <v-container>
-                <h1 class="font-weight-bold">Distrito Federal</h1>
+                <h1 class="font-weight-bold">Distrito Federal - Exponencial</h1>
                 <v-divider/>
                     <v-layout row wrap>
                         <v-col cols="12">
                             <data-seletor @changeRange="dateRange" v-bind:dates="rawData.dates"/>
                         </v-col>
-                        <v-col cols="12">
-                            <v-card outlined color="grey lighten-4">
-                                <v-layout>
-                                    <v-col cols="6"></v-col>
-                                    <v-divider vertical/>
-                                    <v-col cols="6">
-                                    </v-col>
-                                </v-layout>
-                            </v-card>
-                        </v-col>
-                        <v-col xl="12" lg="12" md="12" sm="12" xs="12"><dia-infectados       :dataset="filteredData" /></v-col>
+                        <v-col cols="12"><dia-infectados :dataset="filteredData" /></v-col>
                     </v-layout><br>
                     
                     <v-divider/>
-
+                    
+            </v-container>
+            <v-container>
+                <h1 class="font-weight-bold">Distrito Federal - Algoritmo</h1>
+                <v-divider/>
+                    <v-layout row wrap>
+                        <v-col cols="12">
+                            <data-seletor @changeRange="dateRange" v-bind:dates="rawData.dates"/>
+                        </v-col>
+                            <v-col cols="12">
+                            <previsao 
+                                :datas="cePrediction.datas"
+                                :obitos="cePrediction.obitos"
+                                :projecao="cePrediction.predObitos" 
+                                :exponencial="filteredData.num"
+                                :key="key"
+                            />
+                        </v-col>
+                    </v-layout><br>
+                    
+                    <v-divider/>
             </v-container>
         </div>
     </div>
 </template>
 
 <script>
-
-import diaInfectados from "../components/PrevisaoInfectados"
+import previsao from "../charts/Previsao.vue"
+import diaInfectados from "../components/PrevisaoInfectados.vue"
 import dataSeletor from "../components/Seletor.vue"
 
 import { Data } from "../functions/index.js"
@@ -40,10 +50,12 @@ let api_data = new Data()
 
 export default {
     components: {
+        previsao,
         diaInfectados,
         dataSeletor,
     },
     data: () => ({
+        key: 0,
         rawData: {
             amountData: null,
             dates: null,
@@ -53,21 +65,25 @@ export default {
             Diaobitos: null,
             MMnum: null,
             MMobitos: null,},
-        filteredData: {
-            amountData: null,
-            dates: null,
-            num: null,
-            Dianum: null,
-
+            filteredData: {
+                amountData: null,
+                dates: null,
+                num: null,
+                Dianum: null,
             },
-        currentMM: 7,
-        region: [ 'Total DF' ],
-        regions: null,
-        isSelected: true,
-        range: null,
+            currentMM: 7,
+            regions: null,
+            isSelected: true,
+            range: null,
+            cePrediction: {
+                datas: [],
+                obitos: [],
+                predObitos: [],
+            }
     }),
     async created(){
         this.getData()
+        this.getPrediction()
     },
     watch: {
         region(val){
@@ -83,6 +99,13 @@ export default {
         
     },
     methods:{
+        async getPrediction(){
+            let dataPrediction = (await api_data.get_prediction_ce()).data
+            this.cePrediction.datas = await dataPrediction.map(function(item) { return item.data })
+            this.cePrediction.obitos = await dataPrediction.map(function(item){ if(item.obitos == "-"){ return null }else{return item.obitos} })
+            this.cePrediction.predObitos = await dataPrediction.map(function(item){ if(item.predicao_obitos == "-"){ return null }else{ return item.predicao_obitos }  })
+            this.key++
+        },
         async getData(){
             this.rawData.amountData = (await api_data.get_hist_data()).data
             this.rawData.num = (await api_data.get_prevision_data()).data.map(function(item){ return item.num })
@@ -122,6 +145,9 @@ export default {
 </script>
 
 <style scoped>
+.regioes{
+    padding-top: 120px;
+}
 h1, h2{
     color: rgb(77, 77, 77);
 }

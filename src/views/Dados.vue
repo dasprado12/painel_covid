@@ -75,10 +75,10 @@
                     <v-divider/>
                     <v-container>
                     <v-row row wrap v-show="isSelected">
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><mix-infectados :uf="currentState.abrv" v-bind:regions="region"/></v-col>
-                        <v-col v-if="currentState.abrv == 'DF'" xl="6" lg="6" md="6" sm="6" xs="12"><tree-infectados :uf="currentState.abrv" v-bind:regions="region"/></v-col>
-                        <v-col xl="6" lg="6" md="6" sm="6" xs="12"><mix-obitos :uf="currentState.abrv" v-bind:regions="region"/></v-col>
-                        <v-col v-if="currentState.abrv == 'DF'" xl="6" lg="6" md="6" sm="6" xs="12"><tree-obitos :uf="currentState.abrv" v-bind:regions="region"/></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12" ><mix-infectados :uf="currentState.abrv" v-bind:regions="region"/></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12" v-if="currentState.abrv == 'DF'"><tree-infectados :uf="currentState.abrv" v-bind:regions="region"/></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12" ><mix-obitos :uf="currentState.abrv" v-bind:regions="region"/></v-col>
+                        <v-col xl="6" lg="6" md="6" sm="6" xs="12" v-if="currentState.abrv == 'DF'"><tree-obitos :uf="currentState.abrv" v-bind:regions="region"/></v-col>
                     </v-row>
                     </v-container>
             </v-container>

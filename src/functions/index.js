@@ -3,6 +3,7 @@ import axios from 'axios'
 const url = process.env.VUE_APP_API + '/api/regions'
 const url2 = process.env.VUE_APP_APIv2 + '/apiv2/regiao/'
 const url3 = process.env.VUE_APP_APIv2 + '/apiv2/predicao/'
+const url4 = "https://covid.dsousa.dev/api/predictions/df"
 
 const endpoints = {
     all_data: url,
@@ -10,7 +11,8 @@ const endpoints = {
     many_regions: url + '/listMany',
     all_regions: url + '/list',
     all_dates: url + '/dates',
-    last_date: url + '/newestDate'
+    last_date: url + '/newestDate',
+    prediction: url4
 }
 
 
@@ -19,6 +21,10 @@ export class Data {
     constructor(uf){
         this.uf = uf
     }
+
+    // get_prediction_ce = () => axios.get(endpoints.prediction)
+
+    get_prediction_ce = () => axios.get(endpoints.prediction)
 
     get_all_data = () => axios.get(endpoints.all_data)
 
