@@ -5,7 +5,7 @@
                 <h1 class="font-weight-bold">Distrito Federal - Exponencial</h1>
                 <v-divider/>
                     <v-layout row wrap>
-                        <v-col cols="12">
+                        <v-col cols="12">  
                             <data-seletor @changeRange="dateRange" v-bind:dates="rawData.dates"/>
                         </v-col>
                         <v-col cols="12"><dia-infectados :dataset="filteredData" /></v-col>

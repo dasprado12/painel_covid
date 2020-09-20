@@ -8,8 +8,8 @@
                             <h5>{{currentOption.name}}</h5>
                         </v-card-title>
                         <v-card-text>
-                            <span class="legenda-texto"> <b>Infectados:</b> {{currentOption.num}} </span><br>
-                            <span class="legenda-texto"> <b>Óbitos:</b> {{currentOption.obitos}} </span>
+                            <span class="legenda-texto"> <b>Infected:</b> {{currentOption.num}} </span><br>
+                            <span class="legenda-texto"> <b>Deaths:</b> {{currentOption.obitos}} </span>
                         </v-card-text>
                     </v-col>
                     <v-col cols="6">
@@ -17,7 +17,7 @@
                                 <div v-for="(item,idx) in legenda()" :key="idx">
                                     <span v-if="idx==0"> <v-badge :color="getColor(type, idx)"/> <span class="simple-space"/> 0 - {{item.menor-1}}  </span>
                                     <span v-if="idx>=1 && idx <=3"> <v-badge :color="getColor(type, idx)"/> <span class="simple-space"/> {{item.maior}} - {{item.menor-1}}  </span>
-                                    <span v-if="idx==4"> <v-badge :color="getColor(type, idx)"/> <span class="simple-space"/> {{item.maior}} - maior  </span>
+                                    <span v-if="idx==4"> <v-badge :color="getColor(type, idx)"/> <span class="simple-space"/> {{item.maior}} - >  </span>
                                 </div>
                             </v-card-text>
                     </v-col>

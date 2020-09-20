@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card color="grey lighten-4"> 
-            <v-card-title class="font-weight-light"> Acumulado - Óbitos por região </v-card-title>
+            <v-card-title class="font-weight-light"> Total - Deaths by region </v-card-title>
             <line-chart
                 :time="time"
                 :data="data"

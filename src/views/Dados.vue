@@ -56,7 +56,7 @@
                     <v-layout>
                         <v-flex row wrap>
                             <v-col>
-                                <h2 class="font-weight-normal">Análise por região</h2>
+                                <h2 class="font-weight-normal">Analysis by region</h2>
                             </v-col>
                             <v-col>
                                 <v-combobox v-model="region" :items="regions" label="Escolha as Regiões" multiple small-chips solo dense                                >

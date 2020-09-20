@@ -4,7 +4,7 @@
             <v-card-title> 
                 {{state.title}}
                 <v-divider vertical class="mx-3 mb-3 mt-3"/>
-                <span>Infectados/Óbitos - {{dia}}/{{mes}}/{{ano}}</span>
+                <span>Infected/Deaths - {{dia}}/{{mes}}/{{ano}}</span>
                 <v-spacer/>
                 <v-switch 
                     color="red"
@@ -52,7 +52,7 @@ export default {
             type: 'obitos',
             switch1: false,
             showPoints: true,
-            currentOption: { name: "Infectados", val: "num" },
+            currentOption: { name: "Infected", val: "num" },
             numId: 0,
             incid: null
         }
