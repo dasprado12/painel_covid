@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card color="grey lighten-4"> 
-            <v-card-title class="font-weight-light"> Acumulado - Infectados por região </v-card-title>
+            <v-card-title class="font-weight-light"> Total - Infected by region </v-card-title>
             <line-chart
                 :colors="colors"
                 :time="time"

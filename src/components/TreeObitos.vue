@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card color="grey lighten-4">
-            <v-card-title class="font-weight-light"> Regiões com mais óbitos </v-card-title>
+            <v-card-title class="font-weight-light"> Regions with most deaths </v-card-title>
                 <tree-map-inf 
                     :data="amountData"
                     :regions="amountRegions"

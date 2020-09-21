@@ -1,7 +1,7 @@
 <template>
     <v-card color="grey lighten-4">
         <v-card-text>
-            <v-row>
+            <v-row v-if="dates != null">
                 <v-col class="px-4">
                 <v-range-slider
                     v-model="range"
@@ -14,6 +14,9 @@
                     v-on:mouseup="sendRange()"
                 />
                 </v-col>
+            </v-row>
+            <v-row v-else>
+                disabled
             </v-row>
         </v-card-text>
         <v-subheader> <h2>De: {{displayDates(range[0])}}</h2> <v-spacer/> <h2>Até: {{ displayDates(range[1])}}</h2> </v-subheader>
