@@ -9,7 +9,6 @@
                     type="area" 
                     :options="options" 
                     :series="series"
-                    :key="key"
                 />  
             </v-card-text>
         </v-card>
@@ -23,10 +22,9 @@ export default {
     components: {
         VueApexCharts
     },
-    props: [ 'datas', 'obitos', 'projecao', 'exponencial'],
+    props: [ 'datas', 'obitos', 'projecao'],
     data(){
         return {
-            key: 0,
             options: { 
                 dataLabels: {
                     enabled: false,

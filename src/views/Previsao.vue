@@ -2,37 +2,45 @@
     <div class="dados">
         <div class="regioes">
             <v-container>
-                <h1 class="font-weight-bold">Distrito Federal - Exponencial</h1>
-                <v-divider/>
-                    <v-layout row wrap>
-                        <v-col cols="12">  
-                            <data-seletor @changeRange="dateRange" v-bind:dates="rawData.dates"/>
-                        </v-col>
-                        <v-col cols="12"><dia-infectados :dataset="filteredData" /></v-col>
-                    </v-layout><br>
-                    
-                    <v-divider/>
+                <v-row>
+                    <v-col cols="6">
+                        <h1 class="font-weight-bold">Distrito Federal - Algoritmo</h1>
+                        <v-divider/>
+                            <v-layout row wrap>
+                                <v-col cols="12">
+                                    <data-seletor v-bind:dates="null"/>
+                                </v-col>
+                                    <v-col cols="12">
+                                    <previsao 
+                                        :datas="cePrediction.datas"
+                                        :obitos="cePrediction.obitos"
+                                        :projecao="cePrediction.predObitos"
+                                        :key="key"
+                                    />
+                                </v-col>
+                            </v-layout><br>
+                            
+                            <v-divider/>
+                    </v-col>
+                    <v-col cols="6">
+                        <h1 class="font-weight-bold">Distrito Federal - Exponencial</h1>
+                        <v-divider/>
+                        <v-layout row wrap>
+                            <v-col cols="12">  
+                                <data-seletor @changeRange="dateRange" v-bind:dates="rawData.dates"/>
+                            </v-col>
+                            <v-col cols="12"><dia-infectados :dataset="filteredData" /></v-col>
+                        </v-layout><br>
+                        <v-divider/>
+                    </v-col>
+                </v-row>
+            </v-container>
+            <v-container>
+                
                     
             </v-container>
             <v-container>
-                <h1 class="font-weight-bold">Distrito Federal - Algoritmo</h1>
-                <v-divider/>
-                    <v-layout row wrap>
-                        <v-col cols="12">
-                            <data-seletor @changeRange="dateRange" v-bind:dates="rawData.dates"/>
-                        </v-col>
-                            <v-col cols="12">
-                            <previsao 
-                                :datas="cePrediction.datas"
-                                :obitos="cePrediction.obitos"
-                                :projecao="cePrediction.predObitos" 
-                                :exponencial="filteredData.num"
-                                :key="key"
-                            />
-                        </v-col>
-                    </v-layout><br>
-                    
-                    <v-divider/>
+                
             </v-container>
         </div>
     </div>
@@ -102,7 +110,7 @@ export default {
         async getPrediction(){
             let dataPrediction = (await api_data.get_prediction_ce()).data
             this.cePrediction.datas = await dataPrediction.map(function(item) { return item.data })
-            this.cePrediction.obitos = await dataPrediction.map(function(item){ if(item.obitos == "-"){ return null }else{return item.obitos} })
+            this.cePrediction.obitos = await dataPrediction.map(function(item){ if(item.obitos == "-"){ return null }else{ return item.obitos} })
             this.cePrediction.predObitos = await dataPrediction.map(function(item){ if(item.predicao_obitos == "-"){ return null }else{ return item.predicao_obitos }  })
             this.key++
         },
