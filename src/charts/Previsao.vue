@@ -25,7 +25,9 @@ export default {
     props: [ 'datas', 'obitos', 'projecao'],
     data(){
         return {
+
             options: { 
+
                 dataLabels: {
                     enabled: false,
                 }, 

@@ -66,8 +66,8 @@ export default {
         key: 0,
         rawData: {
             amountData: null,
-            dates: null,
-            num: null,
+            dates: [],
+            num: [],
             obitos: null,
             Dianum: null,
             Diaobitos: null,
@@ -109,15 +109,31 @@ export default {
     methods:{
         async getPrediction(){
             let dataPrediction = (await api_data.get_prediction_ce()).data
-            this.cePrediction.datas = await dataPrediction.map(function(item) { return item.data })
-            this.cePrediction.obitos = await dataPrediction.map(function(item){ if(item.obitos == "-"){ return null }else{ return item.obitos} })
-            this.cePrediction.predObitos = await dataPrediction.map(function(item){ if(item.predicao_obitos == "-"){ return null }else{ return item.predicao_obitos }  })
+            for(let data of dataPrediction){
+                this.cePrediction.datas.push(data.data);
+                if(data.obitos !=="-")
+                    this.cePrediction.obitos.push(data.obitos)
+                    else
+                    this.cePrediction.obitos.push(null)
+
+                if(data.predicao_obitos==="-")
+                    this.cePrediction.predObitos.push(null)
+                    else
+                    this.cePrediction.predObitos.push(data.predicao_obitos)
+
+            }
+            // this.cePrediction.datas = await dataPrediction.map(function(item) { return item.data })
+            // this.cePrediction.obitos = await dataPrediction.map(function(item){ if(item.obitos == "-"){ return null }else{ return item.obitos} })
+            // this.cePrediction.predObitos = await dataPrediction.map(function(item){ if(item.predicao_obitos == "-"){ return null }else{ return item.predicao_obitos }  })
             this.key++
         },
         async getData(){
             this.rawData.amountData = (await api_data.get_hist_data()).data
-            this.rawData.num = (await api_data.get_prevision_data()).data.map(function(item){ return item.num })
-            this.rawData.dates = (await api_data.get_prevision_data()).data.map(function(item){ return item.dataExtracao })
+            let previsionData = (await api_data.get_prevision_data()).data 
+            for(let dado of previsionData){
+                this.rawData.num.push(dado.num)
+                this.rawData.dates.push(dado.dataExtracao)
+            }
             this.rawData.Dianum = await this.calcDia(this.rawData.num)
 
             this.filteredData.amountData = (await api_data.get_hist_data()).data
