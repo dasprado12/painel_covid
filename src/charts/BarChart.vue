@@ -25,6 +25,9 @@ export default {
         return {
             nulo: [0],
             options: {
+                noData: {
+                text: "Carregando..."
+            },
                 plotOptions: {
                     bar: {
                         horizontal: true,

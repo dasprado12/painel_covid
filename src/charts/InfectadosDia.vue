@@ -42,7 +42,10 @@ export default {
                 xaxis: {
                     type: 'datetime', 
                     categories: this.time 
-                }
+                },
+                noData: {
+                    text: "Carregando..."
+                },
             }
         },
         series(){

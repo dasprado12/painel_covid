@@ -19,6 +19,9 @@ export default {
     data(){
         return {
             options: { 
+                noData: {
+                    text: "Carregando..."
+                },
                 dataLabels: {
                     enabled: false,
                 }, 

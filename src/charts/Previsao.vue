@@ -49,7 +49,10 @@ export default {
                             year: 'yyyy'
                         }
                     } 
-                }
+                },
+            noData: {
+                text: "Carregando..."
+            },
             },
             numId: 0,
         }
