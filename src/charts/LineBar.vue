@@ -27,16 +27,7 @@ export default {
         options(){
             return {
                 noData: {
-                    text: 'Carregando...',
-                    align: 'center',
-                    verticalAlign: 'middle',
-                    offsetX: 0,
-                    offsetY: 0,
-                    style: {
-                        color: undefined,
-                        fontSize: '14px',
-                        fontFamily: undefined
-                    }
+                    text: "Carregando..."
                 },
                 dataLabels: {
                     enabled: false

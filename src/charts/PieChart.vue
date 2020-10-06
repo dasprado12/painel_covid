@@ -18,10 +18,14 @@ export default {
     props: [ 'colors', 'data', 'regions' ],
     data(){
         return {
+            
             series: this.data,
             chartOptions: {
                 chart: {
                     type: 'pie',
+                },
+                noData: {
+                    text: "Carregando..."
                 },
                 colors: this.colors,
                 labels: this.regions,

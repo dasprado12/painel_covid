@@ -27,7 +27,6 @@ export default {
         return {
 
             options: { 
-
                 dataLabels: {
                     enabled: false,
                 }, 
@@ -35,7 +34,10 @@ export default {
                     curve: 'smooth'
                 }, 
                 chart: { 
-                    id: 'vuechart-example' 
+                    id: 'vuechart-example' ,
+                    animations: {
+                        enabled: false,
+                    }
                 },
                 colors: this.colors,
                 xaxis: {
@@ -47,7 +49,10 @@ export default {
                             year: 'yyyy'
                         }
                     } 
-                }
+                },
+            noData: {
+                text: "Carregando..."
+            },
             },
             numId: 0,
         }

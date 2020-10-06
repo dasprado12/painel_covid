@@ -26,6 +26,9 @@ export default {
     computed:{
         options(){
             return {
+                noData: {
+                    text: "Carregando..."
+                },
                 dataLabels: {
                     enabled: false,
                 },
