@@ -26,6 +26,7 @@ export default {
     data(){
         return {
             options: { 
+                
                 dataLabels: {
                     enabled: false,
                 }, 
@@ -33,7 +34,10 @@ export default {
                     curve: 'smooth'
                 }, 
                 chart: { 
-                    id: 'vuechart-example' 
+                    id: 'vuechart-example' ,
+                    animations: {
+                        enabled: false
+                    }
                 },
                 colors: this.colors,
                 xaxis: {
