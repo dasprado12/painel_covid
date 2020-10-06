@@ -36,7 +36,7 @@ export default {
                 chart: { 
                     id: 'vuechart-example' ,
                     animations: {
-                        enabled: false
+                        enabled: false,
                     }
                 },
                 colors: this.colors,
