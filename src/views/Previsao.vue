@@ -7,9 +7,6 @@
                         <h1 class="font-weight-bold">Distrito Federal - Algoritmo</h1>
                         <v-divider/>
                             <v-layout row wrap>
-                                <v-col cols="12">
-                                    <data-seletor v-bind:dates="null"/>
-                                </v-col>
                                     <v-col cols="12">
                                     <previsao 
                                         :datas="cePrediction.datas"
@@ -26,9 +23,6 @@
                         <h1 class="font-weight-bold">Distrito Federal - Exponencial</h1>
                         <v-divider/>
                         <v-layout row wrap>
-                            <v-col cols="12">  
-                                <data-seletor @changeRange="dateRange" v-bind:dates="rawData.dates"/>
-                            </v-col>
                             <v-col cols="12"><dia-infectados :dataset="filteredData" /></v-col>
                         </v-layout><br>
                         <v-divider/>
@@ -49,7 +43,6 @@
 <script>
 import previsao from "../charts/Previsao.vue"
 import diaInfectados from "../components/PrevisaoInfectados.vue"
-import dataSeletor from "../components/Seletor.vue"
 
 import { Data } from "../functions/index.js"
 
@@ -60,7 +53,6 @@ export default {
     components: {
         previsao,
         diaInfectados,
-        dataSeletor,
     },
     data: () => ({
         key: 0,
