@@ -19,7 +19,7 @@
                 disabled
             </v-row>
         </v-card-text>
-        <v-subheader> <h3>De: {{displayDates(range[0])}}</h3> <v-spacer/> <h3>Até: {{ displayDates(range[1])}}</h3> </v-subheader>
+        <v-subheader> <h5>De: {{displayDates(range[0])}}</h5> <v-spacer/> <h5>Até: {{ displayDates(range[1])}}</h5> </v-subheader>
     </v-card>
 </template>
 
