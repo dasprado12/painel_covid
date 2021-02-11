@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@syncfusion/ej2-vue-treemap": "^18.1.54",
-    "apexcharts": "^3.19.2",
+    "apexcharts": "^3.24.0",
     "core-js": "^3.6.4",
     "leaflet": "^1.6.0",
     "lottie-vuejs": "^0.3.7",
